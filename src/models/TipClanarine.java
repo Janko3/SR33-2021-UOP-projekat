@@ -4,29 +4,29 @@ public class TipClanarine {
 
     
 
-    private int id;
+    private String id;
 
     private String opis;
 
     private double cena;
     
     public TipClanarine() {
-    	this.id = -1;
+    	this.id = "";
 		this.opis = "";
 		this.cena = -1;
     }
 
-	public TipClanarine(int id, String opis, double cena) {
+	public TipClanarine(String id, String opis, double cena) {
 		this.id = id;
 		this.opis = opis;
 		this.cena = cena;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -6,7 +6,7 @@ import enumerations.Pol;
 
 public class Clan extends Osoba {
     
-	protected int brClanskeKarte;
+	protected String brClanskeKarte;
 
     protected LocalDate datumPoslednjeUplate;
 
@@ -14,7 +14,7 @@ public class Clan extends Osoba {
 
     protected boolean aktivnost;
 
-    protected boolean obrisan;
+    
     
     protected TipClanarine tipClanarine;
     
@@ -22,30 +22,29 @@ public class Clan extends Osoba {
     
     public Clan() {
     	
-    	this.brClanskeKarte = -1;
+    	this.brClanskeKarte = "";
     	this.datumPoslednjeUplate = null;
     	this.brojMeseci = -1;
     	this.aktivnost = true;
-    	this.obrisan = false;
     	this.tipClanarine = null;
     	
     }
 
-	public Clan(int brClanskeKarte, LocalDate datumPoslednjeUplate, int brojMeseci, boolean aktivnost,String ime, String prezime, String JMBG, String adresa, Pol pol) {
-		super(ime, prezime, JMBG, adresa, pol);
+	public Clan(String brClanskeKarte, LocalDate datumPoslednjeUplate, int brojMeseci, boolean aktivnost,String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan) {
+		super(ime, prezime, JMBG, adresa, pol, jeObrisan);
 		this.brClanskeKarte = brClanskeKarte;
 		this.datumPoslednjeUplate = datumPoslednjeUplate;
 		this.brojMeseci = brojMeseci;
 		this.aktivnost = aktivnost;
-		this.obrisan = false;
+		
 		
 	}
 
-	public int getBrClanskeKarte() {
+	public String getBrClanskeKarte() {
 		return brClanskeKarte;
 	}
 
-	public void setBrClanskeKarte(int brClanskeKarte) {
+	public void setBrClanskeKarte(String brClanskeKarte) {
 		this.brClanskeKarte = brClanskeKarte;
 	}
 
@@ -76,16 +75,7 @@ public class Clan extends Osoba {
 
 
 
-	public boolean isObrisan() {
-		return obrisan;
-	}
-
-
-
-
-	public void setObrisan(boolean obrisan) {
-		this.obrisan = obrisan;
-	}
+	
 
 
 

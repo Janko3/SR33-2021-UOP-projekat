@@ -15,7 +15,7 @@ public class Primerak {
 
     private boolean iznamljena;
 
-    private int id;
+    private String id;
 
     private boolean obrisan;
     
@@ -28,7 +28,7 @@ public class Primerak {
 		this.brojStrana = -1;
 		this.godinaStampanja = -1;
 		this.iznamljena = false;
-		this.id = -1;
+		this.id = "";
 		this.obrisan = false;
 		this.jezik = null;
 		this.povez = null;
@@ -41,7 +41,7 @@ public class Primerak {
 		this.brojStrana = brojStrana;
 		this.godinaStampanja = godinaStampanja;
 		this.iznamljena = iznamljena;
-		this.id = id;
+		this.id = "";
 		this.obrisan = false;
 		this.jezik = jezik;
 		this.povez = povez;
@@ -79,11 +79,11 @@ public class Primerak {
 		this.iznamljena = iznamljena;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -15,7 +15,7 @@ public class Biblioteka {
 
     private String telefon;
 
-    private int id;
+    private String id;
     
     private ArrayList<Knjiga> sveKnjige = new ArrayList<Knjiga>();
     
@@ -32,7 +32,7 @@ public class Biblioteka {
 		this.adresa = "";
 		this.radnoVreme = "";
 		this.telefon = "";
-		this.id = -1;
+		this.id = "";
 		this.sveKnjige = null;
 		this.sviClanovi = null;
 		this.sviZaposleni = null;
@@ -41,7 +41,7 @@ public class Biblioteka {
     
     
 
-	public Biblioteka(String naziv, String adresa, String radnoVreme, String telefon, int id,ArrayList<Knjiga> sveKnjige,ArrayList<Clan> sviClanovi,ArrayList<Zaposleni> sviZaposleni,ArrayList<Primerak> sviPrimerci) {
+	public Biblioteka(String naziv, String adresa, String radnoVreme, String telefon, String id,ArrayList<Knjiga> sveKnjige,ArrayList<Clan> sviClanovi,ArrayList<Zaposleni> sviZaposleni,ArrayList<Primerak> sviPrimerci) {
 		this.naziv = naziv;
 		this.adresa = adresa;
 		this.radnoVreme = radnoVreme;
@@ -78,11 +78,11 @@ public class Biblioteka {
 		this.telefon = telefon;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

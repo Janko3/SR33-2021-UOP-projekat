@@ -4,19 +4,20 @@ import enumerations.Pol;
 
 public abstract class Osoba {
 	
-	private String prezime;
+	protected String prezime;
 
 	 
-    private String JMBG;
+    protected String JMBG;
 
 
-    private String adresa;
+    protected String adresa;
     
-    private String ime;
+    protected String ime;
     
-    private Pol pol;
+    protected Pol pol;
 
-  
+    protected boolean jeObrisan;
+    
     public Osoba() {
     	
     	this.ime = "";
@@ -24,22 +25,36 @@ public abstract class Osoba {
 		this.JMBG = "";
 		this.adresa = "";
 		this.pol = null;
+		this.jeObrisan = false;
+		
+		
     }
 
   
-    public Osoba(String ime, String prezime, String JMBG, String adresa,Pol pol) {
+    public Osoba(String ime, String prezime, String JMBG, String adresa,Pol pol,boolean jeObrisan) {
 		this.ime = ime;
 		this.prezime = prezime;
 		this.JMBG = JMBG;
 		this.adresa = adresa;
 		this.pol = pol;
+		this.jeObrisan = jeObrisan;
 	}
 
 
 	
 
 	
-    public String getIme() {
+    public boolean isJeObrisan() {
+		return jeObrisan;
+	}
+
+
+	public void setJeObrisan(boolean jeObrisan) {
+		this.jeObrisan = jeObrisan;
+	}
+
+
+	public String getIme() {
 		return ime;
 	}
 

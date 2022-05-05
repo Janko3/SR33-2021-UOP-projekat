@@ -11,36 +11,25 @@ public abstract class Zaposleni extends Osoba {
 	  
 	    protected double plata;
 
-	    protected int id;
+	    protected String id;
 
-	    protected boolean obrisan;
-   
-   
-
-   
-  
 	public Zaposleni() {
 		this.korisnickoIme = "";
 		this.lozinka = "";
 		this.plata = -1;
-		this.id = -1;
-		this.obrisan = false;
+		this.id = "";
+		
+		
 	    }
-	
 
-
-
-	public Zaposleni(String korisnickoIme, String lozinka, double plata, int id,String ime, String prezime, String JMBG, String adresa, Pol pol) {
-		super(ime, prezime, JMBG, adresa, pol);
+	public Zaposleni(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,String korisnickoIme, String lozinka,double plata, String id) {
+		super(ime, prezime, JMBG, adresa, pol, jeObrisan);
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
 		this.plata = plata;
 		this.id = id;
-		this.obrisan = false;
-		
+		// TODO Auto-generated constructor stub
 	}
-    
-
 
 	public String getKorisnickoIme() {
 		return korisnickoIme;
@@ -72,24 +61,14 @@ public abstract class Zaposleni extends Osoba {
 	}
 
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-
-	public boolean isObrisan() {
-		return obrisan;
-	}
-
-
-	public void setObrisan(boolean obrisan) {
-		this.obrisan = obrisan;
-	}
-
 
 	public void  DodatiNoveClanove() {
         // TODO implement here

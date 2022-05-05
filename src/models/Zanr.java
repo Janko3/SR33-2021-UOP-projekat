@@ -15,7 +15,7 @@ public class Zanr {
     /**
      * 
      */
-    private int id;
+    private String id;
 
     /**
      * 
@@ -24,11 +24,11 @@ public class Zanr {
 
     public Zanr() {
     	this.opis = "";
-		this.id = -1;
+		this.id = "";
 		this.oznaka = "";
     }
     
-	public Zanr(String opis, int id, String oznaka) {
+	public Zanr(String opis, String id, String oznaka) {
 		this.opis = opis;
 		this.id = id;
 		this.oznaka = oznaka;
@@ -42,11 +42,11 @@ public class Zanr {
 		this.opis = opis;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

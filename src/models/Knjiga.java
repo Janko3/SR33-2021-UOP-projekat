@@ -16,7 +16,7 @@ public class Knjiga {
 
     private String opis;
 
-    private int id;
+    private String id;
 
     private boolean obrisan;
     
@@ -32,13 +32,13 @@ public class Knjiga {
 		this.pisac = "";
 		this.godinaObjavljivanja = -1;
 		this.opis = "";
-		this.id = -1;
+		this.id = "";
 		this.obrisan = false;
 		this.zanr = null;
 		this.jezik = null;
     }
 
-	public Knjiga(String naslov, String originalniNaslov, String pisac, int godinaObjavljivanja, String opis, int id,Zanr zanr,Jezik jezik
+	public Knjiga(String naslov, String originalniNaslov, String pisac, int godinaObjavljivanja, String opis, String id,Zanr zanr,Jezik jezik
 			) {
 		this.naslov = naslov;
 		this.originalniNaslov = originalniNaslov;
@@ -99,11 +99,11 @@ public class Knjiga {
 		this.opis = opis;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
