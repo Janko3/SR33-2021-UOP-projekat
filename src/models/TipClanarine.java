@@ -1,5 +1,11 @@
 package models;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class TipClanarine {
 
     
@@ -46,6 +52,23 @@ public class TipClanarine {
 		this.cena = cena;
 	}
     
+    public static void upisiTipove(TipClanarine tipClanarine) {
+    	try{
+    		BufferedWriter tipoviFajl = new BufferedWriter(new FileWriter("src/data/tipovi.txt"));
+    			
+    		tipoviFajl.write(pripremaZaUpis(tipClanarine) + "\n");
+    			
+    			tipoviFajl.close();
+    	} catch(IOException err) { err.printStackTrace(); }
+    }
+    private static String pripremaZaUpis(TipClanarine tip) {
+    	return String.format("%s|%s|%s", tip.getId(), tip.getOpis(), Double.toString(tip.getCena()));
+    }
     
+    private static TipClanarine pripremaZaIspis(String line) {
+    	String[] splitLinija = line.split("\\|");
+    	TipClanarine clanarina = new TipClanarine(splitLinija[0], splitLinija[1], Double.parseDouble(splitLinija[2]));
+    	return clanarina;
+    }
 
 }

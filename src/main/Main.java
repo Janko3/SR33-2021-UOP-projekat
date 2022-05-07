@@ -1,4 +1,5 @@
 package main;
+import models.*;
 
 public class Main {
 
@@ -8,7 +9,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		TipClanarine tipClanarine = new TipClanarine("penzioner","Clanarina",100.00);
+		TipClanarine.upisiTipove(tipClanarine);
 	}
 
 }
