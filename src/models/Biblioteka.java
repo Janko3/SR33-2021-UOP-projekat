@@ -1,6 +1,7 @@
 package models;
 
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Biblioteka {
@@ -24,6 +25,8 @@ public class Biblioteka {
     private ArrayList<Zaposleni> sviZaposleni = new ArrayList<Zaposleni>();
     
     private ArrayList<Primerak> sviPrimerci = new ArrayList<Primerak>();
+    
+    private ArrayList<TipClanarine> sviTipovi = new ArrayList<TipClanarine>();
 
     
     public Biblioteka() {
@@ -41,7 +44,8 @@ public class Biblioteka {
     
     
 
-	public Biblioteka(String naziv, String adresa, String radnoVreme, String telefon, String id,ArrayList<Knjiga> sveKnjige,ArrayList<Clan> sviClanovi,ArrayList<Zaposleni> sviZaposleni,ArrayList<Primerak> sviPrimerci) {
+	public Biblioteka(String naziv, String adresa, String radnoVreme, String telefon, String id,ArrayList<Knjiga> sveKnjige,
+			ArrayList<Clan> sviClanovi,ArrayList<Zaposleni> sviZaposleni,ArrayList<Primerak> sviPrimerci,ArrayList<TipClanarine> sviTipovi) {
 		this.naziv = naziv;
 		this.adresa = adresa;
 		this.radnoVreme = radnoVreme;
@@ -51,6 +55,7 @@ public class Biblioteka {
 		this.sviClanovi = sviClanovi;
 		this.sviZaposleni = sviZaposleni;
 		this.sviPrimerci = sviPrimerci;
+		this.sviTipovi = sviTipovi;
 	}
 
 	public String getNaziv() {
@@ -125,6 +130,19 @@ public class Biblioteka {
 	public void setSviPrimerci(ArrayList<Primerak> sviPrimerci) {
 		this.sviPrimerci = sviPrimerci;
 	}
+
+	public ArrayList<TipClanarine> getSviTipovi() {
+		return sviTipovi;
+	}
+
+
+
+	public void setSviTipovi(ArrayList<TipClanarine> sviTipovi) {
+		this.sviTipovi = sviTipovi;
+	}
+	
+	
+	
 	
 	
 
