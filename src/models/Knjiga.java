@@ -1,5 +1,13 @@
 package models;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import enumerations.Jezik;
 
 public class Knjiga {
@@ -122,10 +130,56 @@ public class Knjiga {
 	public void setJezik(Jezik jezik) {
 		this.jezik = jezik;
 	}
+	
+	private static String pripremaZaUpis(Knjiga knjiga) {
+    	return String.format("%s|%s|%s|%s|%s|%s|%s|%s", knjiga.getNaslov(), knjiga.getOriginalniNaslov(), knjiga.getPisac(), Integer.toString(knjiga.getGodinaObjavljivanja()),
+    			knjiga.getOpis(),knjiga.getId(),knjiga.getZanr().getId(),knjiga.getJezik());
+    }
+	public static void upisiKnjigu(Knjiga knjiga) {
+		try {
+			BufferedWriter knjigeFile = new BufferedWriter(new FileWriter("src/data/knjiga.txt"));
+			knjigeFile.write(pripremaZaUpis(knjiga) + "\n");
+			knjigeFile.close();
+			
+		} catch(IOException err) { err.printStackTrace(); }
+		
+	}
+	
+	public static void ucitajKnjige(ArrayList<Zanr>sviZanrovi) {
+		ArrayList<Knjiga> knjige = new ArrayList<Knjiga>();
+		try {
+			File fajlKnjiga = new File("src/data/knjiga.txt");
+			BufferedReader reader = new BufferedReader(new FileReader(fajlKnjiga));
+			String linija;
+			while((linija = reader.readLine()) != null) {
+				String[] splitLinije = linija.split("\\|");
+				String naslovKnjiga = splitLinije[0];
+				String orgNaslovKnjiga = splitLinije[1];
+				String pisacKnjiga = splitLinije[2];
+				int godinaObjavljivanjaKnjiga = Integer.parseInt(splitLinije[3]);
+				String opisKnjiga = splitLinije[4];
+				String idKnjiga = splitLinije[5];
+				Zanr zanrovi = null;
+				for(Zanr za: sviZanrovi) {
+					if(za.getId().equals(splitLinije[6])) zanrovi = za;
+				}
+				
+				Jezik jezik = Jezik.valueOf(splitLinije[7]);
+				
+				Knjiga knjiga = new Knjiga(naslovKnjiga,orgNaslovKnjiga,pisacKnjiga,godinaObjavljivanjaKnjiga,
+						opisKnjiga,idKnjiga,zanrovi,jezik);
+				knjige.add(knjiga);
+				
+				
+			}
+			reader.close();
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		
+	}
 
-
-
-    
+	}
 	
 
 }

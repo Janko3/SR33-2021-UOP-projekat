@@ -27,7 +27,8 @@ public class Biblioteka {
     private ArrayList<Primerak> sviPrimerci = new ArrayList<Primerak>();
     
     private ArrayList<TipClanarine> sviTipovi = new ArrayList<TipClanarine>();
-
+    
+    private ArrayList<Zanr> sviZanrovi = new ArrayList<Zanr>();
     
     public Biblioteka() {
     	
@@ -40,12 +41,14 @@ public class Biblioteka {
 		this.sviClanovi = null;
 		this.sviZaposleni = null;
 		this.sviPrimerci = null;
+		this.sviZanrovi = null;
     }
     
     
 
 	public Biblioteka(String naziv, String adresa, String radnoVreme, String telefon, String id,ArrayList<Knjiga> sveKnjige,
-			ArrayList<Clan> sviClanovi,ArrayList<Zaposleni> sviZaposleni,ArrayList<Primerak> sviPrimerci,ArrayList<TipClanarine> sviTipovi) {
+			ArrayList<Clan> sviClanovi,ArrayList<Zaposleni> sviZaposleni,ArrayList<Primerak> sviPrimerci,ArrayList<TipClanarine> sviTipovi,
+			ArrayList<Zanr>sviZanrovi) {
 		this.naziv = naziv;
 		this.adresa = adresa;
 		this.radnoVreme = radnoVreme;
@@ -56,6 +59,7 @@ public class Biblioteka {
 		this.sviZaposleni = sviZaposleni;
 		this.sviPrimerci = sviPrimerci;
 		this.sviTipovi = sviTipovi;
+		this.sviZanrovi = sviZanrovi;
 	}
 
 	public String getNaziv() {
@@ -140,6 +144,19 @@ public class Biblioteka {
 	public void setSviTipovi(ArrayList<TipClanarine> sviTipovi) {
 		this.sviTipovi = sviTipovi;
 	}
+
+
+
+	public ArrayList<Zanr> getSviZanrovi() {
+		return sviZanrovi;
+	}
+
+
+
+	public void setSviZanrovi(ArrayList<Zanr> sviZanrovi) {
+		this.sviZanrovi = sviZanrovi;
+	}
+	
 	
 	
 	

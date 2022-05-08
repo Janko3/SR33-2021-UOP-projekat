@@ -1,4 +1,8 @@
-package models; 
+package models;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Zanr {
 
@@ -58,6 +62,17 @@ public class Zanr {
 		this.oznaka = oznaka;
 	}
     
-    
+	private static String pripremaZaUpis(Zanr zanr) {
+    	return String.format("%s|%s|%s", zanr.getOpis(), zanr.getId(), zanr.getOznaka());
+    }
+	
+	public static void upisiZanr(Zanr zanr) {
+		try {
+			BufferedWriter zanrFajl = new BufferedWriter(new FileWriter("src/data/zanr.txt"));
+			zanrFajl.write(pripremaZaUpis(zanr));
+			zanrFajl.close();
+			
+		}catch(IOException e) { e.printStackTrace(); }
+	}
 
 }
