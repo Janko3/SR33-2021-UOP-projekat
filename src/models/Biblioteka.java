@@ -1,8 +1,15 @@
 package models;
 
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+
+import enumerations.Jezik;
+import enumerations.Pol;
 
 public class Biblioteka {
 
@@ -156,11 +163,104 @@ public class Biblioteka {
 	public void setSviZanrovi(ArrayList<Zanr> sviZanrovi) {
 		this.sviZanrovi = sviZanrovi;
 	}
+	public ArrayList<Knjiga>  ucitajKnjige(ArrayList<Zanr>sviZanrovi) {
+		ArrayList<Knjiga> knjige = new ArrayList<Knjiga>();
+		try {
+			File fajlKnjiga = new File("src/data/knjiga.txt");
+			BufferedReader reader = new BufferedReader(new FileReader(fajlKnjiga));
+			String linija;
+			while((linija = reader.readLine()) != null) {
+				String[] splitLinije = linija.split("\\|");
+				String naslovKnjiga = splitLinije[0];
+				String orgNaslovKnjiga = splitLinije[1];
+				String pisacKnjiga = splitLinije[2];
+				int godinaObjavljivanjaKnjiga = Integer.parseInt(splitLinije[3]);
+				String opisKnjiga = splitLinije[4];
+				String idKnjiga = splitLinije[5];
+				Zanr zanrovi = null;
+				for(Zanr za: sviZanrovi) {
+					if(za.getId().equals(splitLinije[6])) zanrovi = za;
+				}
+				
+				Jezik jezik = Jezik.valueOf(splitLinije[7]);
+				
+				Knjiga knjiga = new Knjiga(naslovKnjiga,orgNaslovKnjiga,pisacKnjiga,godinaObjavljivanjaKnjiga,
+						opisKnjiga,idKnjiga,zanrovi,jezik);
+				knjige.add(knjiga);
+				
+				
+				
+			}
+			reader.close();
+			
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		
+	}
+		return knjige;
+
+	}
+	public static   ArrayList<Clan> ucitajClanove(ArrayList<TipClanarine> sviTipovi) {
+		ArrayList<Clan> clanovi = new ArrayList<Clan>();
+		try {
+			File clanFajl = new File("src/data/Clan.txt");
+			BufferedReader reader = new BufferedReader(new FileReader(clanFajl));
+			String linija;
+			while((linija = reader.readLine()) != null) {
+				String [] splitLinije = linija.split("\\|");
+				String imeClan = splitLinije[4];
+				String prezimeClan = splitLinije[5];
+				String adresaClan = splitLinije[7];
+				String JMBGClan = splitLinije[6];
+				Pol pol = Pol.valueOf(splitLinije[8]);
+				String brClanskeKarteClan = splitLinije[0];
+				LocalDate datumPoslednjeUplate =  LocalDate.parse(splitLinije[1]); 
+				int brMeseciClan = Integer.parseInt(splitLinije[2]);
+				boolean aktivnostClan = Boolean.parseBoolean(splitLinije[3]);
+				boolean obrisanClan = Boolean.parseBoolean(splitLinije[9]);
+				TipClanarine clanarina = null;
+				for(TipClanarine cl: sviTipovi) {
+					if (cl.getId().equals(splitLinije[10])) clanarina = cl;
+				}
+				Clan clan = new Clan(brClanskeKarteClan, datumPoslednjeUplate,brMeseciClan,aktivnostClan,imeClan,prezimeClan,JMBGClan,adresaClan,pol,obrisanClan,clanarina);
+				clanovi.add(clan);
+			}
+			reader.close();
+		}catch(IOException e) {
+				e.printStackTrace();
+			}
+		return clanovi;
+		}
+	
+	public static ArrayList<TipClanarine> ucitajTipove(TipClanarine tipClanarine){
+		ArrayList<TipClanarine> tipovi = new ArrayList<TipClanarine>();
+		try {
+			File tipFajl = new File("src/data/tipovi.txt");
+			BufferedReader reader = new BufferedReader(new FileReader(tipFajl));
+			String linija;
+			while((linija = reader.readLine()) != null) {
+				String[] splitLinije = linija.split("\\|");
+				String idTip = splitLinije[0];
+				String opisTip = splitLinije[1];
+				double cenaTip = Double.parseDouble(splitLinije[2]);
+				TipClanarine tip = new TipClanarine(idTip,opisTip,cenaTip);
+				tipovi.add(tip);
+				
+			}
+			reader.close();
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		
+	}
+		return tipovi;
 	
 	
 	
 	
 	
+	}
 	
 
 

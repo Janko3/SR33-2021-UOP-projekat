@@ -65,10 +65,13 @@ public class TipClanarine {
     	return String.format("%s|%s|%s", tip.getId(), tip.getOpis(), Double.toString(tip.getCena()));
     }
     
-    private static TipClanarine pripremaZaIspis(String line) {
-    	String[] splitLinija = line.split("\\|");
-    	TipClanarine clanarina = new TipClanarine(splitLinija[0], splitLinija[1], Double.parseDouble(splitLinija[2]));
-    	return clanarina;
-    }
+    
+
+	@Override
+	public String toString() {
+		return "TipClanarine [id=" + id + ", opis=" + opis + ", cena=" + cena + "]";
+	}
+
+	
 
 }

@@ -1,1 +1,1 @@
-opis|akcija|akc.
+Akcija|1|action

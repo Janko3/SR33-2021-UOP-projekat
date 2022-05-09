@@ -144,42 +144,16 @@ public class Knjiga {
 		} catch(IOException err) { err.printStackTrace(); }
 		
 	}
-	
-	public static void ucitajKnjige(ArrayList<Zanr>sviZanrovi) {
-		ArrayList<Knjiga> knjige = new ArrayList<Knjiga>();
-		try {
-			File fajlKnjiga = new File("src/data/knjiga.txt");
-			BufferedReader reader = new BufferedReader(new FileReader(fajlKnjiga));
-			String linija;
-			while((linija = reader.readLine()) != null) {
-				String[] splitLinije = linija.split("\\|");
-				String naslovKnjiga = splitLinije[0];
-				String orgNaslovKnjiga = splitLinije[1];
-				String pisacKnjiga = splitLinije[2];
-				int godinaObjavljivanjaKnjiga = Integer.parseInt(splitLinije[3]);
-				String opisKnjiga = splitLinije[4];
-				String idKnjiga = splitLinije[5];
-				Zanr zanrovi = null;
-				for(Zanr za: sviZanrovi) {
-					if(za.getId().equals(splitLinije[6])) zanrovi = za;
-				}
-				
-				Jezik jezik = Jezik.valueOf(splitLinije[7]);
-				
-				Knjiga knjiga = new Knjiga(naslovKnjiga,orgNaslovKnjiga,pisacKnjiga,godinaObjavljivanjaKnjiga,
-						opisKnjiga,idKnjiga,zanrovi,jezik);
-				knjige.add(knjiga);
-				
-				
-			}
-			reader.close();
-			
-		}catch(IOException e) {
-			e.printStackTrace();
-		
-	}
 
+	@Override
+	public String toString() {
+		return "Knjiga [naslov=" + naslov + ", originalniNaslov=" + originalniNaslov + ", pisac=" + pisac
+				+ ", godinaObjavljivanja=" + godinaObjavljivanja + ", opis=" + opis + ", id=" + id + ", obrisan="
+				+ obrisan + ", zanr=" + zanr + ", jezik=" + jezik + "]";
 	}
+	
+	
+
 	
 
 }

@@ -75,4 +75,9 @@ public class Zanr {
 		}catch(IOException e) { e.printStackTrace(); }
 	}
 
+	@Override
+	public String toString() {
+		return "Zanr [opis=" + opis + ", id=" + id + ", oznaka=" + oznaka + "]";
+	}
+
 }

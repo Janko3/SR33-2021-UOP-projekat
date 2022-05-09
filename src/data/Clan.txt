@@ -1,2 +1,1 @@
-Petar|Petrovic|bb|08071996793821|MUSKI|12|2022-05-05|1|true|false|decija
-Janko|Jankovic|bb|07061995682730|Muski|13|2022-05-05|1|true|false|odrasla
+12|2022-05-05|1|true|Petar|Petrovic|08071996793821|bb|MUSKI|false|1
