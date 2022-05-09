@@ -1,5 +1,9 @@
 package models;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import enumerations.Jezik;
 import enumerations.TipPoveza;
 
@@ -7,7 +11,7 @@ public class Primerak {
 
     
 
-    private String knjiga;
+    private Knjiga knjiga;
 
     private int brojStrana;
 
@@ -24,7 +28,7 @@ public class Primerak {
     private TipPoveza povez;
     
     public Primerak() {
-    	this.knjiga = "";
+    	this.knjiga = null;
 		this.brojStrana = -1;
 		this.godinaStampanja = -1;
 		this.iznamljena = false;
@@ -36,7 +40,7 @@ public class Primerak {
     	
     }
 
-	public Primerak(String knjiga, int brojStrana, int godinaStampanja, boolean iznamljena, int id,Jezik jezik,TipPoveza povez) {
+	public Primerak(Knjiga knjiga, int brojStrana, int godinaStampanja, boolean iznamljena, String id,Jezik jezik,TipPoveza povez) {
 		this.knjiga = knjiga;
 		this.brojStrana = brojStrana;
 		this.godinaStampanja = godinaStampanja;
@@ -47,11 +51,11 @@ public class Primerak {
 		this.povez = povez;
 	}
 
-	public String getKnjiga() {
+	public Knjiga getKnjiga() {
 		return knjiga;
 	}
 
-	public void setKnjiga(String knjiga) {
+	public void setKnjiga(Knjiga knjiga) {
 		this.knjiga = knjiga;
 	}
 
@@ -113,4 +117,17 @@ public class Primerak {
 
 
 
+	private static String pripremaZaUpis(Primerak primerak) {
+    	return String.format("%s|%s|%s|%s|%s|%s|%s",primerak.getKnjiga(),primerak.getBrojStrana(),primerak.getGodinaStampanja(),primerak.isIznamljena(),
+    			primerak.getId(),primerak.getJezik(),primerak.getPovez());
+    }
+	
+	public static void upisiPrimerak(Primerak primerak) {
+		try {
+			BufferedWriter primerakFajl = new BufferedWriter(new FileWriter("src/data/primerak.txt"));
+			primerakFajl.write(pripremaZaUpis(primerak));
+			primerakFajl.close();
+			
+		}catch(IOException e) { e.printStackTrace(); }
+	}
 }

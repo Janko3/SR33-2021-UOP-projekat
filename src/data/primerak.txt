@@ -1,0 +1,1 @@
+Knjiga [naslov=Rat i mir, originalniNaslov=Rat i mir, pisac=Tolstoj, godinaObjavljivanja=1826, opis=opis knjige, id=011, obrisan=false, zanr=Zanr [opis=Akcija, id=1, oznaka=action], jezik=SRPSKI]|450|1826|true||SRPSKI|MEKI

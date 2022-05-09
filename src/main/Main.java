@@ -30,6 +30,8 @@ public class Main {
 		Clan clan = new Clan("12",LocalDate.parse("2022-05-05"),1,true,"Petar","Petrovic","08071996793821","bb",enumerations.Pol.MUSKI,false,tipClanarine);
 		Clan.upisiClana(clan);
 		System.out.println(Biblioteka.ucitajClanove(sviTipovi));
+		Primerak primerak = new Primerak(knjiga,450,1826,true,"001",enumerations.Jezik.SRPSKI,enumerations.TipPoveza.MEKI);
+		Primerak.upisiPrimerak(primerak);
 		
 	}
 
