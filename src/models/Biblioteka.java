@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import enumerations.Jezik;
 import enumerations.Pol;
+import enumerations.TipPoveza;
 
 public class Biblioteka {
 
@@ -47,7 +48,7 @@ public class Biblioteka {
 		this.sveKnjige = null;
 		this.sviClanovi = null;
 		this.sviZaposleni = null;
-		this.sviPrimerci = null;
+		
 		this.sviZanrovi = null;
     }
     
@@ -255,15 +256,43 @@ public class Biblioteka {
 		
 	}
 		return tipovi;
-	
-	
-	
-	
-	
+		
 	}
 	
+	public ArrayList<Primerak> ucitajPrimerke(){
+		try {
+			File primerakFajl = new File("src/data/primerak.txt");
+			BufferedReader reader = new BufferedReader(new FileReader(primerakFajl));
+			String linija;
+			while((linija = reader.readLine()) != null) {
+				String[] splitLinije = linija.split("\\|");
+				Knjiga knjiga = null;
+				
+				for(Knjiga k: sveKnjige) {
+					
+					if(k.getId().equals(splitLinije[0])) {
+						knjiga = k;
+					}
+				}
+				
+				int brojStrana = Integer.parseInt(splitLinije[1]);
+				int godinaObjavljivanja = Integer.parseInt(splitLinije[2]);
+				boolean iznajmljena = Boolean.parseBoolean(splitLinije[3]);
+				String id = splitLinije[4];
+				Jezik jezik = Jezik.valueOf(splitLinije[5]);
+				TipPoveza tipPoveza = TipPoveza.valueOf(splitLinije[6]);
+				Primerak primerak = new Primerak(knjiga,brojStrana,godinaObjavljivanja,iznajmljena,id,jezik,tipPoveza);
+				
+				sviPrimerci.add(primerak);
+			}
+			reader.close();
+			
+		}catch(IOException e) {
+			e.printStackTrace();	
+	}
+	return sviPrimerci;
 
-
+	}
     
     
 

@@ -1,6 +1,9 @@
 package models;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -45,7 +48,7 @@ public class Primerak {
 		this.brojStrana = brojStrana;
 		this.godinaStampanja = godinaStampanja;
 		this.iznamljena = iznamljena;
-		this.id = "";
+		this.id = id;
 		this.obrisan = false;
 		this.jezik = jezik;
 		this.povez = povez;
@@ -118,16 +121,29 @@ public class Primerak {
 
 
 	private static String pripremaZaUpis(Primerak primerak) {
-    	return String.format("%s|%s|%s|%s|%s|%s|%s",primerak.getKnjiga(),primerak.getBrojStrana(),primerak.getGodinaStampanja(),primerak.isIznamljena(),
+		
+    	return String.format("%s|%s|%s|%s|%s|%s|%s",primerak.getKnjiga().getId(),primerak.getBrojStrana(),primerak.getGodinaStampanja(),primerak.isIznamljena(),
     			primerak.getId(),primerak.getJezik(),primerak.getPovez());
     }
 	
 	public static void upisiPrimerak(Primerak primerak) {
 		try {
+			
 			BufferedWriter primerakFajl = new BufferedWriter(new FileWriter("src/data/primerak.txt"));
+			System.out.println(pripremaZaUpis(primerak));
 			primerakFajl.write(pripremaZaUpis(primerak));
 			primerakFajl.close();
 			
+			
 		}catch(IOException e) { e.printStackTrace(); }
 	}
+
+	@Override
+	public String toString() {
+		return "Primerak [knjiga=" + knjiga.getId() + ", brojStrana=" + brojStrana + ", godinaStampanja=" + godinaStampanja
+				+ ", iznamljena=" + iznamljena + ", id=" + id + ", obrisan=" + obrisan + ", jezik=" + jezik + ", povez="
+				+ povez + "]";
+	}
+	
+	
 }
