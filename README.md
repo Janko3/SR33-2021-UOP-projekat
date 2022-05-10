@@ -1,2 +1,2 @@
 # SR33-2021-UOP-projekat
-Projekat, sistem za biblioteku.
+Projekat, sistem za biblioteku, Objektno Orijentisano programiranje.
