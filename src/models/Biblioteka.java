@@ -485,6 +485,99 @@ public class Biblioteka {
 	}
 	return sviAdmini;  
 	}
+	
+	private String pripremaZaUpisBibliotekari(Bibliotekari bibliotekar) {
+		
+    	return String.format("%s|%s|%s|%s|%s|%s|%s|%s|%s|%s\n",bibliotekar.getIme(),bibliotekar.getPrezime(),bibliotekar.getJMBG(),bibliotekar.getAdresa(),bibliotekar.getPol(),bibliotekar.isJeObrisan(),
+    			bibliotekar.getKorisnickoIme(),bibliotekar.getLozinka(),bibliotekar.getPlata(),bibliotekar.getId());
+    }
+	
+	public void upisiBibliotekara(ArrayList<Bibliotekari> sviBibliotekari) {
+		try {
+			
+			BufferedWriter bibliotekarFajl = new BufferedWriter(new FileWriter("src/data/bibliotekari.txt"));
+			for(Bibliotekari b: sviBibliotekari) {
+				
+				bibliotekarFajl.write(this.pripremaZaUpisBibliotekari(b));
+			}bibliotekarFajl.close();
+			
+			
+			
+		}catch(IOException e) { e.printStackTrace(); }
+	}
+	
+	public ArrayList<Bibliotekari> ucitajBibliotekare(){
+		try {
+			File bibliotekarFajl = new File("src/data/bibliotekari.txt");
+			BufferedReader reader = new BufferedReader(new FileReader(bibliotekarFajl));
+			String linija;
+			while((linija = reader.readLine()) != null) {
+				String[] splitLinije = linija.split("\\|");
+				String ime = splitLinije[0];
+				String prezime = splitLinije[1];
+				String jmbg = splitLinije[2];
+				String adresa = splitLinije[3];
+				Pol pol = Pol.valueOf(splitLinije[4]);
+				Boolean obrisan = Boolean.parseBoolean(splitLinije[5]);
+				String korisnickoIme = splitLinije[6];
+				String lozinka = splitLinije[7];
+				double plata = Double.parseDouble(splitLinije[8]);
+				String id = splitLinije[9];
+				Bibliotekari bibliotekari = new Bibliotekari(ime,prezime,jmbg,adresa,pol,obrisan,korisnickoIme,lozinka,plata,
+						id);
+				sviBibliotekari.add(bibliotekari);				
+			}
+			reader.close();
+			
+		}catch(IOException e) {
+			e.printStackTrace();	
+	}
+	return sviBibliotekari;  
+	}
+	
+	 private String pripremaZaUpisIznajmljivanje(Iznajmljivanje iznajmljivanje) {
+	    	return String.format("%s|%s|%s\n", iznajmljivanje.getDatumIznajmljivanje(), iznajmljivanje.getDatumVracanja(), iznajmljivanje.getPrimerakKnjige());
+	    }
+	    public void upisiIznajmljivanje(ArrayList<Iznajmljivanje> svaIznajmljivanja) {
+			try {
+				
+				BufferedWriter iznajmljivanjeFajl = new BufferedWriter(new FileWriter("src/data/iznajmljivanja.txt"));
+				for(Iznajmljivanje i: svaIznajmljivanja) {
+					
+					iznajmljivanjeFajl.write(this.pripremaZaUpisIznajmljivanje(i));
+				}iznajmljivanjeFajl.close();
+				
+				
+				
+			}catch(IOException e) { e.printStackTrace(); }
+		}
+	    
+	    public ArrayList<Iznajmljivanje> ucitajIznajmljivanje(){
+	    	try {
+	    		File iznajmljivanjeFajl = new File("src/data/iznajmljivanja.txt");
+	    		BufferedReader reader = new BufferedReader(new FileReader(iznajmljivanjeFajl));
+	    		String linija;
+	    		while((linija = reader.readLine())!= null) {
+	    			String[] splitLinije = linija.split("\\|");
+	    			LocalDate datumIznajmljivanja = LocalDate.parse(splitLinije[0]);
+	    			LocalDate datumVracanja = LocalDate.parse(splitLinije[1]);
+	    			Primerak primerak = null;
+	    			for(Primerak p: sviPrimerci) {
+	    				if(p.getId().equals(splitLinije[2])) {
+	    					primerak = p;
+	    				}
+	    					
+	    				
+	    			}
+	    			Iznajmljivanje iznajmljivanje = new Iznajmljivanje(datumIznajmljivanja,datumVracanja,primerak);
+	    			svaIznamljivanja.add(iznajmljivanje);
+	    		}
+	    		reader.close();
+	    		}catch(IOException e) { e.printStackTrace(); }
+			return svaIznamljivanja;
+	    	
+	    }
+	
 
 
 

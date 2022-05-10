@@ -14,6 +14,13 @@ public class Bibliotekari extends Zaposleni {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public String toString() {
+		return "Bibliotekari [korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", plata=" + plata + ", id="
+				+ id + ", prezime=" + prezime + ", JMBG=" + JMBG + ", adresa=" + adresa + ", ime=" + ime + ", pol="
+				+ pol + ", jeObrisan=" + jeObrisan + "]";
+	}
+
 	
 
 	

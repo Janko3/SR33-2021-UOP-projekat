@@ -1,2 +1,2 @@
 Atzo|Atzic|08071996793821|bb|MUSKI|false|atzo1|11111|1000.0|2
-Atzo|Atzic|08071996793821|bb|MUSKI|false|atzo1|11111|1000.0|2
+Atzo|Hercegovac|08071996793811|bb|MUSKI|false|atzo2|11111|1000.0|1

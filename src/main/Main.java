@@ -54,12 +54,25 @@ public class Main {
 
 		
 		Administratori admin1 = new Administratori("Atzo","Atzic","08071996793821","bb",Pol.MUSKI,false,"atzo1","11111",1000.00,"2");
-		Administratori admin2 = new Administratori("Atzo","Atzic","08071996793821","bb",Pol.MUSKI,false,"atzo1","11111",1000.00,"2");
+		Administratori admin2 = new Administratori("Atzo","Hercegovac","08071996793811","bb",Pol.MUSKI,false,"atzo2","11111",1000.00,"1");
 		ArrayList<Administratori>sviAdmini = new ArrayList<Administratori>();
 		sviAdmini.add(admin1);
 		sviAdmini.add(admin2);
 		biblioteka.upisiAdmini(sviAdmini);
 		System.out.println(biblioteka.ucitajAdmine());
+		
+		Bibliotekari bibliotekar1 = new Bibliotekari("Matejko","Linuksas","08071996793821","bb",Pol.MUSKI,false,"linuxWTP","11111",1000.00,"3");
+		ArrayList<Bibliotekari> sviBibliotekari = new ArrayList<Bibliotekari>();
+		sviBibliotekari.add(bibliotekar1);
+		biblioteka.upisiBibliotekara(sviBibliotekari);
+		System.out.println(biblioteka.ucitajBibliotekare());
+		
+		
+		Iznajmljivanje iznajmljivanje1 = new Iznajmljivanje(LocalDate.of(2022,05,05),LocalDate.of(2022, 06, 05),primerak1);
+		ArrayList<Iznajmljivanje> svaIznajmljivanja = new ArrayList<Iznajmljivanje>();
+		svaIznajmljivanja.add(iznajmljivanje1);
+		biblioteka.upisiIznajmljivanje(svaIznajmljivanja);
+		System.out.println(biblioteka.ucitajIznajmljivanje());
 		
 	}
 

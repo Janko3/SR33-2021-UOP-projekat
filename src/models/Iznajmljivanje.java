@@ -1,4 +1,5 @@
 package models;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -6,9 +7,9 @@ public class Iznajmljivanje {
 
     
 
-    private LocalDateTime datumIznajmljivanje;
+    private LocalDate datumIznajmljivanje;
 
-    private LocalDateTime datumVracanja;
+    private LocalDate datumVracanja;
     
     private Primerak primerakKnjige;
     
@@ -19,25 +20,25 @@ public class Iznajmljivanje {
 		this.primerakKnjige = null;
     }
 
-	public Iznajmljivanje(LocalDateTime datumIznajmljivanje, LocalDateTime datumVracanja,Primerak primerakKnjige) {
+	public Iznajmljivanje(LocalDate datumIznajmljivanje, LocalDate datumVracanja,Primerak primerakKnjige) {
 		this.datumIznajmljivanje = datumIznajmljivanje;
 		this.datumVracanja = datumVracanja;
 		this.primerakKnjige = primerakKnjige;
 	}
 
-	public LocalDateTime getDatumIznajmljivanje() {
+	public LocalDate getDatumIznajmljivanje() {
 		return datumIznajmljivanje;
 	}
 
-	public void setDatumIznajmljivanje(LocalDateTime datumIznajmljivanje) {
+	public void setDatumIznajmljivanje(LocalDate datumIznajmljivanje) {
 		this.datumIznajmljivanje = datumIznajmljivanje;
 	}
 
-	public LocalDateTime getDatumVracanja() {
+	public LocalDate getDatumVracanja() {
 		return datumVracanja;
 	}
 
-	public void setDatumVracanja(LocalDateTime datumVracanja) {
+	public void setDatumVracanja(LocalDate datumVracanja) {
 		this.datumVracanja = datumVracanja;
 	}
 
@@ -47,6 +48,12 @@ public class Iznajmljivanje {
 
 	public void setPrimerakKnjige(Primerak primerakKnjige) {
 		this.primerakKnjige = primerakKnjige;
+	}
+
+	@Override
+	public String toString() {
+		return "Iznajmljivanje [datumIznajmljivanje=" + datumIznajmljivanje + ", datumVracanja=" + datumVracanja
+				+ ", primerakKnjige=" + primerakKnjige + "]";
 	}
     
     
