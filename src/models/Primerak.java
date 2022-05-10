@@ -118,25 +118,6 @@ public class Primerak {
 		this.povez = povez;
 	}
 
-
-
-	private static String pripremaZaUpis(Primerak primerak) {
-		
-    	return String.format("%s|%s|%s|%s|%s|%s|%s",primerak.getKnjiga().getId(),primerak.getBrojStrana(),primerak.getGodinaStampanja(),primerak.isIznamljena(),
-    			primerak.getId(),primerak.getJezik(),primerak.getPovez());
-    }
-	
-	public static void upisiPrimerak(Primerak primerak) {
-		try {
-			
-			BufferedWriter primerakFajl = new BufferedWriter(new FileWriter("src/data/primerak.txt"));
-			primerakFajl.write(pripremaZaUpis(primerak));
-			primerakFajl.close();
-			
-			
-		}catch(IOException e) { e.printStackTrace(); }
-	}
-
 	@Override
 	public String toString() {
 		return "Primerak [knjiga=" + knjiga + ", brojStrana=" + brojStrana + ", godinaStampanja=" + godinaStampanja

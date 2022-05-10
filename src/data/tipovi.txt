@@ -1,1 +1,2 @@
 1|penzioner|100.0
+2|decija|150.0

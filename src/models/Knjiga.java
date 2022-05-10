@@ -131,19 +131,8 @@ public class Knjiga {
 		this.jezik = jezik;
 	}
 	
-	private static String pripremaZaUpis(Knjiga knjiga) {
-    	return String.format("%s|%s|%s|%s|%s|%s|%s|%s", knjiga.getNaslov(), knjiga.getOriginalniNaslov(), knjiga.getPisac(), Integer.toString(knjiga.getGodinaObjavljivanja()),
-    			knjiga.getOpis(),knjiga.getId(),knjiga.getZanr().getId(),knjiga.getJezik());
-    }
-	public static void upisiKnjigu(Knjiga knjiga) {
-		try {
-			BufferedWriter knjigeFile = new BufferedWriter(new FileWriter("src/data/knjiga.txt"));
-			knjigeFile.write(pripremaZaUpis(knjiga) + "\n");
-			knjigeFile.close();
-			
-		} catch(IOException err) { err.printStackTrace(); }
-		
-	}
+	
+	
 
 	@Override
 	public String toString() {

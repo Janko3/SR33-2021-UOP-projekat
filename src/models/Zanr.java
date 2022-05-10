@@ -6,24 +6,10 @@ import java.io.IOException;
 
 public class Zanr {
 
-    /**
-     * Default constructor
-     */
-   
-
-    /**
-     * 
-     */
     private String opis;
 
-    /**
-     * 
-     */
     private String id;
 
-    /**
-     * 
-     */
     private String oznaka;
 
     public Zanr() {
@@ -62,18 +48,9 @@ public class Zanr {
 		this.oznaka = oznaka;
 	}
     
-	private static String pripremaZaUpis(Zanr zanr) {
-    	return String.format("%s|%s|%s", zanr.getOpis(), zanr.getId(), zanr.getOznaka());
-    }
 	
-	public static void upisiZanr(Zanr zanr) {
-		try {
-			BufferedWriter zanrFajl = new BufferedWriter(new FileWriter("src/data/zanr.txt"));
-			zanrFajl.write(pripremaZaUpis(zanr));
-			zanrFajl.close();
-			
-		}catch(IOException e) { e.printStackTrace(); }
-	}
+	
+	
 
 	@Override
 	public String toString() {

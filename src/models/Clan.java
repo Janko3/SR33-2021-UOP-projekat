@@ -21,12 +21,8 @@ public class Clan extends Osoba {
 
     protected boolean aktivnost;
 
-    
-    
     protected TipClanarine tipClanarine;
-    
-    
-    
+
     public Clan() {
     	
     	this.brClanskeKarte = "";
@@ -92,19 +88,7 @@ public class Clan extends Osoba {
 		this.tipClanarine = tipClanarine;
 	}
 	
-	private static String pripremaZaUpis(Clan clan) {
-    	return String.format("%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s", clan.getBrClanskeKarte(), clan.getDatumPoslednjeUplate(), clan.getBrojMeseci(),clan.isAktivnost(),clan.getIme(),clan.getPrezime(),
-    			clan.getJMBG(),clan.getAdresa(),clan.getPol(),clan.isJeObrisan(),clan.getTipClanarine().getId());
-    }
 	
-	public static void upisiClana(Clan clan) {
-		try {
-			BufferedWriter clanFajl = new BufferedWriter(new FileWriter("src/data/clan.txt"));
-			clanFajl.write(pripremaZaUpis(clan));
-			clanFajl.close();
-			
-		}catch(IOException e) { e.printStackTrace(); }
-	}
 
 	@Override
 	public String toString() {
