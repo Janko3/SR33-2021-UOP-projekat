@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import enumerations.Jezik;
+import enumerations.Pol;
 import enumerations.TipPoveza;
 import models.*;
 
@@ -36,6 +37,8 @@ public class Main {
 		Primerak primerak = new Primerak(knjiga,450,1826,true,"001",Jezik.SRPSKI,TipPoveza.MEKI);
 		Primerak.upisiPrimerak(primerak);
 		System.out.println(biblioteka.ucitajPrimerke());
+		Administratori admin = new Administratori("Mateja","Matejkovic","01071996743822","bb",Pol.MUSKI,false,"matejko1","11111",1000.00,"1");
+		Administratori.upisiAdmina(admin);
 		
 	}
 

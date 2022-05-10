@@ -130,7 +130,6 @@ public class Primerak {
 		try {
 			
 			BufferedWriter primerakFajl = new BufferedWriter(new FileWriter("src/data/primerak.txt"));
-			System.out.println(pripremaZaUpis(primerak));
 			primerakFajl.write(pripremaZaUpis(primerak));
 			primerakFajl.close();
 			
@@ -140,7 +139,7 @@ public class Primerak {
 
 	@Override
 	public String toString() {
-		return "Primerak [knjiga=" + knjiga.getId() + ", brojStrana=" + brojStrana + ", godinaStampanja=" + godinaStampanja
+		return "Primerak [knjiga=" + knjiga + ", brojStrana=" + brojStrana + ", godinaStampanja=" + godinaStampanja
 				+ ", iznamljena=" + iznamljena + ", id=" + id + ", obrisan=" + obrisan + ", jezik=" + jezik + ", povez="
 				+ povez + "]";
 	}

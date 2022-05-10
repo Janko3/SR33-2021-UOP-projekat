@@ -267,7 +267,6 @@ public class Biblioteka {
 			while((linija = reader.readLine()) != null) {
 				String[] splitLinije = linija.split("\\|");
 				Knjiga knjiga = null;
-				
 				for(Knjiga k: sveKnjige) {
 					
 					if(k.getId().equals(splitLinije[0])) {
