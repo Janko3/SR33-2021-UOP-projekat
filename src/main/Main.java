@@ -68,7 +68,7 @@ public class Main {
 		System.out.println(biblioteka.ucitajBibliotekare());
 		
 		
-		Iznajmljivanje iznajmljivanje1 = new Iznajmljivanje(LocalDate.of(2022,05,05),LocalDate.of(2022, 06, 05),primerak1);
+		Iznajmljivanje iznajmljivanje1 = new Iznajmljivanje(LocalDate.of(2022,05,05),LocalDate.of(2022, 06, 05),primerak1,clan1,admin1);
 		ArrayList<Iznajmljivanje> svaIznajmljivanja = new ArrayList<Iznajmljivanje>();
 		svaIznajmljivanja.add(iznajmljivanje1);
 		biblioteka.upisiIznajmljivanje(svaIznajmljivanja);

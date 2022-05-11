@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -43,7 +44,9 @@ public class Biblioteka {
     private ArrayList<Bibliotekari> sviBibliotekari = new ArrayList<Bibliotekari>();
     
     private ArrayList<Iznajmljivanje> svaIznamljivanja = new ArrayList<Iznajmljivanje>();
-
+    
+    private ArrayList<Zaposleni> sviZaposleni = new ArrayList<Zaposleni>();
+    
     public Biblioteka() {
     	
     	this.naziv = "";
@@ -57,7 +60,7 @@ public class Biblioteka {
 	public Biblioteka(String naziv, String adresa, String radnoVreme, String telefon, String id,
 			ArrayList<Knjiga> sveKnjige, ArrayList<Clan> sviClanovi, ArrayList<Primerak> sviPrimerci,
 			ArrayList<TipClanarine> sviTipovi, ArrayList<Zanr> sviZanrovi, ArrayList<Administratori> sviAdmini,
-			ArrayList<Bibliotekari> sviBibliotekari, ArrayList<Iznajmljivanje> svaIznamljivanja) {
+			ArrayList<Bibliotekari> sviBibliotekari, ArrayList<Iznajmljivanje> svaIznamljivanja,ArrayList<Zaposleni> sviZaposleni) {
 		this.naziv = naziv;
 		this.adresa = adresa;
 		this.radnoVreme = radnoVreme;
@@ -71,6 +74,8 @@ public class Biblioteka {
 		this.sviAdmini = sviAdmini;
 		this.sviBibliotekari = sviBibliotekari;
 		this.svaIznamljivanja = svaIznamljivanja;
+		this.sviZaposleni = sviZaposleni;
+		
 	}
 
 
@@ -190,6 +195,15 @@ public class Biblioteka {
 	public void setSviZanrovi(ArrayList<Zanr> sviZanrovi) {
 		this.sviZanrovi = sviZanrovi;
 	}
+	
+	public ArrayList<Zaposleni> getSviZaposleni() {
+		return sviZaposleni;
+	}
+
+	public void setSviZaposleni(ArrayList<Zaposleni> sviZaposleni) {
+		this.sviZaposleni = sviZaposleni;
+	}
+
 	
 	private String pripremaZaUpisZanr(Zanr zanr) {
     	return String.format("%s|%s|%s\n", zanr.getOpis(), zanr.getId(), zanr.getOznaka());
@@ -535,8 +549,20 @@ public class Biblioteka {
 	return sviBibliotekari;  
 	}
 	
+    public ArrayList<Zaposleni> ucitajZaposlene(){
+    	
+			for(Administratori admin: sviAdmini) {
+				sviZaposleni.add(admin);		
+			}
+			for(Bibliotekari bibliotekar: sviBibliotekari) {
+				sviZaposleni.add(bibliotekar);
+			}
+			return sviZaposleni;
+		}
+	
 	 private String pripremaZaUpisIznajmljivanje(Iznajmljivanje iznajmljivanje) {
-	    	return String.format("%s|%s|%s\n", iznajmljivanje.getDatumIznajmljivanje(), iznajmljivanje.getDatumVracanja(), iznajmljivanje.getPrimerakKnjige());
+	    	return String.format("%s|%s|%s|%s|%s\n", iznajmljivanje.getDatumIznajmljivanje(), iznajmljivanje.getDatumVracanja(), iznajmljivanje.getPrimerakKnjige().getId(),iznajmljivanje.getClan().getBrClanskeKarte(),
+	    			iznajmljivanje.getZaposleni().getId());
 	    }
 	    public void upisiIznajmljivanje(ArrayList<Iznajmljivanje> svaIznajmljivanja) {
 			try {
@@ -551,6 +577,8 @@ public class Biblioteka {
 				
 			}catch(IOException e) { e.printStackTrace(); }
 		}
+	    
+	
 	    
 	    public ArrayList<Iznajmljivanje> ucitajIznajmljivanje(){
 	    	try {
@@ -569,7 +597,19 @@ public class Biblioteka {
 	    					
 	    				
 	    			}
-	    			Iznajmljivanje iznajmljivanje = new Iznajmljivanje(datumIznajmljivanja,datumVracanja,primerak);
+	    			Clan clan = null;
+	    			for(Clan c:sviClanovi) {
+	    				if(c.getBrClanskeKarte().equals(splitLinije[3])) {
+	    					clan = c;
+	    				}
+	    			}
+	    			Zaposleni zaposleni = null  ;
+	    			for(Zaposleni z: ucitajZaposlene()) {
+	    				if(z.getId().equals(splitLinije[4])) {
+	    					zaposleni = z;
+	    				}
+	    			}
+	    			Iznajmljivanje iznajmljivanje = new Iznajmljivanje(datumIznajmljivanja,datumVracanja,primerak,clan,zaposleni);
 	    			svaIznamljivanja.add(iznajmljivanje);
 	    		}
 	    		reader.close();

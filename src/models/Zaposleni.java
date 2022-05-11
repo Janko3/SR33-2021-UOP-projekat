@@ -70,6 +70,14 @@ public abstract class Zaposleni extends Osoba {
 		this.id = id;
 	}
 
+	
+	@Override
+	public String toString() {
+		return "Zaposleni [korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", plata=" + plata + ", id=" + id
+				+ ", prezime=" + prezime + ", JMBG=" + JMBG + ", adresa=" + adresa + ", ime=" + ime + ", pol=" + pol
+				+ ", jeObrisan=" + jeObrisan + "]";
+	}
+
 	public void  DodatiNoveClanove() {
         // TODO implement here
     }

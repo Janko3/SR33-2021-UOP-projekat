@@ -13,17 +13,25 @@ public class Iznajmljivanje {
     
     private Primerak primerakKnjige;
     
+    private Clan clan;
+    
+    private Zaposleni zaposleni;
+    
     public Iznajmljivanje() {
     	
     	this.datumIznajmljivanje = null;
 		this.datumVracanja = null;
 		this.primerakKnjige = null;
+		this.clan = null;
+		this.zaposleni = null;
     }
 
-	public Iznajmljivanje(LocalDate datumIznajmljivanje, LocalDate datumVracanja,Primerak primerakKnjige) {
+	public Iznajmljivanje(LocalDate datumIznajmljivanje, LocalDate datumVracanja,Primerak primerakKnjige,Clan clan,Zaposleni zaposleni) {
 		this.datumIznajmljivanje = datumIznajmljivanje;
 		this.datumVracanja = datumVracanja;
 		this.primerakKnjige = primerakKnjige;
+		this.clan = clan;
+		this.zaposleni = zaposleni;
 	}
 
 	public LocalDate getDatumIznajmljivanje() {
@@ -50,11 +58,29 @@ public class Iznajmljivanje {
 		this.primerakKnjige = primerakKnjige;
 	}
 
+	public Clan getClan() {
+		return clan;
+	}
+
+	public void setClan(Clan clan) {
+		this.clan = clan;
+	}
+
+	public Zaposleni getZaposleni() {
+		return zaposleni;
+	}
+
+	public void setZaposleni(Zaposleni zaposleni) {
+		this.zaposleni = zaposleni;
+	}
+
 	@Override
 	public String toString() {
 		return "Iznajmljivanje [datumIznajmljivanje=" + datumIznajmljivanje + ", datumVracanja=" + datumVracanja
-				+ ", primerakKnjige=" + primerakKnjige + "]";
+				+ ", primerakKnjige=" + primerakKnjige + ", clan=" + clan + ", zaposleni=" + zaposleni + "]";
 	}
+
+	
     
     
 

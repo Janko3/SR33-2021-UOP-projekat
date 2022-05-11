@@ -1,1 +1,1 @@
-2022-05-05|2022-06-05|Primerak [knjiga=Knjiga [naslov=Rat i mir, originalniNaslov=Rat i mir, pisac=Tolstoj, godinaObjavljivanja=1826, opis=opis knjige, id=011, obrisan=false, zanr=Zanr [opis=Akcija, id=1, oznaka=action], jezik=SRPSKI], brojStrana=450, godinaStampanja=1826, iznamljena=true, id=001, obrisan=false, jezik=SRPSKI, povez=MEKI]
+2022-05-05|2022-06-05|001|12|2
