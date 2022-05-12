@@ -17,13 +17,18 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Biblioteka biblioteka = new Biblioteka();
+		Biblioteka biblioteka = new Biblioteka("Borisov atelje","bb","0-24","+381 999999999","1");
+		biblioteka.upisiBiblioteku();
+		System.out.println(biblioteka.ucitajBiblioteku());
+		
 		
 		TipClanarine tipClanarine1 = new TipClanarine("1","penzioner",100.00);
 		TipClanarine tipClanarine2 = new TipClanarine("2","decija",150.00);	
+		TipClanarine tipClanarine3 = new TipClanarine("3","ostali",250.00);
 		ArrayList<TipClanarine> sviTipovi = new ArrayList<TipClanarine>();
 		sviTipovi.add(tipClanarine1);
 		sviTipovi.add(tipClanarine2);
+		sviTipovi.add(tipClanarine3);
 		biblioteka.upisiTip(sviTipovi);
 		System.out.println(biblioteka.ucitajTipove());
 		
@@ -73,6 +78,8 @@ public class Main {
 		svaIznajmljivanja.add(iznajmljivanje1);
 		biblioteka.upisiIznajmljivanje(svaIznajmljivanja);
 		System.out.println(biblioteka.ucitajIznajmljivanje());
+		
+		
 		
 		
 		

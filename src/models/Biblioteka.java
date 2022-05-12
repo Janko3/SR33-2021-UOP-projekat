@@ -56,6 +56,15 @@ public class Biblioteka {
 		this.id = "";
 		
     }
+    public Biblioteka(String naziv, String adresa, String radnoVreme, String telefon, String id) {
+    	this.naziv = naziv;
+		this.adresa = adresa;
+		this.radnoVreme = radnoVreme;
+		this.telefon = telefon;
+		this.id = id;
+		
+    	
+    }
 
 	public Biblioteka(String naziv, String adresa, String radnoVreme, String telefon, String id,
 			ArrayList<Knjiga> sveKnjige, ArrayList<Clan> sviClanovi, ArrayList<Primerak> sviPrimerci,
@@ -617,6 +626,56 @@ public class Biblioteka {
 			return svaIznamljivanja;
 	    	
 	    }
+	    
+	    private String pripremaZaUpisBiblioteka() {
+	    	return String.format("%s|%s|%s|%s|%s\n",this.getNaziv(),this.getAdresa(),this.getRadnoVreme(),this.getTelefon(),this.getId());
+	    }
+		
+		public void upisiBiblioteku() {
+			try {
+				
+				BufferedWriter bibliotekaFajl = new BufferedWriter(new FileWriter("src/data/biblioteke.txt"));
+				bibliotekaFajl.write(pripremaZaUpisBiblioteka());
+				bibliotekaFajl.close();
+				
+			}catch(IOException e) { e.printStackTrace(); }
+		}
+		
+		public Biblioteka ucitajBiblioteku(){
+			Biblioteka bibliotekaRet = null;
+			try {
+				File bibliotekaFajl = new File("src/data/biblioteke.txt");
+				BufferedReader reader = new BufferedReader(new FileReader(bibliotekaFajl));
+				String linija;
+				while((linija = reader.readLine()) != null) {
+					String[] splitLinije = linija.split("\\|");
+					String naziv = splitLinije[0];
+					String adresa = splitLinije[1];
+					String radnoVreme = splitLinije[2];
+					String telefon = splitLinije[3];
+					String id = splitLinije[4];
+					Biblioteka biblioteka = new Biblioteka(naziv,adresa,radnoVreme,telefon,id);
+					bibliotekaRet = biblioteka;
+					
+				}
+				reader.close();
+				
+			}catch(IOException e) {
+				e.printStackTrace();
+			
+		}
+			return bibliotekaRet;
+			
+			
+			
+		}
+		@Override
+		public String toString() {
+			return "Biblioteka [naziv=" + naziv + ", adresa=" + adresa + ", radnoVreme=" + radnoVreme + ", telefon="
+					+ telefon + ", id=" + id +   "]";
+		}
+	    
+	    
 	
 
 
