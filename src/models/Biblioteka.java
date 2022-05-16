@@ -674,6 +674,24 @@ public class Biblioteka {
 			return "Biblioteka [naziv=" + naziv + ", adresa=" + adresa + ", radnoVreme=" + radnoVreme + ", telefon="
 					+ telefon + ", id=" + id +   "]";
 		}
+		
+		private String generisiIDBibliotekar() {
+	        String idBibliotekar = "B-";
+	        for(int i=0;i<6;i++) {
+	            int broj = (int) Math.floor(Math.random());
+	            idBibliotekar += Integer.toString(broj);
+	        }
+	        return idBibliotekar;
+	    }
+		
+		private String generisiIDAdmin() {
+	        String idAdmin = "A-";
+	        for(int i=0;i<6;i++) {
+	            int broj = (int) Math.floor(Math.random());
+	            idAdmin += Integer.toString(broj);
+	        }
+	        return idAdmin;
+	    }
 	    
 	    
 	
