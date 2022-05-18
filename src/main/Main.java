@@ -64,8 +64,8 @@ public class Main {
 		sviAdmini.add(admin1);
 		sviAdmini.add(admin2);
 		biblioteka.upisiAdmini(sviAdmini);
-		System.out.println(biblioteka.ucitajAdmine());
 		
+		System.out.println(biblioteka.ucitajAdmine());
 		Bibliotekari bibliotekar1 = new Bibliotekari("Matejko","Linuksas","08071996793821","bb",Pol.MUSKI,false,"linuxWTP","11111",1000.00,"3");
 		ArrayList<Bibliotekari> sviBibliotekari = new ArrayList<Bibliotekari>();
 		sviBibliotekari.add(bibliotekar1);
@@ -79,8 +79,11 @@ public class Main {
 		biblioteka.upisiIznajmljivanje(svaIznajmljivanja);
 		System.out.println(biblioteka.ucitajIznajmljivanje());
 		
+		Administratori admin = biblioteka.getSviAdmini().get(0);
+		admin.DodatiNoveAdmine("Matejko", "Matejkovic", "32140839048", "Telep",Pol.MUSKI, false, "linuxas1", "lozinka", 1200);
 		
 		
+		admin.DodatiNoveBibliotekare("Matejko", "Aleksandrovic", "32140839048", "Telep",Pol.MUSKI, false, "linuxas2", "lozinka", 1200);
 		
 		
 	}

@@ -3,6 +3,8 @@ package models;
 import enumerations.Pol;
 
 public class Bibliotekari extends Zaposleni {
+	
+	protected Biblioteka biblioteka;
 
   
     public Bibliotekari() {
@@ -20,11 +22,28 @@ public class Bibliotekari extends Zaposleni {
 				+ id + ", prezime=" + prezime + ", JMBG=" + JMBG + ", adresa=" + adresa + ", ime=" + ime + ", pol="
 				+ pol + ", jeObrisan=" + jeObrisan + "]";
 	}
+	
+	
 
+	public Biblioteka getBiblioteka() {
+		return biblioteka;
+	}
+
+	public void setBiblioteka(Biblioteka biblioteka) {
+		this.biblioteka = biblioteka;
+	}
+
+	public String generisiIDBibliotekar() {
+        String idBibliotekar = "B-";
+        for(int i=0;i<6;i++) {
+            int broj = (int) Math.floor(Math.random()*9);
+            idBibliotekar += Integer.toString(broj);
+        }
+        return idBibliotekar;
+    }
 	
 
 	
-
 	
     
     

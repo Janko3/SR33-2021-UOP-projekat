@@ -471,7 +471,6 @@ public class Biblioteka {
 			
 			BufferedWriter adminiFajl = new BufferedWriter(new FileWriter("src/data/admini.txt"));
 			for(Administratori a: sviAdmini) {
-				
 				adminiFajl.write(this.pripremaZaUpis(a));
 			}adminiFajl.close();
 			
@@ -499,6 +498,7 @@ public class Biblioteka {
 				String idAdmin = splitLinije[9];
 				Administratori admini = new Administratori(imeAdmin,prezimeAdmin,jmbgAdmin,adresaAdmin,polAdmin,obrisanAdmin,korisnickoImeAdmin,lozinkaAdmin,plataAdmin,
 						idAdmin);
+				admini.setBiblioteka(this);
 				sviAdmini.add(admini);				
 			}
 			reader.close();
@@ -675,23 +675,12 @@ public class Biblioteka {
 					+ telefon + ", id=" + id +   "]";
 		}
 		
-		private String generisiIDBibliotekar() {
-	        String idBibliotekar = "B-";
-	        for(int i=0;i<6;i++) {
-	            int broj = (int) Math.floor(Math.random());
-	            idBibliotekar += Integer.toString(broj);
-	        }
-	        return idBibliotekar;
-	    }
 		
-		private String generisiIDAdmin() {
-	        String idAdmin = "A-";
-	        for(int i=0;i<6;i++) {
-	            int broj = (int) Math.floor(Math.random());
-	            idAdmin += Integer.toString(broj);
-	        }
-	        return idAdmin;
-	    }
+		
+	
+		
+		
+		
 	    
 	    
 	
