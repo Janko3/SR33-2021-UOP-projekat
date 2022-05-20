@@ -98,4 +98,13 @@ public class Clan extends Osoba {
 				+ ", jeObrisan=" + jeObrisan + ", tipClanarine=" + tipClanarine +"]";
 	}
 	
+	public String generisiIDClan() {
+        String idClan = "C-";
+        for(int i=0;i<6;i++) {
+            int broj = (int) Math.floor(Math.random()*9);
+            idClan += Integer.toString(broj);
+        }
+        return idClan;
+    }
+	
 	}

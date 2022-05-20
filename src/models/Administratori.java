@@ -11,7 +11,7 @@ import enumerations.Pol;
 
 public class Administratori extends Zaposleni {
 	
-	protected Biblioteka biblioteka;
+	
 
 
     public Administratori() {
@@ -21,22 +21,24 @@ public class Administratori extends Zaposleni {
     
     
 
-	public Administratori(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,
-			String korisnickoIme, String lozinka, double plata, String id) {
-		super(ime, prezime, JMBG, adresa, pol, jeObrisan, korisnickoIme, lozinka, plata, id);
-//		this.biblioteka = null;
+    public Administratori(String korisnickoIme, String lozinka, double plata, String id) {
+		super(korisnickoIme, lozinka, plata, id);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Biblioteka getBiblioteka() {
-		return biblioteka;
+	
+
+
+
+
+
+
+	public Administratori(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,String korisnickoIme, String lozinka, double plata, String id) {
+		super(ime, prezime, JMBG, adresa, pol, jeObrisan,korisnickoIme,lozinka,plata,id);
+		// TODO Auto-generated constructor stub
 	}
 
 
-
-	public void setBiblioteka(Biblioteka biblioteka) {
-		this.biblioteka = biblioteka;
-	}
 
 	@Override
 	public String toString() {
@@ -89,6 +91,22 @@ public class Administratori extends Zaposleni {
 		bibliotekar.setBiblioteka(biblioteka);
 		biblioteka.getSviBibliotekari().add(bibliotekar);
 		biblioteka.upisiBibliotekara(biblioteka.getSviBibliotekari());
+	}
+	
+	public  boolean IzbrisiBibliotekara(String path) {
+		
+		
+	        try {
+	            FileWriter writer = new FileWriter(path);
+	            writer.write("");
+	            writer.close();
+	        } catch(IOException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	        return true;
+	    
+		
 	}
 	
 

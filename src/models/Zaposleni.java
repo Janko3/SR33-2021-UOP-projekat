@@ -1,5 +1,9 @@
 package models;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import enumerations.Jezik;
 import enumerations.Pol;
 
 public abstract class Zaposleni extends Osoba {
@@ -12,6 +16,8 @@ public abstract class Zaposleni extends Osoba {
 	    protected double plata;
 
 	    protected String id;
+	    
+	    protected Biblioteka biblioteka;
 
 	public Zaposleni() {
 		this.korisnickoIme = "";
@@ -22,7 +28,20 @@ public abstract class Zaposleni extends Osoba {
 		
 	    }
 
-	public Zaposleni(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,String korisnickoIme, String lozinka,double plata, String id) {
+	public Zaposleni(String korisnickoIme, String lozinka, double plata, String id) {
+		this.korisnickoIme = korisnickoIme;
+		this.lozinka = lozinka;
+		this.plata = plata;
+		this.id = id;
+		
+		
+	}
+
+	
+
+
+
+	public Zaposleni(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,String korisnickoIme, String lozinka, double plata, String id) {
 		super(ime, prezime, JMBG, adresa, pol, jeObrisan);
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
@@ -71,6 +90,15 @@ public abstract class Zaposleni extends Osoba {
 	}
 
 	
+	
+	public Biblioteka getBiblioteka() {
+		return biblioteka;
+	}
+
+	public void setBiblioteka(Biblioteka biblioteka) {
+		this.biblioteka = biblioteka;
+	}
+
 	@Override
 	public String toString() {
 		return "Zaposleni [korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", plata=" + plata + ", id=" + id
@@ -78,8 +106,45 @@ public abstract class Zaposleni extends Osoba {
 				+ ", jeObrisan=" + jeObrisan + "]";
 	}
 
-	public void  DodatiNoveClanove() {
+	public void  DodatiNoveClanove(LocalDate datumPoslednjeUplate, int brojMeseci, 
+			boolean aktivnost,String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,TipClanarine tipClanarine) {
+		
+		Clan clan = new Clan();
+		clan.setBrClanskeKarte(clan.generisiIDClan());
+		clan.setDatumPoslednjeUplate(datumPoslednjeUplate);
+		clan.setBrojMeseci(brojMeseci);
+		clan.setAktivnost(aktivnost);
+		clan.setIme(ime);
+		clan.setPrezime(prezime);
+		clan.setJMBG(JMBG);
+		clan.setAdresa(adresa);
+		clan.setPol(pol);
+		clan.setJeObrisan(jeObrisan);
+		clan.setTipClanarine(tipClanarine);
+		this.setBiblioteka(biblioteka);
+		ArrayList<Clan> sviClanovi = biblioteka.getSviClanovi();
+		sviClanovi.add(clan);
+		
+		biblioteka.upisiClan(sviClanovi);
+		
+		
         // TODO implement here
     }
+	
+	public void DodajKnjigu(String naslov, String originalniNaslov, String pisac, int godinaObjavljivanja, String opis, Zanr zanr,Jezik jezik) {
+		Knjiga knjiga = new Knjiga();
+		knjiga.setNaslov(naslov);
+		knjiga.setOriginalniNaslov(originalniNaslov);
+		knjiga.setPisac(pisac);
+		knjiga.setGodinaObjavljivanja(godinaObjavljivanja);
+		knjiga.setOpis(opis);
+		knjiga.setId(knjiga.generisiIDKnjiga());
+		knjiga.setZanr(zanr);
+		knjiga.setJezik(jezik);
+		this.setBiblioteka(biblioteka);
+		ArrayList<Knjiga> sveKnjige = biblioteka.getSveKnjige();
+		sveKnjige.add(knjiga);
+		biblioteka.upisiKnjigu(sveKnjige);
+	}
 
 }

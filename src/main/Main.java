@@ -64,8 +64,9 @@ public class Main {
 		sviAdmini.add(admin1);
 		sviAdmini.add(admin2);
 		biblioteka.upisiAdmini(sviAdmini);
-		
 		System.out.println(biblioteka.ucitajAdmine());
+		
+		
 		Bibliotekari bibliotekar1 = new Bibliotekari("Matejko","Linuksas","08071996793821","bb",Pol.MUSKI,false,"linuxWTP","11111",1000.00,"3");
 		ArrayList<Bibliotekari> sviBibliotekari = new ArrayList<Bibliotekari>();
 		sviBibliotekari.add(bibliotekar1);
@@ -84,6 +85,14 @@ public class Main {
 		
 		
 		admin.DodatiNoveBibliotekare("Matejko", "Aleksandrovic", "32140839048", "Telep",Pol.MUSKI, false, "linuxas2", "lozinka", 1200);
+		
+		admin.DodatiNoveClanove(LocalDate.parse("2022-05-05"),1,true,"Petar","Petrovic","08071996793821","bb",Pol.MUSKI,false,tipClanarine1);
+		
+		Bibliotekari bibliotekar2 = biblioteka.getSviBibliotekari().get(0);
+		bibliotekar2.DodatiNoveClanove(LocalDate.parse("2022-05-05"),1,true,"Petar","Petrovic","08071996793821","bb",Pol.MUSKI,false,tipClanarine1);
+		admin.DodajKnjigu("Rat i mir","Rat i mir","Tolstoj",1826,"opis knjige",zanr1,Jezik.SRPSKI);
+		
+		
 		
 		
 	}

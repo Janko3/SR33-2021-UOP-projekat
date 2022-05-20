@@ -1,2 +1,2 @@
 Matejko|Linuksas|08071996793821|bb|MUSKI|false|linuxWTP|11111|1000.0|3
-Matejko|Aleksandrovic|32140839048|Telep|MUSKI|false|linuxas2|lozinka|1200.0|B-641301
+Matejko|Aleksandrovic|32140839048|Telep|MUSKI|false|linuxas2|lozinka|1200.0|B-046717

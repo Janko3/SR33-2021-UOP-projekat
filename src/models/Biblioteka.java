@@ -548,6 +548,7 @@ public class Biblioteka {
 				String id = splitLinije[9];
 				Bibliotekari bibliotekari = new Bibliotekari(ime,prezime,jmbg,adresa,pol,obrisan,korisnickoIme,lozinka,plata,
 						id);
+				bibliotekari.setBiblioteka(this);
 				sviBibliotekari.add(bibliotekari);				
 			}
 			reader.close();

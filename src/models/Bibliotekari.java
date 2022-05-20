@@ -4,17 +4,31 @@ import enumerations.Pol;
 
 public class Bibliotekari extends Zaposleni {
 	
-	protected Biblioteka biblioteka;
+	
 
   
     public Bibliotekari() {
+    	super();
     }
 
-	public Bibliotekari(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,
-			String korisnickoIme, String lozinka, double plata, String id) {
-		super(ime, prezime, JMBG, adresa, pol, jeObrisan, korisnickoIme, lozinka, plata, id);
+
+
+
+	public Bibliotekari(String korisnickoIme, String lozinka, double plata, String id) {
+		super(korisnickoIme, lozinka, plata, id);
 		// TODO Auto-generated constructor stub
 	}
+
+
+
+
+	public Bibliotekari(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,String korisnickoIme, String lozinka, double plata, String id) {
+		super(ime, prezime, JMBG, adresa, pol, jeObrisan,korisnickoIme,lozinka,plata,id);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 
 	@Override
 	public String toString() {
@@ -24,14 +38,6 @@ public class Bibliotekari extends Zaposleni {
 	}
 	
 	
-
-	public Biblioteka getBiblioteka() {
-		return biblioteka;
-	}
-
-	public void setBiblioteka(Biblioteka biblioteka) {
-		this.biblioteka = biblioteka;
-	}
 
 	public String generisiIDBibliotekar() {
         String idBibliotekar = "B-";

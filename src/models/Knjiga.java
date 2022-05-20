@@ -142,7 +142,14 @@ public class Knjiga {
 	}
 	
 	
-
+	public String generisiIDKnjiga() {
+        String idClan = "K-";
+        for(int i=0;i<6;i++) {
+            int broj = (int) Math.floor(Math.random()*9);
+            idClan += Integer.toString(broj);
+        }
+        return idClan;
+    }
 	
 
 }
