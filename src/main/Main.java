@@ -99,6 +99,9 @@ public class Main {
 		admin.obrisiPrimerak("001");
 		bibliotekar2.obrisiClana("12");
 		admin.obrisiAdmina("2");
+		admin.updateAdmina("janko", "jankovic", "3219403", "bb", Pol.MUSKI, false, "jr3", "lozinka3", 1000, "2");
+		admin.updateBibliotekara("Boza", "Bozic", "4324324", "bb", Pol.MUSKI, false, "bobinjo", "lozinkabobi", 1000, "3");
+		bibliotekar2.updateClan("12", LocalDate.of(2022,05,23), 1, true, "Cukeli", "Cukeljovic", "83294832094", "bb", Pol.ZENSKI, false, tipClanarine3);
 		
 		
 	}

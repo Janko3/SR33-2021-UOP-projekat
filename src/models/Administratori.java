@@ -108,6 +108,48 @@ public class Administratori extends Zaposleni {
 		biblioteka.upisiAdmini(biblioteka.getSviAdmini());
 	}
 	
+	public void updateAdmina(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,String korisnickoIme, String lozinka,double plata,String id) {
+		for(Administratori a: biblioteka.getSviAdmini()) {
+			if(a.getId().equals(id)) {
+				
+				a.setIme(ime);
+				a.setPrezime(prezime);
+				a.setJMBG(JMBG);
+				a.setAdresa(adresa);
+				a.setPol(pol);
+				a.setJeObrisan(jeObrisan);
+				a.setKorisnickoIme(korisnickoIme);
+				a.setLozinka(lozinka);
+				a.setPlata(plata);
+				a.setId(a.generisiIDAdmin());
+				a.setBiblioteka(biblioteka);
+				biblioteka.izbrisiContentFajla("src/data/admini.txt");
+				biblioteka.upisiAdmini(biblioteka.getSviAdmini());
+				
+			}
+		
+		}
+	}
+	
+	public void updateBibliotekara(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,String korisnickoIme, String lozinka, double plata, String id) {
+		for (Bibliotekari b: biblioteka.getSviBibliotekari()) {
+			if(b.getId().equals(id)) {
+				b.setIme(ime);
+				b.setPrezime(prezime);
+				b.setJMBG(JMBG);
+				b.setAdresa(adresa);
+				b.setPol(pol);
+				b.setJeObrisan(jeObrisan);
+				b.setKorisnickoIme(korisnickoIme);
+				b.setLozinka(lozinka);
+				b.setPlata(plata);
+				b.setId(b.generisiIDBibliotekar());
+				biblioteka.izbrisiContentFajla("src/data/bibliotekari.txt");
+				biblioteka.upisiBibliotekara(biblioteka.getSviBibliotekari());
+			}
+		}
+	}
+	
 
 
 	

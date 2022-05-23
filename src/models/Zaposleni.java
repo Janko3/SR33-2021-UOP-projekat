@@ -224,7 +224,28 @@ public abstract class Zaposleni extends Osoba {
 		biblioteka.upisiClan(biblioteka.getSviClanovi());
 	}
 	
-	
+	public void updateClan(String brClanskeKarte, LocalDate datumPoslednjeUplate, int brojMeseci, 
+			boolean aktivnost,String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,TipClanarine tipClanarine) {
+		for(Clan c: biblioteka.getSviClanovi()) {
+			if(c.getBrClanskeKarte().equals(brClanskeKarte)) {
+				c.setBrClanskeKarte(c.generisiIDClan());
+				c.setDatumPoslednjeUplate(datumPoslednjeUplate);
+				c.setBrojMeseci(brojMeseci);
+				c.setAktivnost(aktivnost);
+				c.setIme(ime);
+				c.setPrezime(prezime);
+				c.setJMBG(JMBG);
+				c.setAdresa(adresa);
+				c.setPol(pol);
+				c.setJeObrisan(jeObrisan);
+				c.setTipClanarine(tipClanarine);
+				biblioteka.izbrisiContentFajla("src/data/clanovi.txt");
+				biblioteka.upisiClan(biblioteka.getSviClanovi());
+				
+			}
+			
+		}
+	}
 	
 
 }
