@@ -102,7 +102,10 @@ public class Main {
 		admin.updateAdmina("janko", "jankovic", "3219403", "bb", Pol.MUSKI, false, "jr3", "lozinka3", 1000, "2");
 		admin.updateBibliotekara("Boza", "Bozic", "4324324", "bb", Pol.MUSKI, false, "bobinjo", "lozinkabobi", 1000, "3");
 		bibliotekar2.updateClan("12", LocalDate.of(2022,05,23), 1, true, "Cukeli", "Cukeljovic", "83294832094", "bb", Pol.ZENSKI, false, tipClanarine3);
-		
+		admin.updateKnjiga("Sopenhauer kao vaspitac", "Schopenhauer as Educator", "Friedrich Nietzsche", 1874, "opis", "011", zanr1, Jezik.SRPSKI);
+		admin.updatePrimerak(knjiga1, 300, 1900, false, "001", Jezik.SRPSKI, TipPoveza.TVRDI, false);
+		admin.updateTip("1", "ostali", 250, false);
+		bibliotekar2.updateZanr("Psiho-triler","1", "pt", false);
 		
 	}
 

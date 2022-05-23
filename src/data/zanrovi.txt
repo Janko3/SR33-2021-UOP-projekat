@@ -1,2 +1,2 @@
-Akcija|1|action|true
-Drama|Z-662638|drama|false
+Psiho-triler|Z-471031|pt|false
+Drama|Z-053578|drama|false

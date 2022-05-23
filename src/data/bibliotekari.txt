@@ -1,2 +1,2 @@
-Boza|Bozic|4324324|bb|MUSKI|false|bobinjo|lozinkabobi|1000.0|B-164203
-Matejko|Aleksandrovic|32140839048|Telep|MUSKI|false|linuxas2|lozinka|1200.0|B-434635
+Boza|Bozic|4324324|bb|MUSKI|false|bobinjo|lozinkabobi|1000.0|B-340408
+Matejko|Aleksandrovic|32140839048|Telep|MUSKI|false|linuxas2|lozinka|1200.0|B-202477

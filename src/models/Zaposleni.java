@@ -246,6 +246,64 @@ public abstract class Zaposleni extends Osoba {
 			
 		}
 	}
+	public void updateKnjiga(String naslov, String originalniNaslov, String pisac, int godinaObjavljivanja, String opis, String id,Zanr zanr,Jezik jezik) {
+		for(Knjiga k: biblioteka.getSveKnjige()) {
+			if(k.getId().equals(id)) {
+				k.setNaslov(naslov);
+				k.setOriginalniNaslov(originalniNaslov);
+				k.setPisac(pisac);
+				k.setOpis(opis);
+				k.setId(k.generisiIDKnjiga());
+				k.setZanr(zanr);
+				k.setJezik(jezik);
+				biblioteka.izbrisiContentFajla("src/data/knjige.txt");
+				biblioteka.upisiKnjigu(biblioteka.getSveKnjige());
+			}
+		}
+	}
+	public void updatePrimerak(Knjiga knjiga, int brojStrana, int godinaStampanja, boolean iznamljena, String id,Jezik jezik,TipPoveza povez,boolean obrisan) {
+		for(Primerak p: biblioteka.getSviPrimerci()) {
+			if(p.getId().equals(id)) {
+				p.setKnjiga(knjiga);
+				p.setBrojStrana(brojStrana);
+				p.setGodinaStampanja(godinaStampanja);
+				p.setIznamljena(iznamljena);
+				p.setIznamljena(iznamljena);
+				p.setId(p.generisiIDPrimerak());
+				p.setJezik(jezik);
+				p.setPovez(povez);
+				p.setObrisan(obrisan);
+				biblioteka.izbrisiContentFajla("src/data/primerci.txt");
+				biblioteka.upisiPrimerak(biblioteka.getSviPrimerci());
+			}
+		}
+	}
+	
+	public void updateTip(String id, String opis, double cena,boolean obrisan) {
+		for(TipClanarine t: biblioteka.getSviTipovi()) {
+			if(t.getId().equals(id)) {
+				t.setId(t.generisiIDTip());
+				t.setOpis(opis);
+				t.setCena(cena);
+				t.setObrisan(obrisan);
+				biblioteka.izbrisiContentFajla("src/data/tipovi.txt");
+				biblioteka.upisiTip(biblioteka.getSviTipovi());
+			}
+		}
+	}
+	
+	public void updateZanr(String opis, String id, String oznaka,boolean obrisan) {
+		for(Zanr z:biblioteka.getSviZanrovi()) {
+			if(z.getId().equals(id)) {
+				z.setOpis(opis);
+				z.setId(z.generisiIDZanr());
+				z.setOznaka(oznaka);
+				z.setObrisan(obrisan);
+				biblioteka.izbrisiContentFajla("src/data/zanrovi.txt");
+				biblioteka.upisiZanr(biblioteka.getSviZanrovi());
+			}
+		}
+	}
 	
 
 }
