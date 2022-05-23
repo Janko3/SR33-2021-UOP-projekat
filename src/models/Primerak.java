@@ -43,7 +43,7 @@ public class Primerak {
     	
     }
 
-	public Primerak(Knjiga knjiga, int brojStrana, int godinaStampanja, boolean iznamljena, String id,Jezik jezik,TipPoveza povez) {
+	public Primerak(Knjiga knjiga, int brojStrana, int godinaStampanja, boolean iznamljena, String id,Jezik jezik,TipPoveza povez,boolean obrisan) {
 		this.knjiga = knjiga;
 		this.brojStrana = brojStrana;
 		this.godinaStampanja = godinaStampanja;
@@ -52,6 +52,7 @@ public class Primerak {
 		this.obrisan = false;
 		this.jezik = jezik;
 		this.povez = povez;
+		
 	}
 
 	public Knjiga getKnjiga() {
@@ -124,6 +125,14 @@ public class Primerak {
 				+ ", iznamljena=" + iznamljena + ", id=" + id + ", obrisan=" + obrisan + ", jezik=" + jezik + ", povez="
 				+ povez + "]";
 	}
+	public String generisiIDPrimerak() {
+        String idClan = "P-";
+        for(int i=0;i<6;i++) {
+            int broj = (int) Math.floor(Math.random()*9);
+            idClan += Integer.toString(broj);
+        }
+        return idClan;
+    }
 	
 	
 }

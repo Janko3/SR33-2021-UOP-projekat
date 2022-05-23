@@ -11,17 +11,30 @@ public class Zanr {
     private String id;
 
     private String oznaka;
+    
+    private boolean obrisan;
 
     public Zanr() {
     	this.opis = "";
 		this.id = "";
 		this.oznaka = "";
+		this.obrisan = false;
     }
     
-	public Zanr(String opis, String id, String oznaka) {
+	public Zanr(String opis, String id, String oznaka,boolean obrisan) {
 		this.opis = opis;
 		this.id = id;
 		this.oznaka = oznaka;
+		this.obrisan = obrisan;
+	}
+	
+	
+	public boolean isObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
 	}
 
 	public String getOpis() {
@@ -56,5 +69,13 @@ public class Zanr {
 	public String toString() {
 		return "Zanr [opis=" + opis + ", id=" + id + ", oznaka=" + oznaka + "]";
 	}
+	public String generisiIDZanr() {
+        String idClan = "Z-";
+        for(int i=0;i<6;i++) {
+            int broj = (int) Math.floor(Math.random()*9);
+            idClan += Integer.toString(broj);
+        }
+        return idClan;
+    }
 
 }

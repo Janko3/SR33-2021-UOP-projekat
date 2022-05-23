@@ -215,7 +215,7 @@ public class Biblioteka {
 
 	
 	private String pripremaZaUpisZanr(Zanr zanr) {
-    	return String.format("%s|%s|%s\n", zanr.getOpis(), zanr.getId(), zanr.getOznaka());
+    	return String.format("%s|%s|%s|%s\n", zanr.getOpis(), zanr.getId(), zanr.getOznaka(),zanr.isObrisan());
     }
 	
 	public void upisiZanr(ArrayList<Zanr> sviZanrovi) {
@@ -241,7 +241,8 @@ public class Biblioteka {
 				String opis = splitLinije[0];
 				String id = splitLinije[1];
 				String oznaka = splitLinije[2];
-				Zanr zanr = new Zanr(opis,id,oznaka);
+				boolean obrisan = Boolean.parseBoolean(splitLinije[3]);
+				Zanr zanr = new Zanr(opis,id,oznaka,obrisan);
 				sviZanrovi.add(zanr);
 				
 			}
@@ -257,8 +258,8 @@ public class Biblioteka {
 	
 	
 	private  String pripremaZaUpisKnjiga(Knjiga knjiga) {
-    	return String.format("%s|%s|%s|%s|%s|%s|%s|%s\n", knjiga.getNaslov(), knjiga.getOriginalniNaslov(), knjiga.getPisac(), Integer.toString(knjiga.getGodinaObjavljivanja()),
-    			knjiga.getOpis(),knjiga.getId(),knjiga.getZanr().getId(),knjiga.getJezik());
+    	return String.format("%s|%s|%s|%s|%s|%s|%s|%s|%s\n", knjiga.getNaslov(), knjiga.getOriginalniNaslov(), knjiga.getPisac(), Integer.toString(knjiga.getGodinaObjavljivanja()),
+    			knjiga.getOpis(),knjiga.getId(),knjiga.getZanr().getId(),knjiga.getJezik(),knjiga.isObrisan());
     }
 	
 	
@@ -294,6 +295,7 @@ public class Biblioteka {
 				}
 				
 				Jezik jezik = Jezik.valueOf(splitLinije[7]);
+				boolean obrisan = Boolean.parseBoolean(splitLinije[8]);
 				
 				Knjiga knjiga = new Knjiga(naslovKnjiga,orgNaslovKnjiga,pisacKnjiga,godinaObjavljivanjaKnjiga,
 						opisKnjiga,idKnjiga,zanrovi,jezik);
@@ -366,7 +368,7 @@ public class Biblioteka {
 	
 	
     private String pripremaZaUpisTip(TipClanarine tip) {
-    	return String.format("%s|%s|%s\n", tip.getId(), tip.getOpis(), Double.toString(tip.getCena()));
+    	return String.format("%s|%s|%s|%s\n", tip.getId(), tip.getOpis(), Double.toString(tip.getCena()),tip.isObrisan());
     }
     public void upisiTip(ArrayList<TipClanarine> sviTipovi) {
 		try {
@@ -394,7 +396,8 @@ public class Biblioteka {
 				String idTip = splitLinije[0];
 				String opisTip = splitLinije[1];
 				double cenaTip = Double.parseDouble(splitLinije[2]);
-				TipClanarine tip = new TipClanarine(idTip,opisTip,cenaTip);
+				boolean obrisanTip = Boolean.parseBoolean(splitLinije[3]);
+				TipClanarine tip = new TipClanarine(idTip,opisTip,cenaTip,obrisanTip);
 				sviTipovi.add(tip);
 				
 			}
@@ -409,8 +412,8 @@ public class Biblioteka {
 	}
 	private String pripremaZaUpisPrimerak(Primerak primerak) {
 		
-    	return String.format("%s|%s|%s|%s|%s|%s|%s\n",primerak.getKnjiga().getId(),primerak.getBrojStrana(),primerak.getGodinaStampanja(),primerak.isIznamljena(),
-    			primerak.getId(),primerak.getJezik(),primerak.getPovez());
+    	return String.format("%s|%s|%s|%s|%s|%s|%s|%s\n",primerak.getKnjiga().getId(),primerak.getBrojStrana(),primerak.getGodinaStampanja(),primerak.isIznamljena(),
+    			primerak.getId(),primerak.getJezik(),primerak.getPovez(),primerak.isObrisan());
     }
 	
 	public void upisiPrimerak(ArrayList<Primerak> sviPrimerci) {
@@ -447,7 +450,8 @@ public class Biblioteka {
 				String id = splitLinije[4];
 				Jezik jezik = Jezik.valueOf(splitLinije[5]);
 				TipPoveza tipPoveza = TipPoveza.valueOf(splitLinije[6]);
-				Primerak primerak = new Primerak(knjiga,brojStrana,godinaObjavljivanja,iznajmljena,id,jezik,tipPoveza);
+				boolean obrisan = Boolean.parseBoolean(splitLinije[7]);
+				Primerak primerak = new Primerak(knjiga,brojStrana,godinaObjavljivanja,iznajmljena,id,jezik,tipPoveza,obrisan);
 				
 				sviPrimerci.add(primerak);
 			}
@@ -676,6 +680,23 @@ public class Biblioteka {
 					+ telefon + ", id=" + id +   "]";
 		}
 		
+		public  boolean izbrisiContentFajla(String path) {
+			
+			
+	        try {
+	            FileWriter writer = new FileWriter(path);
+	            writer.write("");
+	            writer.close();
+	        } catch(IOException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	        return true;
+	    
+		
+	}
+		
+	
 		
 		
 	

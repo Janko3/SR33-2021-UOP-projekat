@@ -1,2 +1,2 @@
-Rat i mir|Rat i mir|Tolstoj|1826|opis knjige|011|1|SRPSKI
-Rat i mir|Rat i mir|Tolstoj|1826|opis knjige|K-534656|1|SRPSKI
+Rat i mir|Rat i mir|Tolstoj|1826|opis knjige|011|1|SRPSKI|true
+Rat i mir|Rat i mir|Tolstoj|1826|opis knjige|K-480503|1|SRPSKI|false

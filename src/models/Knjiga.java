@@ -46,8 +46,8 @@ public class Knjiga {
 		this.jezik = null;
     }
 
-	public Knjiga(String naslov, String originalniNaslov, String pisac, int godinaObjavljivanja, String opis, String id,Zanr zanr,Jezik jezik
-			) {
+	public Knjiga(String naslov, String originalniNaslov, String pisac, int godinaObjavljivanja, String opis, String id,Zanr zanr,Jezik jezik	) 
+	{
 		this.naslov = naslov;
 		this.originalniNaslov = originalniNaslov;
 		this.pisac = pisac;

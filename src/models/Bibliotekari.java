@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 import enumerations.Pol;
 
 public class Bibliotekari extends Zaposleni {
@@ -48,10 +50,5 @@ public class Bibliotekari extends Zaposleni {
         return idBibliotekar;
     }
 	
-
-	
-	
-    
-    
 
 }

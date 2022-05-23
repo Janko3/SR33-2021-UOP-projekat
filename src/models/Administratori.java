@@ -93,20 +93,19 @@ public class Administratori extends Zaposleni {
 		biblioteka.upisiBibliotekara(biblioteka.getSviBibliotekari());
 	}
 	
-	public  boolean IzbrisiBibliotekara(String path) {
-		
-		
-	        try {
-	            FileWriter writer = new FileWriter(path);
-	            writer.write("");
-	            writer.close();
-	        } catch(IOException e) {
-	            e.printStackTrace();
-	            return false;
-	        }
-	        return true;
-	    
-		
+	public void obrisiBibliotekara(String id) {
+		for(Bibliotekari b : biblioteka.getSviBibliotekari()) {
+			if (b.getId().equals(id)) b.setJeObrisan(true);
+		}
+		biblioteka.izbrisiContentFajla("src/data/bibliotekari.txt");
+		biblioteka.upisiBibliotekara(biblioteka.getSviBibliotekari());
+	}
+	public void obrisiAdmina(String id) {
+		for(Administratori a: biblioteka.getSviAdmini()) {
+			if(a.getId().equals(id)) a.setJeObrisan(true);
+		}
+		biblioteka.izbrisiContentFajla("src/data/admini.txt");
+		biblioteka.upisiAdmini(biblioteka.getSviAdmini());
 	}
 	
 

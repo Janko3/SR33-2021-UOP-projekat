@@ -22,9 +22,9 @@ public class Main {
 		System.out.println(biblioteka.ucitajBiblioteku());
 		
 		
-		TipClanarine tipClanarine1 = new TipClanarine("1","penzioner",100.00);
-		TipClanarine tipClanarine2 = new TipClanarine("2","decija",150.00);	
-		TipClanarine tipClanarine3 = new TipClanarine("3","ostali",250.00);
+		TipClanarine tipClanarine1 = new TipClanarine("1","penzioner",100.00,false);
+		TipClanarine tipClanarine2 = new TipClanarine("2","decija",150.00,false);	
+		TipClanarine tipClanarine3 = new TipClanarine("3","ostali",250.00,false);
 		ArrayList<TipClanarine> sviTipovi = new ArrayList<TipClanarine>();
 		sviTipovi.add(tipClanarine1);
 		sviTipovi.add(tipClanarine2);
@@ -38,7 +38,7 @@ public class Main {
 		biblioteka.upisiClan(sviClanovi);
 		System.out.println(biblioteka.ucitajClanove(sviTipovi));
 		
-		Zanr zanr1 = new Zanr("Akcija","1","action");
+		Zanr zanr1 = new Zanr("Akcija","1","action",false);
 		ArrayList<Zanr> sviZanrovi = new ArrayList<Zanr>();
 		sviZanrovi.add(zanr1);
 		biblioteka.upisiZanr(sviZanrovi);
@@ -51,7 +51,7 @@ public class Main {
 		biblioteka.upisiKnjigu(sveKnjige);
 		System.out.println(biblioteka.ucitajKnjige(sviZanrovi));
 		
-		Primerak primerak1 = new Primerak(knjiga1,450,1826,true,"001",Jezik.SRPSKI,TipPoveza.MEKI);
+		Primerak primerak1 = new Primerak(knjiga1,450,1826,true,"001",Jezik.SRPSKI,TipPoveza.MEKI,false);
 		ArrayList<Primerak> sviPrimerci = new ArrayList<Primerak>();
 		sviPrimerci.add(primerak1);
 		biblioteka.upisiPrimerak(sviPrimerci);
@@ -81,18 +81,24 @@ public class Main {
 		System.out.println(biblioteka.ucitajIznajmljivanje());
 		
 		Administratori admin = biblioteka.getSviAdmini().get(0);
-		admin.DodatiNoveAdmine("Matejko", "Matejkovic", "32140839048", "Telep",Pol.MUSKI, false, "linuxas1", "lozinka", 1200);
-		
-		
-		admin.DodatiNoveBibliotekare("Matejko", "Aleksandrovic", "32140839048", "Telep",Pol.MUSKI, false, "linuxas2", "lozinka", 1200);
-		
+		admin.DodatiNoveAdmine("Matejko", "Matejkovic", "32140839048", "Telep",Pol.MUSKI, false, "linuxas1", "lozinka", 1200);		
+		admin.DodatiNoveBibliotekare("Matejko", "Aleksandrovic", "32140839048", "Telep",Pol.MUSKI, false, "linuxas2", "lozinka", 1200);		
 		admin.DodatiNoveClanove(LocalDate.parse("2022-05-05"),1,true,"Petar","Petrovic","08071996793821","bb",Pol.MUSKI,false,tipClanarine1);
 		
 		Bibliotekari bibliotekar2 = biblioteka.getSviBibliotekari().get(0);
-		bibliotekar2.DodatiNoveClanove(LocalDate.parse("2022-05-05"),1,true,"Petar","Petrovic","08071996793821","bb",Pol.MUSKI,false,tipClanarine1);
-		admin.DodajKnjigu("Rat i mir","Rat i mir","Tolstoj",1826,"opis knjige",zanr1,Jezik.SRPSKI);
+		bibliotekar2.DodatiNoveClanove(LocalDate.parse("2022-05-05"),1,true,"Petar","Petrovic","08071996793821","bb",Pol.MUSKI,false,tipClanarine1);		
+		admin.DodajKnjigu("Rat i mir","Rat i mir","Tolstoj",1826,"opis knjige",zanr1,Jezik.SRPSKI);		
+		bibliotekar2.DodajPrimerak(knjiga1,450,1826,false,Jezik.SRPSKI,TipPoveza.MEKI);
+		bibliotekar2.DodajTip("penzioner", 100);
+		admin.DodajZanr("Drama", "drama");
 		
-		
+		admin.obrisiBibliotekara("3");
+		bibliotekar2.obrisiKnjigu("011");
+		admin.obrisiTip("3");
+		bibliotekar2.obrisiZanr("1");
+		admin.obrisiPrimerak("001");
+		bibliotekar2.obrisiClana("12");
+		admin.obrisiAdmina("2");
 		
 		
 	}

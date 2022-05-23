@@ -1,1 +1,2 @@
-Akcija|1|action
+Akcija|1|action|true
+Drama|Z-664166|drama|false
