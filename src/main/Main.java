@@ -28,9 +28,8 @@ public class Main {
 		biblioteka.ucitajPrimerke();
 		biblioteka.ucitajTipove();
 		biblioteka.ucitajZanrove();
+		
 		Administratori admin = biblioteka.getSviAdmini().get(0);
-		
-		
 		
 		
 

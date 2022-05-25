@@ -1,3 +1,3 @@
-C-080864|2022-05-23|1|true|Cukeli|Cukeljovic|83294832094|bb|ZENSKI|true|3
-C-425337|2022-05-05|1|true|Petar|Petrovic|08071996793821|bb|MUSKI|false|1
-C-501837|2022-05-05|1|true|Petar|Petrovic|08071996793821|bb|MUSKI|false|1
+C-235112|2022-05-25|2|true|Novak|Djokovic|47329473298|Marbelja|MUSKI|false|2
+C-086853|2022-06-20|1|false|Boza|Bobinjovic|4372472398|bb|MUSKI|true|2
+C-183764|2021-10-10|6|true|Pera|Peric|43242324242|bb|MUSKI|false|2

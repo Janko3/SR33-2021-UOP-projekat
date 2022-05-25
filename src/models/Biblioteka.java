@@ -705,7 +705,9 @@ public class Biblioteka {
 			ArrayList<Clan> clanovi = new ArrayList<Clan>();
 			for(Clan c: sviClanovi) {
 				if(c.isJeObrisan() == false) {
+					c.setAktivnost(false);
 					clanovi.add(c);
+					
 				}
 			
 			}
@@ -772,5 +774,24 @@ public class Biblioteka {
 			}
 			return zanrovi;
 		}
+		public ArrayList<Clan> aktivniClanovi(){
+			ArrayList<Clan> clanovi = new ArrayList<Clan>();
+			for(Clan c: sviClanovi) {
+				if(c.isAktivnost()== true) {
+					clanovi.add(c);					
+				}
+			}
+			return clanovi;
+		}
+		public ArrayList<Clan> neaktivniClanovi(){
+			ArrayList<Clan> clanovi = new ArrayList<Clan>();
+			for(Clan c: sviClanovi) {
+				if(c.isAktivnost()== false) {
+					clanovi.add(c);					
+				}
+			}
+			return clanovi;
+		}
+		
 
 }

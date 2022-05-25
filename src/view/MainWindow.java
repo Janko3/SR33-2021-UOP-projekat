@@ -77,6 +77,22 @@ public class MainWindow extends JFrame{
 				
 			}
 		});
+		aktivniClanoviItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AktivniClanoviProzor ap = new AktivniClanoviProzor(biblioteka);
+				ap.setVisible(true);
+			}
+		});
+		neaktivniClanoviItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				NeaktivniClanoviProzor np = new NeaktivniClanoviProzor(biblioteka);
+				np.setVisible(true);
+			}
+		});
 	}
 
 }
