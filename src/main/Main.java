@@ -97,7 +97,7 @@ public class Main {
 		admin.obrisiTip("3");
 		bibliotekar2.obrisiZanr("1");
 		admin.obrisiPrimerak("001");
-		bibliotekar2.obrisiClana("12");
+		
 		admin.obrisiAdmina("2");
 		admin.updateAdmina("janko", "jankovic", "3219403", "bb", Pol.MUSKI, false, "jr3", "lozinka3", 1000, "2");
 		admin.updateBibliotekara("Boza", "Bozic", "4324324", "bb", Pol.MUSKI, false, "bobinjo", "lozinkabobi", 1000, "3");
@@ -106,6 +106,13 @@ public class Main {
 		admin.updatePrimerak(knjiga1, 300, 1900, false, "001", Jezik.SRPSKI, TipPoveza.TVRDI, false);
 		admin.updateTip("1", "ostali", 250, false);
 		bibliotekar2.updateZanr("Psiho-triler","1", "pt", false);
+		admin.updateBiblioteka("BorisovAtelje", "bbb","0-24", "43285723532", "1");
+		String clanzabrisanje = biblioteka.getSviClanovi().get(0).getBrClanskeKarte();
+		bibliotekar2.obrisiClana(clanzabrisanje);
+		System.out.println(biblioteka.neobrisaniClanovi());
+		String adminzabrisanje = biblioteka.getSviAdmini().get(0).getId();
+		admin.obrisiAdmina(adminzabrisanje);
+		System.out.println(biblioteka.neobrisaniAdmini());
 		
 	}
 

@@ -87,10 +87,6 @@ public class Biblioteka {
 		
 	}
 
-
-
-
-
 	public String getNaziv() {
 		return naziv;
 	}
@@ -696,7 +692,86 @@ public class Biblioteka {
 		
 	}
 		
-	
+		public String generisiIDBiblioteka() {
+	        String idBiblioteka = "b-";
+	        for(int i=0;i<6;i++) {
+	            int broj = (int) Math.floor(Math.random()*9);
+	            idBiblioteka += Integer.toString(broj);
+	        }
+	        return idBiblioteka;
+	    }
+		
+		public ArrayList<Clan> neobrisaniClanovi(){
+			ArrayList<Clan> clanovi = new ArrayList<Clan>();
+			for(Clan c: sviClanovi) {
+				if(c.isJeObrisan() == false) {
+					clanovi.add(c);
+				}
+			
+			}
+			return clanovi;
+		}
+		
+		public ArrayList<Administratori>neobrisaniAdmini(){
+			ArrayList<Administratori>admini = new ArrayList<Administratori>();
+			for(Administratori a: sviAdmini) {
+				if(a.isJeObrisan() == false) {
+					admini.add(a);
+				}
+			}
+			return admini;
+			
+		}
+		
+		public ArrayList<Bibliotekari> neobrisaniBibliotekari(){
+			ArrayList<Bibliotekari> bibliotekari = new ArrayList<Bibliotekari>();
+			for(Bibliotekari b: sviBibliotekari) {
+				if(b.isJeObrisan() == false) {
+					bibliotekari.add(b);
+				}
+			}
+			return bibliotekari;
+		}
+		
+		public ArrayList<Knjiga>neobrisaneKnjige(){
+			ArrayList<Knjiga>knjige = new ArrayList<Knjiga>();
+			for(Knjiga k:sveKnjige) {
+				if(k.isObrisan() == false) {
+					knjige.add(k);
+				}
+			}
+			return knjige;
+		}
+		
+		public ArrayList<Primerak>neobrisaniPrimerci(){
+			ArrayList<Primerak>primerci = new ArrayList<Primerak>();
+			for(Primerak p: sviPrimerci) {
+				if(p.isObrisan()==false) {
+					primerci.add(p);
+				}
+			}
+			return primerci;
+		}
+		
+		public ArrayList<TipClanarine>neobrisaniTipovi(){
+			ArrayList<TipClanarine>tipovi = new ArrayList<TipClanarine>();
+			for(TipClanarine t: sviTipovi) {
+				if(t.isObrisan()==false) {
+					tipovi.add(t);
+				}
+			}
+			return tipovi;
+		}
+		
+		public ArrayList<Zanr>neobrisaniZanrovi(){
+			ArrayList<Zanr>zanrovi = new ArrayList<Zanr>();
+			for(Zanr z: sviZanrovi) {
+				if(z.isObrisan()== false) {
+					zanrovi.add(z);
+				}
+			}
+			return zanrovi;
+		}
 		
 		
 	

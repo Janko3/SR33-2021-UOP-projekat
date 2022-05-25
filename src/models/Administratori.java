@@ -150,6 +150,20 @@ public class Administratori extends Zaposleni {
 		}
 	}
 	
+	public void updateBiblioteka(String naziv, String adresa, String radnoVreme, String telefon, String id) {
+		
+			if(biblioteka.getId().equals(id)) {
+				biblioteka.setNaziv(naziv);
+				biblioteka.setAdresa(adresa);
+				biblioteka.setRadnoVreme(radnoVreme);
+				biblioteka.setTelefon(telefon);
+				biblioteka.setId(biblioteka.generisiIDBiblioteka() );
+				biblioteka.izbrisiContentFajla("src/data/biblioteke.txt");
+				biblioteka.upisiBiblioteku();
+				
+			}
+		
+	}
 
 
 	

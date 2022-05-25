@@ -1,4 +1,4 @@
-T-751343|ostali|250.0|false
+T-772300|ostali|250.0|false
 2|decija|150.0|false
 3|ostali|250.0|true
-T-246307|penzioner|100.0|false
+T-433085|penzioner|100.0|false

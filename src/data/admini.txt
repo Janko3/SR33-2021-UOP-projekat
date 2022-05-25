@@ -1,3 +1,3 @@
-janko|jankovic|3219403|bb|MUSKI|false|jr3|lozinka3|1000.0|A-102870
+janko|jankovic|3219403|bb|MUSKI|true|jr3|lozinka3|1000.0|A-253861
 Atzo|Hercegovac|08071996793811|bb|MUSKI|false|atzo2|11111|1000.0|1
-Matejko|Matejkovic|32140839048|Telep|MUSKI|false|linuxas1|lozinka|1200.0|A-202753
+Matejko|Matejkovic|32140839048|Telep|MUSKI|false|linuxas1|lozinka|1200.0|A-765560

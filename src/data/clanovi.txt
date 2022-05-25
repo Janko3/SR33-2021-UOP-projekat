@@ -1,3 +1,3 @@
-C-308514|2022-05-23|1|true|Cukeli|Cukeljovic|83294832094|bb|ZENSKI|false|3
-C-454202|2022-05-05|1|true|Petar|Petrovic|08071996793821|bb|MUSKI|false|1
-C-070837|2022-05-05|1|true|Petar|Petrovic|08071996793821|bb|MUSKI|false|1
+C-714181|2022-05-23|1|true|Cukeli|Cukeljovic|83294832094|bb|ZENSKI|true|3
+C-183722|2022-05-05|1|true|Petar|Petrovic|08071996793821|bb|MUSKI|false|1
+C-230587|2022-05-05|1|true|Petar|Petrovic|08071996793821|bb|MUSKI|false|1
