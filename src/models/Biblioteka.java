@@ -772,20 +772,5 @@ public class Biblioteka {
 			}
 			return zanrovi;
 		}
-		
-		
-	
-		
-		
-		
-	    
-	    
-	
-
-
-
-	
-    
-    
 
 }

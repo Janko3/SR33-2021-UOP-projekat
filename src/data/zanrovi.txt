@@ -1,2 +1,2 @@
-Psiho-triler|Z-203421|pt|false
-Drama|Z-877062|drama|false
+Psiho-triler|Z-067837|pt|false
+Drama|Z-628627|drama|false
