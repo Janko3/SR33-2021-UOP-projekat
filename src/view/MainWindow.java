@@ -24,6 +24,8 @@ public class MainWindow extends JFrame{
 	private JMenuItem knjigeItem = new JMenuItem("Knjige");
 	private JMenuItem primerciItem = new JMenuItem("Primerci");
 	private JMenuItem zanrItem = new JMenuItem("Zanrovi");
+	private JMenu iznajmljivanjaMenu = new JMenu("Iznajmljivanja");
+	private JMenuItem iznajmljivanjaItem = new JMenuItem("Iznajmljivanja");
 	
 	private Biblioteka biblioteka;
 	private Administratori prijavljeniAdmin;
@@ -57,6 +59,8 @@ public class MainWindow extends JFrame{
 		knjigeMenu.add(knjigeItem);
 		knjigeMenu.add(primerciItem);
 		knjigeMenu.add(zanrItem);
+		mainMenu.add(iznajmljivanjaMenu);
+		iznajmljivanjaMenu.add(iznajmljivanjaItem);
 		
 	}
 	private void initActions() {
@@ -91,6 +95,31 @@ public class MainWindow extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				NeaktivniClanoviProzor np = new NeaktivniClanoviProzor(biblioteka);
 				np.setVisible(true);
+			}
+		});
+		knjigeItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				KnjigeProzor kp = new KnjigeProzor(biblioteka);
+				kp.setVisible(true);
+			}
+		});
+		tipoviItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TipoviProzor tp = new TipoviProzor(biblioteka);
+				tp.setVisible(true);
+			}
+		});
+		primerciItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrimerciProzor pp = new PrimerciProzor(biblioteka);
+				pp.setVisible(true);
+				
 			}
 		});
 	}

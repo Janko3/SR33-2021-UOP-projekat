@@ -30,6 +30,7 @@ public class Main {
 		biblioteka.ucitajZanrove();
 		
 		Administratori admin = biblioteka.getSviAdmini().get(0);
+		Knjiga knjiga = biblioteka.getSveKnjige().get(0);
 		
 		
 
