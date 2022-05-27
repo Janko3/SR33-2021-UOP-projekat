@@ -39,7 +39,7 @@ public class NeaktivniClanoviProzor extends JFrame{
 		mainToolBar.add(addBtn);
 		mainToolBar.add(editBtn);
 		mainToolBar.add(deleteBtn);
-		add(mainToolBar,BorderLayout.NORTH);
+		add(mainToolBar,BorderLayout.SOUTH);
 		
 		String[]zaglavlja = new String[] {"Ime","Prezime","JMBG","Pol","Adresa","Broj Meseci","Datum Uplate","ID","Tip Clanarine"};
 		Object[][] sadrzaj = new Object[biblioteka.neaktivniClanovi().size()][zaglavlja.length];

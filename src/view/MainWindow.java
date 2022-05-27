@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 
 import models.Administratori;
 import models.Biblioteka;
+import models.Zaposleni;
 
 public class MainWindow extends JFrame{
 	private JMenuBar mainMenu = new JMenuBar();
@@ -28,15 +29,15 @@ public class MainWindow extends JFrame{
 	private JMenuItem iznajmljivanjaItem = new JMenuItem("Iznajmljivanja");
 	
 	private Biblioteka biblioteka;
-	private Administratori prijavljeniAdmin;
+	private Zaposleni prijavljeniZaposleni;
 	
 	
 	
 
-	public MainWindow(Biblioteka biblioteka,Administratori prijavljeniAdmin) {
+	public MainWindow(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
 		this.biblioteka=biblioteka;
-		this.prijavljeniAdmin= prijavljeniAdmin;
-		setTitle("Administrator: " + prijavljeniAdmin.getKorisnickoIme());
+		this.prijavljeniZaposleni= prijavljeniZaposleni;
+		setTitle("Administrator: " + prijavljeniZaposleni.getKorisnickoIme());
 		setSize(500,500);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

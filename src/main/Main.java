@@ -8,6 +8,7 @@ import enumerations.Jezik;
 import enumerations.Pol;
 import enumerations.TipPoveza;
 import models.*;
+import view.LoginProzor;
 import view.MainWindow;
 
 public class Main {
@@ -33,7 +34,6 @@ public class Main {
 		biblioteka.ucitajIznajmljivanje();
 		
 		
-		Administratori admin = biblioteka.getSviAdmini().get(0);
 		
 		
 		
@@ -42,8 +42,8 @@ public class Main {
 		
 
 		
-		MainWindow w = new MainWindow(biblioteka,admin);
-		w.setVisible(true);
+		LoginProzor lp = new LoginProzor(biblioteka);
+		lp.setVisible(true);
 		
 	}
 

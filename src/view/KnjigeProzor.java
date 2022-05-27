@@ -42,7 +42,7 @@ private void initView() {
 		mainToolBar.add(addBtn);
 		mainToolBar.add(editBtn);
 		mainToolBar.add(deleteBtn);
-		add(mainToolBar,BorderLayout.NORTH);
+		add(mainToolBar,BorderLayout.SOUTH);
 		
 		String[] zaglavlja = new String [] {"Naslov","Originalni naslov","Autor","Godina izdavanja","Opis","ID","Zanr","Jezik"};
 		Object[][]sadrzaj = new Object[biblioteka.neobrisaneKnjige().size()][zaglavlja.length];
@@ -55,7 +55,7 @@ private void initView() {
 			sadrzaj[i][3] = knjiga.getGodinaObjavljivanja();
 			sadrzaj[i][4] = knjiga.getOpis();
 			sadrzaj[i][5] = knjiga.getId();
-			sadrzaj[i][6] = knjiga.getZanr();
+			sadrzaj[i][6] = knjiga.getZanr().getOpis();
 			sadrzaj[i][7] = knjiga.getJezik();
 			
 		}

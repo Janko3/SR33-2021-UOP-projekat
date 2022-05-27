@@ -43,7 +43,7 @@ private void initView() {
 		mainToolBar.add(addBtn);
 		mainToolBar.add(editBtn);
 		mainToolBar.add(deleteBtn);
-		add(mainToolBar,BorderLayout.NORTH);
+		add(mainToolBar,BorderLayout.SOUTH);
 		
 		String[] zaglavlja = new String[] {"Knjiga","Broj Strana","Godina stampanja","ID","Jezik","Tip poveza"};
 		Object[][]sadrzaj = new Object[biblioteka.neobrisaniPrimerci().size()][zaglavlja.length];

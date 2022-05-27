@@ -765,6 +765,16 @@ public class Biblioteka {
 			return tipovi;
 		}
 		
+		public ArrayList<Zaposleni>neobrisaniZaposleni(){
+			ArrayList<Zaposleni> zaposleni = new ArrayList<Zaposleni>();
+			for(Zaposleni z: sviZaposleni) {
+				if(z.isJeObrisan()==false) {
+					zaposleni.add(z);
+				}
+			}
+			return zaposleni;
+		}
+		
 		public ArrayList<Zanr>neobrisaniZanrovi(){
 			ArrayList<Zanr>zanrovi = new ArrayList<Zanr>();
 			for(Zanr z: sviZanrovi) {
@@ -791,6 +801,16 @@ public class Biblioteka {
 				}
 			}
 			return clanovi;
+		}
+		
+		public Zaposleni loginZaposleni(String korisnickoIme,String lozinka) {
+			for(Zaposleni z:neobrisaniZaposleni()) {
+				if(z.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)&&
+						z.getLozinka().equals(lozinka)&& !z.isJeObrisan()) {
+					return z;
+				}
+			}
+			return null;
 		}
 		
 		

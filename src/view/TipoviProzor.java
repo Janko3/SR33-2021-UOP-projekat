@@ -39,7 +39,7 @@ private void initView() {
 		mainToolBar.add(addBtn);
 		mainToolBar.add(editBtn);
 		mainToolBar.add(deleteBtn);
-		add(mainToolBar,BorderLayout.NORTH);
+		add(mainToolBar,BorderLayout.SOUTH);
 		
 		String[]zaglavlja = new String[] {"ID","Opis","Cena"};
 		Object[][]sadrzaj= new Object[biblioteka.neobrisaniTipovi().size()][zaglavlja.length];

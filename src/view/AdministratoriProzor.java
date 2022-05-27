@@ -43,7 +43,7 @@ public class AdministratoriProzor extends JFrame {
 		mainToolBar.add(addBtn);
 		mainToolBar.add(editBtn);
 		mainToolBar.add(deleteBtn);
-		add(mainToolBar,BorderLayout.NORTH);
+		add(mainToolBar,BorderLayout.SOUTH);
 		
 		String[] zaglavlja = new String[] {"Ime","Prezime","JMBG","Adresa","Pol","Korisnicko ime","Lozinka","Plata","ID"};
 		Object[][] sadrzaj = new Object[biblioteka.neobrisaniAdmini().size()][zaglavlja.length];
