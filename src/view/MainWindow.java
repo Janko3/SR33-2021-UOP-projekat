@@ -122,6 +122,22 @@ public class MainWindow extends JFrame{
 				
 			}
 		});
+		iznajmljivanjaItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				IznajmljivanjaProzor ip = new IznajmljivanjaProzor(biblioteka);
+				ip.setVisible(true);
+			}
+		});
+		zanrItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ZanroviProzor zp = new ZanroviProzor(biblioteka);
+				zp.setVisible(true);
+			}
+		});
 	}
 
 }

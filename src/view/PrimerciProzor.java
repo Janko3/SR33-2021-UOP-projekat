@@ -50,7 +50,7 @@ private void initView() {
 		
 		for(int i=0;i<biblioteka.neobrisaniPrimerci().size();i++) {
 			Primerak primerak = biblioteka.neobrisaniPrimerci().get(i);
-			sadrzaj[i][0] = primerak.getKnjiga();
+			sadrzaj[i][0] = primerak.getKnjiga().getNaslov();
 			sadrzaj[i][1] = primerak.getBrojStrana();
 			sadrzaj[i][2] = primerak.getGodinaStampanja();
 			sadrzaj[i][3] = primerak.getId();

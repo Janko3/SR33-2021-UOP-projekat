@@ -182,6 +182,17 @@ public abstract class Zaposleni extends Osoba {
 		biblioteka.getSviZanrovi().add(zanr);
 		biblioteka.upisiZanr(biblioteka.getSviZanrovi());
 	}
+	public void dodajIznajmljivanje(LocalDate datumIznajmljivanje, LocalDate datumVracanja,Primerak primerakKnjige,Clan clan,Zaposleni zaposleni) {
+		Iznajmljivanje iznajmljivanje = new Iznajmljivanje();
+		iznajmljivanje.setDatumIznajmljivanje(datumIznajmljivanje);
+		iznajmljivanje.setDatumVracanja(datumVracanja);
+		iznajmljivanje.setPrimerakKnjige(primerakKnjige);
+		iznajmljivanje.setClan(clan);
+		iznajmljivanje.setZaposleni(zaposleni);
+		biblioteka.getSvaIznamljivanja().add(iznajmljivanje);
+		biblioteka.upisiIznajmljivanje(biblioteka.getSvaIznamljivanja());
+	}
+	
 	
 	public void obrisiKnjigu(String id) {
 		for (Knjiga k: biblioteka.getSveKnjige()) {

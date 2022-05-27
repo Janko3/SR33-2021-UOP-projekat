@@ -571,7 +571,7 @@ public class Biblioteka {
 		}
 	
 	 private String pripremaZaUpisIznajmljivanje(Iznajmljivanje iznajmljivanje) {
-	    	return String.format("%s|%s|%s|%s|%s\n", iznajmljivanje.getDatumIznajmljivanje(), iznajmljivanje.getDatumVracanja(), iznajmljivanje.getPrimerakKnjige().getId(),iznajmljivanje.getClan().getBrClanskeKarte(),
+	    	return String.format("%s|%s|%s|%s|%s\n", iznajmljivanje.getDatumIznajmljivanje().toString(), iznajmljivanje.getDatumVracanja().toString(), iznajmljivanje.getPrimerakKnjige().getId(),iznajmljivanje.getClan().getBrClanskeKarte(),
 	    			iznajmljivanje.getZaposleni().getId());
 	    }
 	    public void upisiIznajmljivanje(ArrayList<Iznajmljivanje> svaIznajmljivanja) {
@@ -793,5 +793,7 @@ public class Biblioteka {
 			return clanovi;
 		}
 		
+		
+	
 
 }

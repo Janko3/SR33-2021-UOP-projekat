@@ -22,15 +22,22 @@ public class Main {
 		Biblioteka biblioteka = new Biblioteka();
 		biblioteka.ucitajAdmine();
 		biblioteka.ucitajBibliotekare();
-		biblioteka.ucitajClanove(biblioteka.getSviTipovi());
-		biblioteka.ucitajIznajmljivanje();
-		biblioteka.ucitajKnjige(biblioteka.getSviZanrovi());
-		biblioteka.ucitajPrimerke();
 		biblioteka.ucitajTipove();
 		biblioteka.ucitajZanrove();
 		
+		
+		biblioteka.ucitajClanove(biblioteka.getSviTipovi());
+		
+		biblioteka.ucitajKnjige(biblioteka.getSviZanrovi());
+		biblioteka.ucitajPrimerke();
+		biblioteka.ucitajIznajmljivanje();
+		
+		
 		Administratori admin = biblioteka.getSviAdmini().get(0);
-		Knjiga knjiga = biblioteka.getSveKnjige().get(0);
+		
+		
+		
+		
 		
 		
 
