@@ -37,7 +37,7 @@ public class MainWindow extends JFrame{
 	public MainWindow(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
 		this.biblioteka=biblioteka;
 		this.prijavljeniZaposleni= prijavljeniZaposleni;
-		setTitle("Administrator: " + prijavljeniZaposleni.getKorisnickoIme());
+		setTitle("Zaposleni: " + prijavljeniZaposleni.getKorisnickoIme());
 		setSize(500,500);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -77,7 +77,7 @@ public class MainWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BibliotekariProzor bp = new BibliotekariProzor(biblioteka);
+				BibliotekariProzor bp = new BibliotekariProzor(biblioteka,prijavljeniZaposleni);
 				bp.setVisible(true);
 				
 			}

@@ -32,7 +32,7 @@ public class LoginProzor extends JFrame {
 		setTitle("Prijava");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setSize(300,300);
+		setSize(500,400);
 		initGUI();
 		initActions();
 		pack();

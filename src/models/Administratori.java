@@ -76,14 +76,14 @@ public class Administratori extends Zaposleni {
         // TODO implement here
     }
 	
-	public void DodatiNoveBibliotekare(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,String korisnickoIme, String lozinka,double plata) {
+	public void DodatiNoveBibliotekare(String ime, String prezime, String JMBG, String adresa, Pol pol, String korisnickoIme, String lozinka,double plata) {
 		Bibliotekari bibliotekar = new Bibliotekari();
 		bibliotekar.setIme(ime);
 		bibliotekar.setPrezime(prezime);
 		bibliotekar.setJMBG(JMBG);
 		bibliotekar.setAdresa(adresa);
 		bibliotekar.setPol(pol);
-		bibliotekar.setJeObrisan(jeObrisan);
+		
 		bibliotekar.setKorisnickoIme(korisnickoIme);
 		bibliotekar.setLozinka(lozinka);
 		bibliotekar.setPlata(plata);

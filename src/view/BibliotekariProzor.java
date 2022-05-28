@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,8 +12,11 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import dialogs.DialogDodajBibliotekara;
+import models.Administratori;
 import models.Biblioteka;
 import models.Bibliotekari;
+import models.Zaposleni;
 
 
 public class BibliotekariProzor extends JFrame{
@@ -25,15 +30,18 @@ public class BibliotekariProzor extends JFrame{
 	private JTable bibliotekariTabela;
 	
 	private Biblioteka biblioteka;
+	private Zaposleni prijavljeniZaposleni;
 	
 	
-	public BibliotekariProzor(Biblioteka biblioteka) {
+	public BibliotekariProzor(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
 		this.biblioteka = biblioteka;
+		this.prijavljeniZaposleni = prijavljeniZaposleni;
 		setTitle("Bibliotekari");
 		setSize(500,300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initView();
+		initActions();
 		// TODO Auto-generated constructor stub
 	}
 	private void initView() {
@@ -45,7 +53,7 @@ public class BibliotekariProzor extends JFrame{
 		String[] zaglavlja = new String[] {"Ime","Prezime","JMBG","Adresa","Pol","Korisnicko ime","Lozinka","Plata","ID"};
 		Object[][] sadrzaj = new Object[biblioteka.neobrisaniBibliotekari().size()][zaglavlja.length];
 		
-		for(int i=0;i<biblioteka.neobrisaniAdmini().size();i++) {
+		for(int i=0;i<biblioteka.neobrisaniBibliotekari().size();i++) {
 			Bibliotekari bibliotekar = biblioteka.neobrisaniBibliotekari().get(i);
 			sadrzaj[i][0] = bibliotekar.getIme();
 			sadrzaj[i][1] = bibliotekar.getPrezime();
@@ -69,5 +77,25 @@ public class BibliotekariProzor extends JFrame{
 		JScrollPane scrollPane = new JScrollPane(bibliotekariTabela);
 		add(scrollPane,BorderLayout.CENTER);
 		
+		
+		
 	}
-}
+	
+	private void initActions() {
+		addBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				DialogDodajBibliotekara db = new DialogDodajBibliotekara(biblioteka,prijavljeniZaposleni);
+				db.setVisible(true);
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
+	
+		
+	}
+
