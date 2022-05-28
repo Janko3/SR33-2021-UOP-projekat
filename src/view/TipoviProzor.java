@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,8 +12,10 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import dialogs.DodajTip;
 import models.Biblioteka;
 import models.TipClanarine;
+import models.Zaposleni;
 
 public class TipoviProzor extends JFrame{
 	private JToolBar mainToolBar = new JToolBar();
@@ -23,14 +27,17 @@ public class TipoviProzor extends JFrame{
 	private JTable tipoviTabela;
 	
 	private Biblioteka biblioteka;
+	private Zaposleni prijavljeniZaposleni;
 
-	public TipoviProzor(Biblioteka biblioteka) {
+	public TipoviProzor(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
 		this.biblioteka = biblioteka;
+		this.prijavljeniZaposleni = prijavljeniZaposleni;
 		setTitle("Tipovi clanarine");
 		setSize(500,300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initView();
+		initActions();
 		// TODO Auto-generated constructor stub
 	}
 private void initView() {
@@ -62,6 +69,19 @@ private void initView() {
 		
 		JScrollPane scrollPane = new JScrollPane(tipoviTabela);
 		add(scrollPane,BorderLayout.CENTER);
+}
+public void initActions() {
+	addBtn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			DodajTip dt = new DodajTip(biblioteka, prijavljeniZaposleni);
+			dt.setVisible(true);
+			dispose();
+			
+		}
+	});
 }
 
 }

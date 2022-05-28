@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,9 +12,11 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import dialogs.DialogDodajClana;
 import models.Biblioteka;
 import models.Clan;
 import models.TipClanarine;
+import models.Zaposleni;
 
 public class AktivniClanoviProzor extends JFrame {
 	
@@ -25,15 +29,18 @@ public class AktivniClanoviProzor extends JFrame {
 	private JTable aktivniClanoviTabela;
 	
 	private Biblioteka biblioteka;
+	private Zaposleni prijavljeniZaposleni;
 	
 
-	public AktivniClanoviProzor(Biblioteka biblioteka) {
+	public AktivniClanoviProzor(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
 		this.biblioteka = biblioteka;
+		this.prijavljeniZaposleni = prijavljeniZaposleni;
 		setTitle("Aktivni Clanovi");
 		setSize(500,300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initView();
+		initActions();
 		// TODO Auto-generated constructor stub
 	}
 	private void initView() {
@@ -56,7 +63,7 @@ public class AktivniClanoviProzor extends JFrame {
 			sadrzaj[i][5] = clan.getBrojMeseci();
 			sadrzaj[i][6]= clan.getDatumPoslednjeUplate();
 			sadrzaj[i][7] = clan.getBrClanskeKarte();
-			sadrzaj[i][8] = clan.getTipClanarine();		
+			sadrzaj[i][8] = clan.getTipClanarine().getOpis();		
 			
 		}
 		tableModel = new DefaultTableModel(sadrzaj,zaglavlja);
@@ -71,6 +78,19 @@ public class AktivniClanoviProzor extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(aktivniClanoviTabela);
 		add(scrollPane,BorderLayout.CENTER);
 		
+	}
+	
+	public void initActions() {
+		addBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DialogDodajClana dc = new DialogDodajClana(biblioteka, prijavljeniZaposleni);
+				dc.setVisible(true);
+				dispose();
+				
+			}
+		});
 	}
 
 }

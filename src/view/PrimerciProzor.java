@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,8 +12,10 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import dialogs.DialogDodajPrimerak;
 import models.Biblioteka;
 import models.Primerak;
+import models.Zaposleni;
 
 public class PrimerciProzor extends JFrame {
 		
@@ -24,16 +28,19 @@ public class PrimerciProzor extends JFrame {
 	private JTable primerciTabela;
 	
 	private Biblioteka biblioteka;
+	private Zaposleni prijavljeniZaposleni;
 	
 	
 
-	public PrimerciProzor(Biblioteka biblioteka) {
+	public PrimerciProzor(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
 		this.biblioteka = biblioteka;
+		this.prijavljeniZaposleni = prijavljeniZaposleni;
 		setTitle("Primerci");
 		setSize(500,300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initView();
+		initActions();
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -68,6 +75,20 @@ private void initView() {
 		
 		JScrollPane scrollPane = new JScrollPane(primerciTabela);
 		add(scrollPane,BorderLayout.CENTER);
+}
+
+private void initActions() {
+	addBtn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			DialogDodajPrimerak dp = new DialogDodajPrimerak(biblioteka, prijavljeniZaposleni);
+			dp.setVisible(true);
+			dispose();
+			// TODO Auto-generated method stub
+			
+		}
+	});
 }
 
 }

@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,8 +12,10 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import dialogs.DialogDodajZanr;
 import models.Biblioteka;
 import models.Zanr;
+import models.Zaposleni;
 
 public class ZanroviProzor extends JFrame {
 	
@@ -24,14 +28,18 @@ public class ZanroviProzor extends JFrame {
 	private JTable zanroviTabela;
 	
 	private Biblioteka biblioteka;
+	private Zaposleni prijavljeniZaposleni;
 
-	public ZanroviProzor(Biblioteka biblioteka) {
+	public ZanroviProzor(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
+		
 		this.biblioteka = biblioteka;
+		this.prijavljeniZaposleni = prijavljeniZaposleni;
 		setTitle("Zanrovi");
 		setSize(500,300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initView();
+		initActions();
 		// TODO Auto-generated constructor stub
 	}
 private void initView() {
@@ -62,6 +70,19 @@ private void initView() {
 		
 		JScrollPane scrollPane = new JScrollPane(zanroviTabela);
 		add(scrollPane,BorderLayout.CENTER);
+}
+private void initActions() {
+	addBtn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			DialogDodajZanr dz = new DialogDodajZanr(biblioteka, prijavljeniZaposleni);
+			dz.setVisible(true);
+			dispose();
+			// TODO Auto-generated method stub
+			
+		}
+	});
 }
 
 }

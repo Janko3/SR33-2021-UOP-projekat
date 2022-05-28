@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,8 +12,10 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import dialogs.DialogDodajKnjigu;
 import models.Biblioteka;
 import models.Knjiga;
+import models.Zaposleni;
 
 public class KnjigeProzor extends JFrame {
 	
@@ -24,15 +28,18 @@ public class KnjigeProzor extends JFrame {
 	private JTable knjigeTabela;
 	
 	private Biblioteka biblioteka;
+	private Zaposleni prijavljeniZaposleni;
 	
 
-	public KnjigeProzor(Biblioteka biblioteka) {
+	public KnjigeProzor(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
 		this.biblioteka = biblioteka;
+		this.prijavljeniZaposleni = prijavljeniZaposleni;
 		setTitle("Knjige");
 		setSize(500,300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initView();
+		initActions();
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -71,6 +78,19 @@ private void initView() {
 		JScrollPane scrollPane = new JScrollPane(knjigeTabela);
 		add(scrollPane,BorderLayout.CENTER);
 		
+}
+private void initActions() {
+	addBtn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			DialogDodajKnjigu dk = new DialogDodajKnjigu(biblioteka, prijavljeniZaposleni);
+			dk.setVisible(true);
+			dispose();
+			// TODO Auto-generated method stub
+			
+		}
+	});
 }
 
 }

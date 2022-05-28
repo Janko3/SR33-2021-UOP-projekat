@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -11,8 +13,10 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import dialogs.DialogDodajAdmina;
 import models.Administratori;
 import models.Biblioteka;
+import models.Zaposleni;
 
 public class AdministratoriProzor extends JFrame {
 	
@@ -25,16 +29,19 @@ public class AdministratoriProzor extends JFrame {
 	private JTable adminiTabela;
 	
 	private Biblioteka biblioteka;
+	private Zaposleni prijavljeniZaposleni;
 	
 	
 
-	public AdministratoriProzor(Biblioteka biblioteka) {
+	public AdministratoriProzor(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
 		this.biblioteka = biblioteka;
+		this.prijavljeniZaposleni = prijavljeniZaposleni;
 		setTitle("Administratori");
 		setSize(500,300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initView();
+		initActions();
 
 	}
 	private void initView() {
@@ -72,6 +79,19 @@ public class AdministratoriProzor extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane(adminiTabela);
 		add(scrollPane,BorderLayout.CENTER);
+	}
+	
+	private void initActions() {
+		addBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DialogDodajAdmina da = new DialogDodajAdmina(biblioteka, prijavljeniZaposleni);
+				da.setVisible(true);
+				dispose();
+				
+			}
+		});
 	}
 
 }

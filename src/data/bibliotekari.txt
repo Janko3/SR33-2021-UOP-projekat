@@ -1,3 +1,4 @@
 Boza|Bozic|4324324|bb|MUSKI|false|bobinjo|lozinkabobi|1000.0|B-417224
 Matejko|Aleksandrovic|32140839048|Telep|MUSKI|false|linuxas2|lozinka|1200.0|B-128481
 Janko|Rakonjac|43242343|bb|MUSKI|false|jankela3|lozinka|1000.0|B-157538
+Gigi|Macka|432423|mjau|ZENSKI|false|gigibella|mjau2|10000.0|B-281131

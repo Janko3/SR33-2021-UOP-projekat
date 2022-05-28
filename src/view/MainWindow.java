@@ -69,7 +69,7 @@ public class MainWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AdministratoriProzor ap = new AdministratoriProzor(biblioteka);
+				AdministratoriProzor ap = new AdministratoriProzor(biblioteka,prijavljeniZaposleni);
 				ap.setVisible(true);
 			}
 		});
@@ -86,7 +86,7 @@ public class MainWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AktivniClanoviProzor ap = new AktivniClanoviProzor(biblioteka);
+				AktivniClanoviProzor ap = new AktivniClanoviProzor(biblioteka,prijavljeniZaposleni);
 				ap.setVisible(true);
 			}
 		});
@@ -102,7 +102,7 @@ public class MainWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				KnjigeProzor kp = new KnjigeProzor(biblioteka);
+				KnjigeProzor kp = new KnjigeProzor(biblioteka,prijavljeniZaposleni);
 				kp.setVisible(true);
 			}
 		});
@@ -110,7 +110,7 @@ public class MainWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TipoviProzor tp = new TipoviProzor(biblioteka);
+				TipoviProzor tp = new TipoviProzor(biblioteka,prijavljeniZaposleni);
 				tp.setVisible(true);
 			}
 		});
@@ -118,7 +118,7 @@ public class MainWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PrimerciProzor pp = new PrimerciProzor(biblioteka);
+				PrimerciProzor pp = new PrimerciProzor(biblioteka,prijavljeniZaposleni);
 				pp.setVisible(true);
 				
 			}
@@ -135,7 +135,7 @@ public class MainWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ZanroviProzor zp = new ZanroviProzor(biblioteka);
+				ZanroviProzor zp = new ZanroviProzor(biblioteka,prijavljeniZaposleni);
 				zp.setVisible(true);
 			}
 		});

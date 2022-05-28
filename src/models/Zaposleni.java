@@ -108,19 +108,19 @@ public abstract class Zaposleni extends Osoba {
 	}
 
 	public void  DodatiNoveClanove(LocalDate datumPoslednjeUplate, int brojMeseci, 
-			boolean aktivnost,String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,TipClanarine tipClanarine) {
+			String ime, String prezime, String JMBG, String adresa, Pol pol, TipClanarine tipClanarine) {
 		
 		Clan clan = new Clan();
 		clan.setBrClanskeKarte(clan.generisiIDClan());
 		clan.setDatumPoslednjeUplate(datumPoslednjeUplate);
 		clan.setBrojMeseci(brojMeseci);
-		clan.setAktivnost(aktivnost);
+		
 		clan.setIme(ime);
 		clan.setPrezime(prezime);
 		clan.setJMBG(JMBG);
 		clan.setAdresa(adresa);
 		clan.setPol(pol);
-		clan.setJeObrisan(jeObrisan);
+		
 		clan.setTipClanarine(tipClanarine);
 		this.setBiblioteka(biblioteka);
 		ArrayList<Clan> sviClanovi = biblioteka.getSviClanovi();
@@ -148,12 +148,11 @@ public abstract class Zaposleni extends Osoba {
 		biblioteka.upisiKnjigu(sveKnjige);
 	}
 	
-	public void DodajPrimerak(Knjiga knjiga, int brojStrana, int godinaStampanja, boolean iznamljena, Jezik jezik,TipPoveza povez) {
+	public void DodajPrimerak(Knjiga knjiga, int brojStrana, int godinaStampanja,  Jezik jezik,TipPoveza povez) {
 		Primerak primerak = new Primerak();
 		primerak.setKnjiga(knjiga);
 		primerak.setBrojStrana(brojStrana);
 		primerak.setGodinaStampanja(godinaStampanja);
-		primerak.setIznamljena(iznamljena);
 		primerak.setId(primerak.generisiIDPrimerak());
 		primerak.setJezik(jezik);
 		primerak.setPovez(povez);

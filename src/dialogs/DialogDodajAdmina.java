@@ -1,6 +1,5 @@
 package dialogs;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,21 +9,17 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JToolBar;
 
 import enumerations.Pol;
 import models.Administratori;
 import models.Biblioteka;
-import models.Bibliotekari;
 import models.Zaposleni;
 import net.miginfocom.swing.MigLayout;
+import view.AdministratoriProzor;
 import view.BibliotekariProzor;
-import view.MainWindow;
 
-public class DialogDodajBibliotekara extends JDialog {
-	
+public class DialogDodajAdmina extends JDialog {
 	
 	private Biblioteka biblioteka;
 	private Zaposleni prijavljeniZaposleni;
@@ -47,28 +42,21 @@ public class DialogDodajBibliotekara extends JDialog {
 	private JTextField txtPlata = new JTextField(20);
 	private JButton btnSave = new JButton("Sacuvaj");
 	private JButton btnCncl = new JButton("Otkazi");
-	
-	
-	
-	
-	
-	
-	
 
-	public DialogDodajBibliotekara(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
+	public DialogDodajAdmina(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
 		this.biblioteka = biblioteka;
 		this.prijavljeniZaposleni = prijavljeniZaposleni;
-		setTitle("Dodaj Novog Bibliotekara");
+		setTitle("Dodaj Novog Admina");
 		setSize(500,500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		cmbxPol.setModel(new DefaultComboBoxModel<Pol>(Pol.values()));
 		initGUI();
 		initActions();
-		
-			
-		}
-	public void initGUI(){
+		// TODO Auto-generated constructor stub
+	}
+	
+	public void initGUI() {
 		MigLayout mig = new MigLayout("wrap 2", "[][]", "[]10[][]10[]");
 		setLayout(mig);
 		
@@ -91,14 +79,16 @@ public class DialogDodajBibliotekara extends JDialog {
 		add(btnSave);
 		add(btnCncl);
 
+		
 	}
+	
 	public void initActions() {
 		btnCncl.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DialogDodajBibliotekara.this.dispose();
-				DialogDodajBibliotekara.this.setVisible(false);
+				DialogDodajAdmina.this.dispose();
+				DialogDodajAdmina.this.setVisible(false);
 				
 			}
 		});
@@ -107,12 +97,11 @@ public class DialogDodajBibliotekara extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				 Administratori admin = (Administratori) prijavljeniZaposleni;
-				 admin.DodatiNoveBibliotekare(txtIme.getText().trim(), txtPrezime.getText().trim(), txtJmbg.getText().trim(), txtAdresa.getText().trim(), Pol.valueOf(cmbxPol.getSelectedItem().toString().trim()), txtKorisnickoIme.getText().trim(), txtLozinka.getText().trim(), Double.parseDouble(txtPlata.getText().trim()));
+				 admin.DodatiNoveAdmine(txtIme.getText().trim(), txtPrezime.getText().trim(), txtJmbg.getText().trim(), txtAdresa.getText().trim(), Pol.valueOf(cmbxPol.getSelectedItem().toString().trim()), txtKorisnickoIme.getText().trim(), txtLozinka.getText().trim(), Double.parseDouble(txtPlata.getText().trim()));
 				 dispose();
-				 BibliotekariProzor dp = new BibliotekariProzor(biblioteka, admin);
+				 AdministratoriProzor dp = new AdministratoriProzor(biblioteka, admin);
 				 dp.setVisible(true);
 			}
 		});
 	}
-	}
-
+}

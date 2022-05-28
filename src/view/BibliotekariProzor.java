@@ -89,6 +89,7 @@ public class BibliotekariProzor extends JFrame{
 				
 				DialogDodajBibliotekara db = new DialogDodajBibliotekara(biblioteka,prijavljeniZaposleni);
 				db.setVisible(true);
+				dispose();
 				// TODO Auto-generated method stub
 				
 			}

@@ -58,14 +58,14 @@ public class Administratori extends Zaposleni {
     }
 
 
-	public void DodatiNoveAdmine(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,String korisnickoIme, String lozinka,double plata) {
+	public void DodatiNoveAdmine(String ime, String prezime, String JMBG, String adresa, Pol pol,String korisnickoIme, String lozinka,double plata) {
 		Administratori admin = new Administratori();
 		admin.setIme(ime);
 		admin.setPrezime(prezime);
 		admin.setJMBG(JMBG);
 		admin.setAdresa(adresa);
 		admin.setPol(pol);
-		admin.setJeObrisan(jeObrisan);
+		
 		admin.setKorisnickoIme(korisnickoIme);
 		admin.setLozinka(lozinka);
 		admin.setPlata(plata);

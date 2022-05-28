@@ -1,8 +1,8 @@
 package dialogs;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -10,21 +10,18 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JToolBar;
 
 import enumerations.Pol;
 import models.Administratori;
 import models.Biblioteka;
-import models.Bibliotekari;
+import models.TipClanarine;
 import models.Zaposleni;
 import net.miginfocom.swing.MigLayout;
+import view.AktivniClanoviProzor;
 import view.BibliotekariProzor;
-import view.MainWindow;
 
-public class DialogDodajBibliotekara extends JDialog {
-	
+public class DialogDodajClana extends JDialog{
 	
 	private Biblioteka biblioteka;
 	private Zaposleni prijavljeniZaposleni;
@@ -39,38 +36,44 @@ public class DialogDodajBibliotekara extends JDialog {
 	private JTextField txtAdresa = new JTextField(20);
 	private JLabel lblPol = new JLabel("Pol");
 	private JComboBox<Pol> cmbxPol= new JComboBox<Pol>();
-	private JLabel lblKorisnickoIme = new JLabel("Korisnicko ime");
-	private JTextField txtKorisnickoIme = new JTextField(20);
-	private JLabel lblLozinka = new JLabel("Lozinka");
-	private JTextField txtLozinka = new JTextField(20);
-	private JLabel lblPlata = new JLabel("Plata");
-	private JTextField txtPlata = new JTextField(20);
+	private JLabel lblDatum = new JLabel("Datum Poslednje Uplate");
+	private JTextField txtDatum = new JTextField(10);
+	private JLabel lblBrMeseci = new JLabel("Broj meseci");
+	private JTextField txtBrMeseci = new JTextField(2);
+	private JLabel lblTip = new JLabel("Tip Clanarine");
+	private JComboBox<String> cmbxTip = new JComboBox<String>();
 	private JButton btnSave = new JButton("Sacuvaj");
 	private JButton btnCncl = new JButton("Otkazi");
 	
 	
 	
 	
-	
-	
-	
 
-	public DialogDodajBibliotekara(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
+	@SuppressWarnings("rawtypes")
+	public DialogDodajClana(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
 		this.biblioteka = biblioteka;
 		this.prijavljeniZaposleni = prijavljeniZaposleni;
-		setTitle("Dodaj Novog Bibliotekara");
+		setTitle("Dodaj Novog Clana");
 		setSize(500,500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		cmbxPol.setModel(new DefaultComboBoxModel<Pol>(Pol.values()));
+		String[] nazivi = new String[biblioteka.neobrisaniTipovi().size()];
+		for(int i=0;i<biblioteka.neobrisaniTipovi().size();i++) {
+			TipClanarine t= biblioteka.neobrisaniTipovi().get(i);
+			nazivi[i] = t.getOpis(); 
+		}
+		cmbxTip.setModel(new DefaultComboBoxModel<String>(nazivi));
+		
 		initGUI();
 		initActions();
-		
-			
-		}
+		// TODO Auto-generated constructor stub
+	}
+	
 	public void initGUI(){
 		MigLayout mig = new MigLayout("wrap 2", "[][]", "[]10[][]10[]");
 		setLayout(mig);
+		
 		
 		add(lblIme);
 		add(txtIme);
@@ -82,23 +85,22 @@ public class DialogDodajBibliotekara extends JDialog {
 		add(txtAdresa);
 		add(lblPol);
 		add(cmbxPol);
-		add(lblKorisnickoIme);
-		add(txtKorisnickoIme);
-		add(lblLozinka);
-		add(txtLozinka);
-		add(lblPlata);
-		add(txtPlata);
+		add(lblDatum);
+		add(txtDatum);
+		add(lblBrMeseci);
+		add(txtBrMeseci);
+		add(lblTip);
+		add(cmbxTip);
 		add(btnSave);
 		add(btnCncl);
-
 	}
 	public void initActions() {
 		btnCncl.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DialogDodajBibliotekara.this.dispose();
-				DialogDodajBibliotekara.this.setVisible(false);
+				DialogDodajClana.this.dispose();
+				DialogDodajClana.this.setVisible(false);
 				
 			}
 		});
@@ -106,13 +108,11 @@ public class DialogDodajBibliotekara extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				 Administratori admin = (Administratori) prijavljeniZaposleni;
-				 admin.DodatiNoveBibliotekare(txtIme.getText().trim(), txtPrezime.getText().trim(), txtJmbg.getText().trim(), txtAdresa.getText().trim(), Pol.valueOf(cmbxPol.getSelectedItem().toString().trim()), txtKorisnickoIme.getText().trim(), txtLozinka.getText().trim(), Double.parseDouble(txtPlata.getText().trim()));
+				 prijavljeniZaposleni.DodatiNoveClanove(LocalDate.parse(txtDatum.getText().trim()), Integer.parseInt(txtBrMeseci.getText().trim()), txtIme.getText().trim(), txtPrezime.getText().trim(),txtJmbg.getText().trim(),txtAdresa.getText().trim(),Pol.valueOf(cmbxPol.getSelectedItem().toString()),biblioteka.neobrisaniTipovi().get(cmbxTip.getSelectedIndex()));
 				 dispose();
-				 BibliotekariProzor dp = new BibliotekariProzor(biblioteka, admin);
+				 AktivniClanoviProzor dp = new AktivniClanoviProzor(biblioteka, prijavljeniZaposleni);
 				 dp.setVisible(true);
 			}
 		});
 	}
-	}
-
+}
