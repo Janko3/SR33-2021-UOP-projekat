@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -79,6 +80,25 @@ private void initActions() {
 			DialogDodajZanr dz = new DialogDodajZanr(biblioteka, prijavljeniZaposleni);
 			dz.setVisible(true);
 			dispose();
+			// TODO Auto-generated method stub
+			
+		}
+	});
+deleteBtn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(zanroviTabela .getSelectedRow() == -1) {
+				JOptionPane.showMessageDialog(rootPane, "Morate izabrati zanr za brisanje");
+				return;
+			}
+			int a = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni?");
+			if(a == JOptionPane.YES_OPTION) {				
+				prijavljeniZaposleni.obrisiZanr(zanroviTabela.getModel().getValueAt(zanroviTabela.getSelectedRow(),1).toString());				
+				dispose();
+				ZanroviProzor zp = new ZanroviProzor(biblioteka, prijavljeniZaposleni);
+				zp.setVisible(true);
+			}
 			// TODO Auto-generated method stub
 			
 		}

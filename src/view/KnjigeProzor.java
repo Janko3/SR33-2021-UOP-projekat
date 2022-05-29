@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -13,6 +14,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import dialogs.DialogDodajKnjigu;
+import models.Administratori;
 import models.Biblioteka;
 import models.Knjiga;
 import models.Zaposleni;
@@ -87,6 +89,26 @@ private void initActions() {
 			DialogDodajKnjigu dk = new DialogDodajKnjigu(biblioteka, prijavljeniZaposleni);
 			dk.setVisible(true);
 			dispose();
+			// TODO Auto-generated method stub
+			
+		}
+	});
+	deleteBtn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(knjigeTabela .getSelectedRow() == -1) {
+				JOptionPane.showMessageDialog(rootPane, "Morate izabrati knjigu za brisanje");
+				return;
+			}
+			int a = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni?");
+			if(a == JOptionPane.YES_OPTION) {
+				
+				prijavljeniZaposleni.obrisiKnjigu(knjigeTabela.getModel().getValueAt(knjigeTabela.getSelectedRow(),5).toString());
+				dispose();
+				KnjigeProzor kp = new KnjigeProzor(biblioteka, prijavljeniZaposleni);
+				kp.setVisible(true);
+			}
 			// TODO Auto-generated method stub
 			
 		}

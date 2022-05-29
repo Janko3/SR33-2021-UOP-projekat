@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -13,6 +14,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import dialogs.DialogDodajPrimerak;
+import models.Administratori;
 import models.Biblioteka;
 import models.Primerak;
 import models.Zaposleni;
@@ -85,6 +87,27 @@ private void initActions() {
 			DialogDodajPrimerak dp = new DialogDodajPrimerak(biblioteka, prijavljeniZaposleni);
 			dp.setVisible(true);
 			dispose();
+			// TODO Auto-generated method stub
+			
+		}
+	});
+	deleteBtn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(primerciTabela .getSelectedRow() == -1) {
+				JOptionPane.showMessageDialog(rootPane, "Morate izabrati primerak za brisanje");
+				return;
+			}
+			int a = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni?");
+			if(a == JOptionPane.YES_OPTION) {
+				
+				prijavljeniZaposleni.obrisiPrimerak(primerciTabela.getModel().getValueAt(primerciTabela.getSelectedRow(),3).toString());
+				
+				dispose();
+				PrimerciProzor pp = new PrimerciProzor(biblioteka, prijavljeniZaposleni);
+				pp.setVisible(true);
+			}
 			// TODO Auto-generated method stub
 			
 		}

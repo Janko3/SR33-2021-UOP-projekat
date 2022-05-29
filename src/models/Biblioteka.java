@@ -705,7 +705,7 @@ public class Biblioteka {
 			ArrayList<Clan> clanovi = new ArrayList<Clan>();
 			for(Clan c: sviClanovi) {
 				if(c.isJeObrisan() == false) {
-					c.setAktivnost(false);
+					
 					clanovi.add(c);
 					
 				}

@@ -226,8 +226,11 @@ public abstract class Zaposleni extends Osoba {
 		biblioteka.upisiPrimerak(biblioteka.getSviPrimerci());
 	}
 	public void obrisiClana(String id) {
-		for(Clan c: biblioteka.getSviClanovi()) {
-			if(c.getBrClanskeKarte().equals(id)) c.setJeObrisan(true);
+		for(Clan c: biblioteka.neobrisaniClanovi()) {
+			if(c.getBrClanskeKarte().equals(id)) {
+				c.setJeObrisan(true);
+				c.setAktivnost(false);
+			}
 			
 		}
 		biblioteka.izbrisiContentFajla("src/data/clanovi.txt");

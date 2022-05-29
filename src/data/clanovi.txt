@@ -1,5 +1,5 @@
-C-235112|2022-05-25|2|true|Novak|Djokovic|47329473298|Marbelja|MUSKI|false|2
-C-086853|2022-06-20|1|false|Boza|Bobinjovic|4372472398|bb|MUSKI|true|2
-C-183764|2021-10-10|6|true|Pera|Peric|43242324242|bb|MUSKI|false|2
-C-637321|2022-05-06|3|true|Lol|lolovic|34324432|bb|ZENSKI|false|2
+C-235112|2022-05-25|2|false|Novak|Djokovic|47329473298|Marbelja|MUSKI|true|2
+C-086853|2022-06-20|1|true|Boza|Bobinjovic|4372472398|bb|MUSKI|false|2
+C-183764|2021-10-10|6|false|Pera|Peric|43242324242|bb|MUSKI|true|2
+C-637321|2022-05-06|3|false|Lol|lolovic|34324432|bb|ZENSKI|false|2
 C-007632|2022-08-09|2|true|test|testovic|43948932|bb|ZENSKI|false|2

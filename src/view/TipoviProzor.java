@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -79,6 +80,27 @@ public void initActions() {
 			DodajTip dt = new DodajTip(biblioteka, prijavljeniZaposleni);
 			dt.setVisible(true);
 			dispose();
+			
+		}
+	});
+deleteBtn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(tipoviTabela .getSelectedRow() == -1) {
+				JOptionPane.showMessageDialog(rootPane, "Morate izabrati tip za brisanje");
+				return;
+			}
+			int a = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni?");
+			if(a == JOptionPane.YES_OPTION) {
+				
+				prijavljeniZaposleni.obrisiTip(tipoviTabela.getModel().getValueAt(tipoviTabela.getSelectedRow(),0).toString());
+				
+				dispose();
+				TipoviProzor tp = new TipoviProzor(biblioteka, prijavljeniZaposleni);
+				tp.setVisible(true);
+			}
+			// TODO Auto-generated method stub
 			
 		}
 	});

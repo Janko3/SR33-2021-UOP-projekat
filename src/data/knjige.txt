@@ -1,3 +1,3 @@
 Sopenhauer kao vaspitac|Schopenhauer as Educator|Friedrich Nietzsche|1826|opis|K-735680|Z-628627|SRPSKI|false
 Rat i mir|Rat i mir|Tolstoj|1826|opis knjige|K-724361|Z-067837|SRPSKI|false
-test|test|test|1922|test|K-846002|Z-067837|ENGLESKI|false
+test|test|test|1922|test|K-846002|Z-067837|ENGLESKI|true

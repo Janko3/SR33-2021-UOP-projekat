@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -90,6 +91,26 @@ public class BibliotekariProzor extends JFrame{
 				DialogDodajBibliotekara db = new DialogDodajBibliotekara(biblioteka,prijavljeniZaposleni);
 				db.setVisible(true);
 				dispose();
+				// TODO Auto-generated method stub
+				
+			}
+		});
+deleteBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(bibliotekariTabela .getSelectedRow() == -1) {
+					JOptionPane.showMessageDialog(rootPane, "Morate izabrati bibliotekara za brisanje");
+					return;
+				}
+				int a = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni?");
+				if(a == JOptionPane.YES_OPTION) {
+					Administratori admin = (Administratori) prijavljeniZaposleni;
+					admin.obrisiBibliotekara(bibliotekariTabela.getModel().getValueAt(bibliotekariTabela.getSelectedRow(),8).toString());
+					dispose();
+					BibliotekariProzor bp = new BibliotekariProzor(biblioteka, admin);
+					bp.setVisible(true);
+				}
 				// TODO Auto-generated method stub
 				
 			}

@@ -38,6 +38,7 @@ public class MainWindow extends JFrame{
 		this.biblioteka=biblioteka;
 		this.prijavljeniZaposleni= prijavljeniZaposleni;
 		setTitle("Zaposleni: " + prijavljeniZaposleni.getKorisnickoIme());
+		
 		setSize(500,500);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -49,9 +50,13 @@ public class MainWindow extends JFrame{
 	}
 	private void initMenu() {
 		setJMenuBar(mainMenu);
-		mainMenu.add(zaposleniMenu);
-		zaposleniMenu.add(adminiItem);
-		zaposleniMenu.add(bibliotekariItem);
+		
+		if(prijavljeniZaposleni.getId().contains("A-")) {
+			mainMenu.add(zaposleniMenu);
+			zaposleniMenu.add(adminiItem);
+			zaposleniMenu.add(bibliotekariItem);
+			
+		}
 		mainMenu.add(clanoviMenu);
 		clanoviMenu.add(tipoviItem);
 		clanoviMenu.add(aktivniClanoviItem);

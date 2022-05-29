@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -89,6 +90,26 @@ public class AdministratoriProzor extends JFrame {
 				DialogDodajAdmina da = new DialogDodajAdmina(biblioteka, prijavljeniZaposleni);
 				da.setVisible(true);
 				dispose();
+				
+			}
+		});
+		deleteBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(adminiTabela.getSelectedRow() == -1) {
+					JOptionPane.showMessageDialog(rootPane, "Morate izabrati admina za brisanje");
+					return;
+				}
+				int a = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni?");
+				if(a == JOptionPane.YES_OPTION) {
+					Administratori admin = (Administratori)prijavljeniZaposleni;
+					admin.obrisiAdmina(adminiTabela.getModel().getValueAt(adminiTabela.getSelectedRow(),8).toString());
+					dispose();
+					AdministratoriProzor ap = new AdministratoriProzor(biblioteka, admin);
+					ap.setVisible(true);
+				}
+				// TODO Auto-generated method stub
 				
 			}
 		});

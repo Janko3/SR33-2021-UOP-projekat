@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -13,6 +14,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import dialogs.DialogDodajClana;
+import models.Administratori;
 import models.Biblioteka;
 import models.Clan;
 import models.TipClanarine;
@@ -49,7 +51,7 @@ public class AktivniClanoviProzor extends JFrame {
 		mainToolBar.add(deleteBtn);
 		add(mainToolBar,BorderLayout.SOUTH);
 		
-		String[]zaglavlja = new String[] {"Ime","Prezime","JMBG","Pol","Adresa","Broj Meseci","Datum Uplate","ID","Tip Clanarine"};
+		String[]zaglavlja = new String[] {"Ime","Prezime","JMBG","Pol","Adresa","Broj Meseci","Datum Uplate","Broj Clanske Karte","Tip Clanarine"};
 		Object[][] sadrzaj = new Object[biblioteka.aktivniClanovi().size()][zaglavlja.length];
 		
 		for(int i=0;i<biblioteka.aktivniClanovi().size();i++) {
@@ -88,6 +90,26 @@ public class AktivniClanoviProzor extends JFrame {
 				DialogDodajClana dc = new DialogDodajClana(biblioteka, prijavljeniZaposleni);
 				dc.setVisible(true);
 				dispose();
+				
+			}
+		});
+deleteBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(aktivniClanoviTabela .getSelectedRow() == -1) {
+					JOptionPane.showMessageDialog(rootPane, "Morate izabrati clana za brisanje");
+					return;
+				}
+				int a = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni?");
+				if(a == JOptionPane.YES_OPTION) {
+					
+					prijavljeniZaposleni.obrisiClana(aktivniClanoviTabela.getModel().getValueAt(aktivniClanoviTabela.getSelectedRow(),7).toString());
+					dispose();
+					AktivniClanoviProzor ak = new AktivniClanoviProzor(biblioteka, prijavljeniZaposleni);
+					ak.setVisible(true);
+				}
+				// TODO Auto-generated method stub
 				
 			}
 		});
