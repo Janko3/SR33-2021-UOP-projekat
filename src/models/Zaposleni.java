@@ -238,19 +238,19 @@ public abstract class Zaposleni extends Osoba {
 	}
 	
 	public void updateClan(String brClanskeKarte, LocalDate datumPoslednjeUplate, int brojMeseci, 
-			boolean aktivnost,String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,TipClanarine tipClanarine) {
+			String ime, String prezime, String JMBG, String adresa, Pol pol, TipClanarine tipClanarine) {
 		for(Clan c: biblioteka.getSviClanovi()) {
 			if(c.getBrClanskeKarte().equals(brClanskeKarte)) {
-				c.setBrClanskeKarte(c.generisiIDClan());
+				c.setBrClanskeKarte(c.getBrClanskeKarte());
 				c.setDatumPoslednjeUplate(datumPoslednjeUplate);
 				c.setBrojMeseci(brojMeseci);
-				c.setAktivnost(aktivnost);
+				c.setAktivnost(c.isAktivnost());
 				c.setIme(ime);
 				c.setPrezime(prezime);
 				c.setJMBG(JMBG);
 				c.setAdresa(adresa);
 				c.setPol(pol);
-				c.setJeObrisan(jeObrisan);
+				c.setJeObrisan(c.isJeObrisan());
 				c.setTipClanarine(tipClanarine);
 				biblioteka.izbrisiContentFajla("src/data/clanovi.txt");
 				biblioteka.upisiClan(biblioteka.getSviClanovi());
@@ -266,7 +266,7 @@ public abstract class Zaposleni extends Osoba {
 				k.setOriginalniNaslov(originalniNaslov);
 				k.setPisac(pisac);
 				k.setOpis(opis);
-				k.setId(k.generisiIDKnjiga());
+				k.setId(k.getId());
 				k.setZanr(zanr);
 				k.setJezik(jezik);
 				biblioteka.izbrisiContentFajla("src/data/knjige.txt");
@@ -274,7 +274,7 @@ public abstract class Zaposleni extends Osoba {
 			}
 		}
 	}
-	public void updatePrimerak(Knjiga knjiga, int brojStrana, int godinaStampanja, boolean iznamljena, String id,Jezik jezik,TipPoveza povez,boolean obrisan) {
+	public void updatePrimerak(Knjiga knjiga, int brojStrana, int godinaStampanja, boolean iznamljena, String id,Jezik jezik,TipPoveza povez) {
 		for(Primerak p: biblioteka.getSviPrimerci()) {
 			if(p.getId().equals(id)) {
 				p.setKnjiga(knjiga);
@@ -282,10 +282,10 @@ public abstract class Zaposleni extends Osoba {
 				p.setGodinaStampanja(godinaStampanja);
 				p.setIznamljena(iznamljena);
 				p.setIznamljena(iznamljena);
-				p.setId(p.generisiIDPrimerak());
+				p.setId(p.getId());
 				p.setJezik(jezik);
 				p.setPovez(povez);
-				p.setObrisan(obrisan);
+				p.setObrisan(p.isObrisan());
 				biblioteka.izbrisiContentFajla("src/data/primerci.txt");
 				biblioteka.upisiPrimerak(biblioteka.getSviPrimerci());
 			}
@@ -295,7 +295,7 @@ public abstract class Zaposleni extends Osoba {
 	public void updateTip(String id, String opis, double cena,boolean obrisan) {
 		for(TipClanarine t: biblioteka.getSviTipovi()) {
 			if(t.getId().equals(id)) {
-				t.setId(t.generisiIDTip());
+				t.setId(t.getId());
 				t.setOpis(opis);
 				t.setCena(cena);
 				t.setObrisan(obrisan);
@@ -305,13 +305,13 @@ public abstract class Zaposleni extends Osoba {
 		}
 	}
 	
-	public void updateZanr(String opis, String id, String oznaka,boolean obrisan) {
+	public void updateZanr(String opis, String id, String oznaka) {
 		for(Zanr z:biblioteka.getSviZanrovi()) {
 			if(z.getId().equals(id)) {
 				z.setOpis(opis);
-				z.setId(z.generisiIDZanr());
+				z.setId(z.getId());
 				z.setOznaka(oznaka);
-				z.setObrisan(obrisan);
+				z.setObrisan(z.isObrisan());
 				biblioteka.izbrisiContentFajla("src/data/zanrovi.txt");
 				biblioteka.upisiZanr(biblioteka.getSviZanrovi());
 			}

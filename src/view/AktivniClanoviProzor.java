@@ -14,6 +14,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import dialogs.DialogDodajClana;
+import dialogs.DialogIzmeniClana;
 import models.Administratori;
 import models.Biblioteka;
 import models.Clan;
@@ -113,6 +114,21 @@ deleteBtn.addActionListener(new ActionListener() {
 				
 			}
 		});
+editBtn.addActionListener(new ActionListener() {
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(aktivniClanoviTabela.getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(rootPane, "Morate izabrati clana za izmenu");
+			return;
+		}
+		DialogIzmeniClana dc = new DialogIzmeniClana(biblioteka, prijavljeniZaposleni, aktivniClanoviTabela.getSelectedRow());
+		dc.setVisible(true);
+		dispose();
+		// TODO Auto-generated method stub
+		
+	}
+});
 	}
 
 }

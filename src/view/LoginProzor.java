@@ -54,7 +54,7 @@ public class LoginProzor extends JFrame {
 		add(btnCancel);
 		
 		txtKorisnickoIme.setText("jr3");
-		pfPassword.setText("lozinka3");
+		pfPassword.setText("lozinka");
 		getRootPane().setDefaultButton(btnOk);
 
 }

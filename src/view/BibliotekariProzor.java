@@ -14,6 +14,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import dialogs.DialogDodajBibliotekara;
+import dialogs.DialogIzmeniAdmina;
+import dialogs.DialogIzmeniBibliotekara;
 import models.Administratori;
 import models.Biblioteka;
 import models.Bibliotekari;
@@ -115,6 +117,21 @@ deleteBtn.addActionListener(new ActionListener() {
 				
 			}
 		});
+editBtn.addActionListener(new ActionListener() {
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(bibliotekariTabela.getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(rootPane, "Morate izabrati bibliotekara za izmenu");
+			return;
+		}
+		DialogIzmeniBibliotekara db = new DialogIzmeniBibliotekara(biblioteka, prijavljeniZaposleni, bibliotekariTabela.getSelectedRow());
+		db.setVisible(true);
+		dispose();
+		// TODO Auto-generated method stub
+		
+	}
+});
 	}
 	
 	

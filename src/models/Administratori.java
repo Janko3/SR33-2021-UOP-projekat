@@ -108,7 +108,7 @@ public class Administratori extends Zaposleni {
 		biblioteka.upisiAdmini(biblioteka.getSviAdmini());
 	}
 	
-	public void updateAdmina(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,String korisnickoIme, String lozinka,double plata,String id) {
+	public void updateAdmina(String ime, String prezime, String JMBG, String adresa, Pol pol, String korisnickoIme, String lozinka,double plata,String id) {
 		for(Administratori a: biblioteka.getSviAdmini()) {
 			if(a.getId().equals(id)) {
 				
@@ -117,11 +117,11 @@ public class Administratori extends Zaposleni {
 				a.setJMBG(JMBG);
 				a.setAdresa(adresa);
 				a.setPol(pol);
-				a.setJeObrisan(jeObrisan);
+				
 				a.setKorisnickoIme(korisnickoIme);
 				a.setLozinka(lozinka);
 				a.setPlata(plata);
-				a.setId(a.generisiIDAdmin());
+				a.setId(a.getId());
 				a.setBiblioteka(biblioteka);
 				biblioteka.izbrisiContentFajla("src/data/admini.txt");
 				biblioteka.upisiAdmini(biblioteka.getSviAdmini());
@@ -131,7 +131,7 @@ public class Administratori extends Zaposleni {
 		}
 	}
 	
-	public void updateBibliotekara(String ime, String prezime, String JMBG, String adresa, Pol pol, boolean jeObrisan,String korisnickoIme, String lozinka, double plata, String id) {
+	public void updateBibliotekara(String ime, String prezime, String JMBG, String adresa, Pol pol,String korisnickoIme, String lozinka, double plata,String id) {
 		for (Bibliotekari b: biblioteka.getSviBibliotekari()) {
 			if(b.getId().equals(id)) {
 				b.setIme(ime);
@@ -139,11 +139,12 @@ public class Administratori extends Zaposleni {
 				b.setJMBG(JMBG);
 				b.setAdresa(adresa);
 				b.setPol(pol);
-				b.setJeObrisan(jeObrisan);
+				
 				b.setKorisnickoIme(korisnickoIme);
 				b.setLozinka(lozinka);
 				b.setPlata(plata);
-				b.setId(b.generisiIDBibliotekar());
+				b.setId(b.getId()
+						);
 				biblioteka.izbrisiContentFajla("src/data/bibliotekari.txt");
 				biblioteka.upisiBibliotekara(biblioteka.getSviBibliotekari());
 			}

@@ -15,6 +15,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import dialogs.DialogDodajAdmina;
+import dialogs.DialogIzmeniAdmina;
 import models.Administratori;
 import models.Biblioteka;
 import models.Zaposleni;
@@ -109,6 +110,21 @@ public class AdministratoriProzor extends JFrame {
 					AdministratoriProzor ap = new AdministratoriProzor(biblioteka, admin);
 					ap.setVisible(true);
 				}
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		editBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(adminiTabela.getSelectedRow() == -1) {
+					JOptionPane.showMessageDialog(rootPane, "Morate izabrati admina za izmenu");
+					return;
+				}
+				DialogIzmeniAdmina da = new DialogIzmeniAdmina(biblioteka, prijavljeniZaposleni,adminiTabela.getSelectedRow());
+				da.setVisible(true);
+				dispose();
 				// TODO Auto-generated method stub
 				
 			}
