@@ -14,6 +14,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import dialogs.DialogDodajPrimerak;
+import dialogs.DialogIzmeniPrimerak;
 import models.Administratori;
 import models.Biblioteka;
 import models.Primerak;
@@ -54,7 +55,7 @@ private void initView() {
 		mainToolBar.add(deleteBtn);
 		add(mainToolBar,BorderLayout.SOUTH);
 		
-		String[] zaglavlja = new String[] {"Knjiga","Broj Strana","Godina stampanja","ID","Jezik","Tip poveza"};
+		String[] zaglavlja = new String[] {"Knjiga","Broj Strana","Godina stampanja","ID","Jezik","Tip poveza","Iznajmljena"};
 		Object[][]sadrzaj = new Object[biblioteka.neobrisaniPrimerci().size()][zaglavlja.length];
 		
 		for(int i=0;i<biblioteka.neobrisaniPrimerci().size();i++) {
@@ -65,6 +66,7 @@ private void initView() {
 			sadrzaj[i][3] = primerak.getId();
 			sadrzaj[i][4] = primerak.getJezik();
 			sadrzaj[i][5] = primerak.getPovez();
+			sadrzaj[i][6] = primerak.isIznamljena();
 		}
 		tableModel = new DefaultTableModel(sadrzaj,zaglavlja);
 		primerciTabela = new JTable(tableModel);
@@ -108,6 +110,21 @@ private void initActions() {
 				PrimerciProzor pp = new PrimerciProzor(biblioteka, prijavljeniZaposleni);
 				pp.setVisible(true);
 			}
+			// TODO Auto-generated method stub
+			
+		}
+	});
+	editBtn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(primerciTabela.getSelectedRow() == -1) {
+				JOptionPane.showMessageDialog(rootPane, "Morate izabrati primerak za izmenu");
+				return;
+			}
+			DialogIzmeniPrimerak dp = new DialogIzmeniPrimerak(biblioteka, prijavljeniZaposleni, primerciTabela.getSelectedRow());
+			dp.setVisible(true);
+			dispose();
 			// TODO Auto-generated method stub
 			
 		}

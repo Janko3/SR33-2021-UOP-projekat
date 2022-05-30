@@ -14,6 +14,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import dialogs.DialogDodajZanr;
+import dialogs.DialogIzmeniZanr;
 import models.Biblioteka;
 import models.Zanr;
 import models.Zaposleni;
@@ -103,6 +104,21 @@ deleteBtn.addActionListener(new ActionListener() {
 			
 		}
 	});
+editBtn.addActionListener(new ActionListener() {
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(zanroviTabela.getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(rootPane, "Morate izabrati zanr za izmenu");
+			return;
+		}
+		DialogIzmeniZanr dz = new DialogIzmeniZanr(biblioteka, prijavljeniZaposleni, zanroviTabela.getSelectedRow());
+		dz.setVisible(true);
+		dispose();
+		// TODO Auto-generated method stub
+		
+	}
+});
 }
 
 }

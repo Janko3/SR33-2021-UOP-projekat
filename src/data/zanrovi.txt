@@ -1,4 +1,4 @@
-Psiho-triler|Z-067837|pt|false
+test|Z-067837|test|false
 Drama|Z-628627|drama|false
 test|Z-581213|test|false
 test3|Z-013864|test|true

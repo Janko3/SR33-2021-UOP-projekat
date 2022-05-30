@@ -14,6 +14,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import dialogs.DialogDodajKnjigu;
+import dialogs.DialogIzmeniKnjigu;
 import models.Administratori;
 import models.Biblioteka;
 import models.Knjiga;
@@ -109,6 +110,21 @@ private void initActions() {
 				KnjigeProzor kp = new KnjigeProzor(biblioteka, prijavljeniZaposleni);
 				kp.setVisible(true);
 			}
+			// TODO Auto-generated method stub
+			
+		}
+	});
+	editBtn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(knjigeTabela.getSelectedRow() == -1) {
+				JOptionPane.showMessageDialog(rootPane, "Morate izabrati knjigu za izmenu");
+				return;
+			}
+			DialogIzmeniKnjigu dk = new DialogIzmeniKnjigu(biblioteka, prijavljeniZaposleni, knjigeTabela.getSelectedRow());
+			dk.setVisible(true);
+			dispose();
 			// TODO Auto-generated method stub
 			
 		}

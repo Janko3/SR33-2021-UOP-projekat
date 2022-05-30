@@ -274,14 +274,14 @@ public abstract class Zaposleni extends Osoba {
 			}
 		}
 	}
-	public void updatePrimerak(Knjiga knjiga, int brojStrana, int godinaStampanja, boolean iznamljena, String id,Jezik jezik,TipPoveza povez) {
+	public void updatePrimerak(Knjiga knjiga, int brojStrana, int godinaStampanja, String id,Jezik jezik,TipPoveza povez) {
 		for(Primerak p: biblioteka.getSviPrimerci()) {
 			if(p.getId().equals(id)) {
 				p.setKnjiga(knjiga);
 				p.setBrojStrana(brojStrana);
 				p.setGodinaStampanja(godinaStampanja);
-				p.setIznamljena(iznamljena);
-				p.setIznamljena(iznamljena);
+				p.setIznamljena(p.isIznamljena());
+				
 				p.setId(p.getId());
 				p.setJezik(jezik);
 				p.setPovez(povez);
@@ -292,13 +292,13 @@ public abstract class Zaposleni extends Osoba {
 		}
 	}
 	
-	public void updateTip(String id, String opis, double cena,boolean obrisan) {
+	public void updateTip(String id, String opis, double cena) {
 		for(TipClanarine t: biblioteka.getSviTipovi()) {
 			if(t.getId().equals(id)) {
 				t.setId(t.getId());
 				t.setOpis(opis);
 				t.setCena(cena);
-				t.setObrisan(obrisan);
+				t.setObrisan(t.isObrisan());
 				biblioteka.izbrisiContentFajla("src/data/tipovi.txt");
 				biblioteka.upisiTip(biblioteka.getSviTipovi());
 			}

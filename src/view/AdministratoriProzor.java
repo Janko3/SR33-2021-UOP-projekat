@@ -114,7 +114,7 @@ public class AdministratoriProzor extends JFrame {
 				
 			}
 		});
-		editBtn.addActionListener(new ActionListener() {
+ 		editBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

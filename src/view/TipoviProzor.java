@@ -13,6 +13,7 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import dialogs.DialogIzmeniTip;
 import dialogs.DodajTip;
 import models.Biblioteka;
 import models.TipClanarine;
@@ -104,6 +105,21 @@ deleteBtn.addActionListener(new ActionListener() {
 			
 		}
 	});
+editBtn.addActionListener(new ActionListener() {
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(tipoviTabela.getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(rootPane, "Morate izabrati tip za izmenu");
+			return;
+		}
+		DialogIzmeniTip dt = new DialogIzmeniTip(biblioteka, prijavljeniZaposleni, tipoviTabela.getSelectedRow());
+		dt.setVisible(true);
+		dispose();
+		// TODO Auto-generated method stub
+		
+	}
+});
 }
 
 }
