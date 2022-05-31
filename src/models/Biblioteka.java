@@ -655,8 +655,11 @@ public class Biblioteka {
 					String radnoVreme = splitLinije[2];
 					String telefon = splitLinije[3];
 					String id = splitLinije[4];
-					Biblioteka biblioteka = new Biblioteka(naziv,adresa,radnoVreme,telefon,id);
-					bibliotekaRet = biblioteka;
+					this.setNaziv(naziv);
+					this.setAdresa(adresa);
+					this.setRadnoVreme(radnoVreme);
+					this.setTelefon(telefon);
+					this.setId(id);
 					
 				}
 				reader.close();

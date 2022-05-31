@@ -32,6 +32,7 @@ public class Main {
 		biblioteka.ucitajKnjige(biblioteka.getSviZanrovi());
 		biblioteka.ucitajPrimerke();
 		biblioteka.ucitajIznajmljivanje();
+		biblioteka.ucitajBiblioteku();
 		
 		Administratori admin = biblioteka.neobrisaniAdmini().get(0);
 		//admin.DodatiNoveBibliotekare("Janko", "Rakonjac","3729474982", "bb", Pol.MUSKI, "jankela3", "lozinka", 1000.00);

@@ -3,14 +3,19 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import models.Administratori;
 import models.Biblioteka;
 import models.Zaposleni;
+import net.miginfocom.swing.MigLayout;
 
 public class MainWindow extends JFrame{
 	private JMenuBar mainMenu = new JMenuBar();
@@ -27,6 +32,17 @@ public class MainWindow extends JFrame{
 	private JMenuItem zanrItem = new JMenuItem("Zanrovi");
 	private JMenu iznajmljivanjaMenu = new JMenu("Iznajmljivanja");
 	private JMenuItem iznajmljivanjaItem = new JMenuItem("Iznajmljivanja");
+	private JLabel lblBibliotekaNaziv = new JLabel("Biblioteka");
+	private JTextField txtBibliotekaNaziv = new JTextField(20);
+	private JLabel lblBiblioAdresa = new JLabel("Adresa");
+	private JTextField txtBiblioAdresa = new JTextField(20);
+	private JLabel lblRadnoVremeBib = new JLabel("Radno vreme");
+	private JTextField txtRadnoVremeBib = new JTextField(20);
+	private JLabel lblIdBib = new JLabel("ID");
+	private JTextField txtIdBib = new JTextField(10);
+	private JLabel lblTelefon = new JLabel("Broj Telefona");
+	private JTextField txtTelefon = new JTextField(20);
+	private JButton btnUpdateBib = new JButton("Update");
 	
 	private Biblioteka biblioteka;
 	private Zaposleni prijavljeniZaposleni;
@@ -49,6 +65,8 @@ public class MainWindow extends JFrame{
 		// TODO Auto-generated constructor stub
 	}
 	private void initMenu() {
+		MigLayout mig = new MigLayout("wrap 2", "[][]", "[]10[][]10[]");
+		setLayout(mig);
 		setJMenuBar(mainMenu);
 		
 		if(prijavljeniZaposleni.getId().contains("A-")) {
@@ -67,6 +85,23 @@ public class MainWindow extends JFrame{
 		knjigeMenu.add(zanrItem);
 		mainMenu.add(iznajmljivanjaMenu);
 		iznajmljivanjaMenu.add(iznajmljivanjaItem);
+		add(lblBibliotekaNaziv);
+		add(txtBibliotekaNaziv);
+		add(lblBiblioAdresa);
+		add(txtBiblioAdresa);
+		add(lblRadnoVremeBib);
+		add(txtRadnoVremeBib);
+		add(lblTelefon);
+		add(txtTelefon);
+		add(lblIdBib);
+		add(txtIdBib);
+		add(btnUpdateBib);
+		txtBibliotekaNaziv.setText(biblioteka.getNaziv());
+		txtBiblioAdresa.setText(biblioteka.getAdresa());
+		txtRadnoVremeBib.setText(biblioteka.getRadnoVreme());
+		txtIdBib.setText(biblioteka.getId());
+		txtTelefon.setText(biblioteka.getTelefon());
+		txtIdBib.setEditable(false);
 		
 	}
 	private void initActions() {
@@ -142,6 +177,23 @@ public class MainWindow extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				ZanroviProzor zp = new ZanroviProzor(biblioteka,prijavljeniZaposleni);
 				zp.setVisible(true);
+			}
+		});
+		btnUpdateBib.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(txtBibliotekaNaziv.getText().equals("")||txtBiblioAdresa.getText().equals("")|| txtRadnoVremeBib.getText().equals("")||txtTelefon.getText().equals("")) {
+					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
+					return;
+				}
+				Administratori admin = (Administratori) prijavljeniZaposleni;
+				admin.updateBiblioteka(txtBibliotekaNaziv.getText().trim(), txtBiblioAdresa.getText().trim(), txtRadnoVremeBib.getText().trim(), txtTelefon.getText().trim(), txtIdBib.getText());
+				dispose();
+				MainWindow mw = new MainWindow(biblioteka, admin);
+				mw.setVisible(true);
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
