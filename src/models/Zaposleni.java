@@ -188,8 +188,11 @@ public abstract class Zaposleni extends Osoba {
 		iznajmljivanje.setPrimerakKnjige(primerakKnjige);
 		iznajmljivanje.setClan(clan);
 		iznajmljivanje.setZaposleni(zaposleni);
+		iznajmljivanje.setId(iznajmljivanje.generisiIDIznajmljivanje());
 		biblioteka.getSvaIznamljivanja().add(iznajmljivanje);
 		biblioteka.upisiIznajmljivanje(biblioteka.getSvaIznamljivanja());
+		iznajmljivanje.getPrimerakKnjige().setIznamljena(true);
+		
 	}
 	
 	
@@ -224,6 +227,16 @@ public abstract class Zaposleni extends Osoba {
 		}
 		biblioteka.izbrisiContentFajla("src/data/primerci");
 		biblioteka.upisiPrimerak(biblioteka.getSviPrimerci());
+	}
+	public void obrisiIznajmljivanje(String id) {
+		for(Iznajmljivanje i: biblioteka.getSvaIznamljivanja()) {
+			if(i.getId().equals(id)) {
+				i.setObrisan(true);
+				i.getPrimerakKnjige().setIznamljena(false);
+			}
+		}
+		biblioteka.izbrisiContentFajla("src/data/iznajmljivanja.txt");
+		biblioteka.upisiIznajmljivanje(biblioteka.getSvaIznamljivanja());
 	}
 	public void obrisiClana(String id) {
 		for(Clan c: biblioteka.neobrisaniClanovi()) {

@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import enumerations.Jezik;
@@ -98,6 +99,13 @@ public class DialogDodajKnjigu extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				if(txtGodina.getText().equals("")||txtNaslov.getText().equals("")||txtOpis.getText().equals("")||txtOrgNaslov.getText().equals("")||txtPisac.getText().equals("")) {
+					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
+					return;
+				}
+				if(biblioteka.validnostDouble(txtGodina.getText())== false) {
+					JOptionPane.showMessageDialog(rootPane, "Uneta vrednost mora biti broj");
+				}
 				prijavljeniZaposleni.DodajKnjigu(txtNaslov.getText().trim(), txtOrgNaslov.getText().trim(),txtPisac.getText().trim(), Integer.parseInt(txtGodina.getText().trim()), txtOpis.getText().trim(), biblioteka.neobrisaniZanrovi().get(cmbxZanr.getSelectedIndex()), Jezik.valueOf(cmbxJezik.getSelectedItem().toString()));
 				dispose();
 				KnjigeProzor kp = new KnjigeProzor(biblioteka,prijavljeniZaposleni);

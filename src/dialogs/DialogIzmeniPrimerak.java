@@ -82,7 +82,7 @@ public class DialogIzmeniPrimerak extends JDialog {
 		add(btnSave);
 		add(btnCncl);
 		
-		Primerak p = biblioteka.neobrisaniPrimerci().get(index);
+		Primerak p = biblioteka.neiznajmljeniPrimerci().get(index);
 		cmbxKnjiga.setSelectedItem(p.getKnjiga());
 		txtBrStrana.setText(String.valueOf(p.getBrojStrana()));
 		txtGodina.setText(String.valueOf(p.getGodinaStampanja()));

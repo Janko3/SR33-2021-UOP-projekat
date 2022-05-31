@@ -69,12 +69,7 @@ public class MainWindow extends JFrame{
 		setLayout(mig);
 		setJMenuBar(mainMenu);
 		
-		if(prijavljeniZaposleni.getId().contains("A-")) {
-			mainMenu.add(zaposleniMenu);
-			zaposleniMenu.add(adminiItem);
-			zaposleniMenu.add(bibliotekariItem);
-			
-		}
+		
 		mainMenu.add(clanoviMenu);
 		clanoviMenu.add(tipoviItem);
 		clanoviMenu.add(aktivniClanoviItem);
@@ -95,13 +90,26 @@ public class MainWindow extends JFrame{
 		add(txtTelefon);
 		add(lblIdBib);
 		add(txtIdBib);
-		add(btnUpdateBib);
+		
 		txtBibliotekaNaziv.setText(biblioteka.getNaziv());
 		txtBiblioAdresa.setText(biblioteka.getAdresa());
 		txtRadnoVremeBib.setText(biblioteka.getRadnoVreme());
 		txtIdBib.setText(biblioteka.getId());
 		txtTelefon.setText(biblioteka.getTelefon());
 		txtIdBib.setEditable(false);
+		if(prijavljeniZaposleni.getId().contains("B-")) {
+			txtBibliotekaNaziv.setEditable(false);
+			txtBiblioAdresa.setEditable(false);
+			txtRadnoVremeBib.setEditable(false);
+			txtTelefon.setEditable(false);
+		}
+		if(prijavljeniZaposleni.getId().contains("A-")) {
+			mainMenu.add(zaposleniMenu);
+			zaposleniMenu.add(adminiItem);
+			zaposleniMenu.add(bibliotekariItem);
+			add(btnUpdateBib);
+			
+		}
 		
 	}
 	private void initActions() {
@@ -167,7 +175,7 @@ public class MainWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				IznajmljivanjaProzor ip = new IznajmljivanjaProzor(biblioteka);
+				IznajmljivanjaProzor ip = new IznajmljivanjaProzor(biblioteka,prijavljeniZaposleni);
 				ip.setVisible(true);
 			}
 		});

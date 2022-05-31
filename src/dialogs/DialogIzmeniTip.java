@@ -86,6 +86,10 @@ public class DialogIzmeniTip extends JDialog {
 					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
 					return;
 				}
+				if(biblioteka.validnostDouble(txtCena.getText())== false) {
+					JOptionPane.showMessageDialog(rootPane,"Platu morate uneti u formatu 0.00");
+					return;
+				}
 				prijavljeniZaposleni.updateTip(txtId.getText(), txtOpis.getText().trim(), Double.parseDouble(txtCena.getText().trim()));
 				dispose();
 				TipoviProzor tp = new TipoviProzor(biblioteka, prijavljeniZaposleni);

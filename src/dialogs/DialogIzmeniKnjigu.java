@@ -114,9 +114,12 @@ public class DialogIzmeniKnjigu extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(txtGodina.getText().equals("")||txtId.getText().equals("")||txtNaslov.getText().equals("")||txtOpis.getText().equals("")||txtOrgNaslov.getText().equals("")||txtPisac.getText().equals("")) {
+				if(txtGodina.getText().equals("")||txtNaslov.getText().equals("")||txtOpis.getText().equals("")||txtOrgNaslov.getText().equals("")||txtPisac.getText().equals("")) {
 					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
 					return;
+				}
+				if(biblioteka.validnostDouble(txtGodina.getText())== false) {
+					JOptionPane.showMessageDialog(rootPane, "Uneta vrednost mora biti broj");
 				}
 				prijavljeniZaposleni.updateKnjiga(txtNaslov.getText().trim(), txtOrgNaslov.getText().trim(),txtPisac.getText().trim(), Integer.parseInt(txtGodina.getText().trim()), txtOpis.getText().trim(),txtId.getText(), biblioteka.neobrisaniZanrovi().get(cmbxZanr.getSelectedIndex()), Jezik.valueOf(cmbxJezik.getSelectedItem().toString()));
 				dispose();

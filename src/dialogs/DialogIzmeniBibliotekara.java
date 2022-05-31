@@ -121,6 +121,10 @@ public class DialogIzmeniBibliotekara extends JDialog{
 					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
 					return;
 				}
+				if(biblioteka.validnostDouble(txtPlata.getText())==false) {
+					JOptionPane.showMessageDialog(rootPane,"Platu morate uneti u formatu 0.00");
+					return;
+				}
 				// TODO Auto-generated method stub
 				 Administratori admin = (Administratori) prijavljeniZaposleni;
 				 admin.updateBibliotekara(txtIme.getText().trim(), txtPrezime.getText().trim(), txtJmbg.getText().trim(), txtAdresa.getText().trim(), Pol.valueOf(cmbxPol.getSelectedItem().toString().trim()), txtKorisnickoIme.getText().trim(), txtLozinka.getText().trim(), Double.parseDouble(txtPlata.getText().trim()),txtId.getText());				 

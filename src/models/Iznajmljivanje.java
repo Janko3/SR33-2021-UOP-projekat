@@ -17,6 +17,10 @@ public class Iznajmljivanje {
     
     private Zaposleni zaposleni;
     
+    private boolean obrisan;
+    
+    private String id;
+    
     public Iznajmljivanje() {
     	
     	this.datumIznajmljivanje = null;
@@ -24,14 +28,34 @@ public class Iznajmljivanje {
 		this.primerakKnjige = null;
 		this.clan = null;
 		this.zaposleni = null;
+		this.obrisan = false;
+		this.id = "";
     }
 
-	public Iznajmljivanje(LocalDate datumIznajmljivanje, LocalDate datumVracanja,Primerak primerakKnjige,Clan clan,Zaposleni zaposleni) {
+	public Iznajmljivanje(LocalDate datumIznajmljivanje, LocalDate datumVracanja,Primerak primerakKnjige,Clan clan,Zaposleni zaposleni,boolean obrisan,String id) {
 		this.datumIznajmljivanje = datumIznajmljivanje;
 		this.datumVracanja = datumVracanja;
 		this.primerakKnjige = primerakKnjige;
 		this.clan = clan;
 		this.zaposleni = zaposleni;
+		this.obrisan = obrisan;
+		this.id = id;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public boolean isObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
 	}
 
 	public LocalDate getDatumIznajmljivanje() {
@@ -77,10 +101,17 @@ public class Iznajmljivanje {
 	@Override
 	public String toString() {
 		return "Iznajmljivanje [datumIznajmljivanje=" + datumIznajmljivanje + ", datumVracanja=" + datumVracanja
-				+ ", primerakKnjige=" + primerakKnjige + ", clan=" + clan + ", zaposleni=" + zaposleni + "]";
+				+ ", primerakKnjige=" + primerakKnjige + ", clan=" + clan + ", zaposleni=" + zaposleni +",obrisan=" +obrisan +",id="+id+"]";
 	}
 
-	
+	public String generisiIDIznajmljivanje() {
+        String idClan = "I-";
+        for(int i=0;i<6;i++) {
+            int broj = (int) Math.floor(Math.random()*9);
+            idClan += Integer.toString(broj);
+        }
+        return idClan;
+    }
     
     
 

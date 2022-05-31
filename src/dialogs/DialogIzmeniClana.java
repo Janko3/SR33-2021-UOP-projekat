@@ -126,6 +126,14 @@ public class DialogIzmeniClana extends JDialog {
 					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
 					return;
 				}
+				if(biblioteka.validnostInteger(txtBrMeseci.getText()) == false) {
+					JOptionPane.showMessageDialog(rootPane,"Uneta vrednost mora biti broj");
+					return;
+				}
+				if(biblioteka.validnostDatum(txtDatum.getText())== false) {
+					JOptionPane.showMessageDialog(rootPane,"Datum morate uneti u formatu YY-MM-DD");
+					return;
+				}
 				prijavljeniZaposleni.updateClan(txtId.getText(),LocalDate.parse(txtDatum.getText().trim()), Integer.parseInt(txtBrMeseci.getText().trim()), txtIme.getText().trim(), txtPrezime.getText().trim(),txtJmbg.getText().trim(),txtAdresa.getText().trim(),Pol.valueOf(cmbxPol.getSelectedItem().toString()),biblioteka.neobrisaniTipovi().get(cmbxTip.getSelectedIndex()));
 				dispose();
 				AktivniClanoviProzor ap = new AktivniClanoviProzor(biblioteka, prijavljeniZaposleni);

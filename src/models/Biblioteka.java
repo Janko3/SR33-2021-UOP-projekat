@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class Biblioteka {
     
     private ArrayList<Bibliotekari> sviBibliotekari = new ArrayList<Bibliotekari>();
     
-    private ArrayList<Iznajmljivanje> svaIznamljivanja = new ArrayList<Iznajmljivanje>();
+    private ArrayList<Iznajmljivanje> svaIznajmljivanja = new ArrayList<Iznajmljivanje>();
     
     private ArrayList<Zaposleni> sviZaposleni = new ArrayList<Zaposleni>();
     
@@ -82,7 +83,7 @@ public class Biblioteka {
 		this.sviZanrovi = sviZanrovi;
 		this.sviAdmini = sviAdmini;
 		this.sviBibliotekari = sviBibliotekari;
-		this.svaIznamljivanja = svaIznamljivanja;
+		this.svaIznajmljivanja = svaIznamljivanja;
 		this.sviZaposleni = sviZaposleni;
 		
 	}
@@ -187,13 +188,13 @@ public class Biblioteka {
 	}
 
 	public ArrayList<Iznajmljivanje> getSvaIznamljivanja() {
-		return svaIznamljivanja;
+		return svaIznajmljivanja;
 	}
 
 
 
-	public void setSvaIznamljivanja(ArrayList<Iznajmljivanje> svaIznamljivanja) {
-		this.svaIznamljivanja = svaIznamljivanja;
+	public void setSvaIznamljivanja(ArrayList<Iznajmljivanje> svaIznajmljivanja) {
+		this.svaIznajmljivanja = svaIznajmljivanja;
 	}
 
 
@@ -571,8 +572,8 @@ public class Biblioteka {
 		}
 	
 	 private String pripremaZaUpisIznajmljivanje(Iznajmljivanje iznajmljivanje) {
-	    	return String.format("%s|%s|%s|%s|%s\n", iznajmljivanje.getDatumIznajmljivanje().toString(), iznajmljivanje.getDatumVracanja().toString(), iznajmljivanje.getPrimerakKnjige().getId(),iznajmljivanje.getClan().getBrClanskeKarte(),
-	    			iznajmljivanje.getZaposleni().getId());
+	    	return String.format("%s|%s|%s|%s|%s|%s|%s\n", iznajmljivanje.getDatumIznajmljivanje().toString(), iznajmljivanje.getDatumVracanja().toString(), iznajmljivanje.getPrimerakKnjige().getId(),iznajmljivanje.getClan().getBrClanskeKarte(),
+	    			iznajmljivanje.getZaposleni().getId(),iznajmljivanje.isObrisan(),iznajmljivanje.getId());
 	    }
 	    public void upisiIznajmljivanje(ArrayList<Iznajmljivanje> svaIznajmljivanja) {
 			try {
@@ -590,43 +591,7 @@ public class Biblioteka {
 	    
 	
 	    
-	    public ArrayList<Iznajmljivanje> ucitajIznajmljivanje(){
-	    	try {
-	    		File iznajmljivanjeFajl = new File("src/data/iznajmljivanja.txt");
-	    		BufferedReader reader = new BufferedReader(new FileReader(iznajmljivanjeFajl));
-	    		String linija;
-	    		while((linija = reader.readLine())!= null) {
-	    			String[] splitLinije = linija.split("\\|");
-	    			LocalDate datumIznajmljivanja = LocalDate.parse(splitLinije[0]);
-	    			LocalDate datumVracanja = LocalDate.parse(splitLinije[1]);
-	    			Primerak primerak = null;
-	    			for(Primerak p: sviPrimerci) {
-	    				if(p.getId().equals(splitLinije[2])) {
-	    					primerak = p;
-	    				}
-	    					
-	    				
-	    			}
-	    			Clan clan = null;
-	    			for(Clan c:sviClanovi) {
-	    				if(c.getBrClanskeKarte().equals(splitLinije[3])) {
-	    					clan = c;
-	    				}
-	    			}
-	    			Zaposleni zaposleni = null  ;
-	    			for(Zaposleni z: ucitajZaposlene()) {
-	    				if(z.getId().equals(splitLinije[4])) {
-	    					zaposleni = z;
-	    				}
-	    			}
-	    			Iznajmljivanje iznajmljivanje = new Iznajmljivanje(datumIznajmljivanja,datumVracanja,primerak,clan,zaposleni);
-	    			svaIznamljivanja.add(iznajmljivanje);
-	    		}
-	    		reader.close();
-	    		}catch(IOException e) { e.printStackTrace(); }
-			return svaIznamljivanja;
-	    	
-	    }
+	   
 	    
 	    private String pripremaZaUpisBiblioteka() {
 	    	return String.format("%s|%s|%s|%s|%s\n",this.getNaziv(),this.getAdresa(),this.getRadnoVreme(),this.getTelefon(),this.getId());
@@ -679,6 +644,7 @@ public class Biblioteka {
 					+ telefon + ", id=" + id +   "]";
 		}
 		
+		
 		public  boolean izbrisiContentFajla(String path) {
 			
 			
@@ -715,6 +681,15 @@ public class Biblioteka {
 			
 			}
 			return clanovi;
+		}
+		public ArrayList<Iznajmljivanje>neobrisanaIznajmljivanja(){
+			ArrayList<Iznajmljivanje> iznajmljivanja = new ArrayList<Iznajmljivanje>();
+			for(Iznajmljivanje i: svaIznajmljivanja) {
+				if(i.isObrisan()==false) {
+					iznajmljivanja.add(i);
+				}
+			}
+			return iznajmljivanja;
 		}
 		
 		public ArrayList<Administratori>neobrisaniAdmini(){
@@ -767,16 +742,23 @@ public class Biblioteka {
 			}
 			return tipovi;
 		}
-		
 		public ArrayList<Zaposleni>neobrisaniZaposleni(){
 			ArrayList<Zaposleni> zaposleni = new ArrayList<Zaposleni>();
-			for(Zaposleni z: sviZaposleni) {
-				if(z.isJeObrisan()==false) {
-					zaposleni.add(z);
+			for(Administratori a: neobrisaniAdmini()) {
+				if(a.isJeObrisan()==false) {
+					zaposleni.add(a);
+				}
+				
+			}
+			for(Bibliotekari b: neobrisaniBibliotekari()) {
+				if(b.isJeObrisan()==false) {
+					zaposleni.add(b);
 				}
 			}
 			return zaposleni;
 		}
+		
+	
 		
 		public ArrayList<Zanr>neobrisaniZanrovi(){
 			ArrayList<Zanr>zanrovi = new ArrayList<Zanr>();
@@ -786,6 +768,15 @@ public class Biblioteka {
 				}
 			}
 			return zanrovi;
+		}
+		public ArrayList<Primerak>neiznajmljeniPrimerci(){
+			ArrayList<Primerak>primerci = new ArrayList<Primerak>();
+			for(Primerak p: neobrisaniPrimerci()) {
+				if(p.isIznamljena() == false) {
+					primerci.add(p);
+				}
+			}
+			return primerci;
 		}
 		public ArrayList<Clan> aktivniClanovi(){
 			ArrayList<Clan> clanovi = new ArrayList<Clan>();
@@ -809,13 +800,83 @@ public class Biblioteka {
 		public Zaposleni loginZaposleni(String korisnickoIme,String lozinka) {
 			for(Zaposleni z:neobrisaniZaposleni()) {
 				if(z.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)&&
-						z.getLozinka().equals(lozinka)&& !z.isJeObrisan()) {
+						z.getLozinka().equals(lozinka) && !z.isJeObrisan()) {
 					return z;
 				}
 			}
 			return null;
 		}
-		
+		 public ArrayList<Iznajmljivanje> ucitajIznajmljivanje(){
+		    	try {
+		    		File iznajmljivanjeFajl = new File("src/data/iznajmljivanja.txt");
+		    		BufferedReader reader = new BufferedReader(new FileReader(iznajmljivanjeFajl));
+		    		String linija;
+		    		while((linija = reader.readLine())!= null) {
+		    			String[] splitLinije = linija.split("\\|");
+		    			LocalDate datumIznajmljivanja = LocalDate.parse(splitLinije[0]);
+		    			LocalDate datumVracanja = LocalDate.parse(splitLinije[1]);
+		    			Primerak primerak = null;
+		    			for(Primerak p: sviPrimerci) {
+		    				if(p.getId().equals(splitLinije[2])) {
+		    					primerak = p;
+		    				}
+		    					
+		    				
+		    			}
+		    			Clan clan = null;
+		    			for(Clan c:sviClanovi) {
+		    				if(c.getBrClanskeKarte().equals(splitLinije[3])) {
+		    					clan = c;
+		    				}
+		    			}
+		    			Zaposleni zaposleni = null  ;
+		    			for(Zaposleni z: neobrisaniZaposleni()) {
+		    				if(z.getId().equals(splitLinije[4])) {
+		    					zaposleni = z;
+		    				}
+		    			}
+		    			boolean obrisan = Boolean.parseBoolean(splitLinije[5]);
+		    			String id = splitLinije[6];
+		    			
+		    			Iznajmljivanje iznajmljivanje = new Iznajmljivanje(datumIznajmljivanja,datumVracanja,primerak,clan,zaposleni,obrisan,id);
+		    			svaIznajmljivanja.add(iznajmljivanje);
+		    		}
+		    		reader.close();
+		    		}catch(IOException e) { e.printStackTrace(); }
+				return svaIznajmljivanja;
+		    	
+		    }
+		public  boolean validnostDatum(String datumStr) {
+			LocalDate datum;
+			try {
+				datum = LocalDate.parse(datumStr);
+				
+			}catch (DateTimeException e) {
+				return false;
+				// TODO: handle exception
+			}
+			return true;
+		}
+		public  boolean validnostInteger(String integerStr) {
+			Integer integer;
+			try {
+				integer = Integer.parseInt(integerStr);
+			}catch (NumberFormatException e) {
+				return false;
+				// TODO: handle exception
+			}
+			return true;
+		}
+		public boolean validnostDouble(String doubleStr) {
+			Double doub;
+			try {
+				doub = Double.parseDouble(doubleStr);
+			} catch (NumberFormatException e) {
+				return false;
+				// TODO: handle exception
+			}
+			return true;
+		}
 		
 	
 

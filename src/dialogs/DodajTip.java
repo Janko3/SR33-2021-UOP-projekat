@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import models.Biblioteka;
@@ -63,6 +64,14 @@ public class DodajTip extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(txtOpis.getText().equals("")||txtCena.getText().equals("")) {
+					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
+					return;
+				}
+				if(biblioteka.validnostDouble(txtCena.getText())== false) {
+					JOptionPane.showMessageDialog(rootPane,"Platu morate uneti u formatu 0.00");
+					return;
+				}
 				prijavljeniZaposleni.DodajTip(txtOpis.getText().trim(),Double.parseDouble(txtCena.getText().trim()));
 				dispose();
 				TipoviProzor tp = new TipoviProzor(biblioteka,prijavljeniZaposleni);

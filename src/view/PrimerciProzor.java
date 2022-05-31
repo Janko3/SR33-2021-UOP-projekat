@@ -56,10 +56,10 @@ private void initView() {
 		add(mainToolBar,BorderLayout.SOUTH);
 		
 		String[] zaglavlja = new String[] {"Knjiga","Broj Strana","Godina stampanja","ID","Jezik","Tip poveza","Iznajmljena"};
-		Object[][]sadrzaj = new Object[biblioteka.neobrisaniPrimerci().size()][zaglavlja.length];
+		Object[][]sadrzaj = new Object[biblioteka.neiznajmljeniPrimerci().size()][zaglavlja.length];
 		
-		for(int i=0;i<biblioteka.neobrisaniPrimerci().size();i++) {
-			Primerak primerak = biblioteka.neobrisaniPrimerci().get(i);
+		for(int i=0;i<biblioteka.neiznajmljeniPrimerci().size();i++) {
+			Primerak primerak = biblioteka.neiznajmljeniPrimerci().get(i);
 			sadrzaj[i][0] = primerak.getKnjiga().getNaslov();
 			sadrzaj[i][1] = primerak.getBrojStrana();
 			sadrzaj[i][2] = primerak.getGodinaStampanja();

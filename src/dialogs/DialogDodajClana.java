@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import enumerations.Pol;
@@ -108,6 +109,18 @@ public class DialogDodajClana extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(txtIme.getText().equals("")||txtPrezime.getText().equals("")||txtJmbg.getText().equals("")||txtAdresa.getText().equals("")||txtBrMeseci.getText().equals("")||txtDatum.getText().equals("")) {
+					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
+					return;
+				}
+				if(biblioteka.validnostInteger(txtBrMeseci.getText()) == false) {
+					JOptionPane.showMessageDialog(rootPane,"Uneta vrednost mora biti broj");
+					return;
+				}
+				if(biblioteka.validnostDatum(txtDatum.getText())== false) {
+					JOptionPane.showMessageDialog(rootPane,"Datum morate uneti u formatu YY-MM-DD");
+					return;
+				}
 				 prijavljeniZaposleni.DodatiNoveClanove(LocalDate.parse(txtDatum.getText().trim()), Integer.parseInt(txtBrMeseci.getText().trim()), txtIme.getText().trim(), txtPrezime.getText().trim(),txtJmbg.getText().trim(),txtAdresa.getText().trim(),Pol.valueOf(cmbxPol.getSelectedItem().toString()),biblioteka.neobrisaniTipovi().get(cmbxTip.getSelectedIndex()));
 				 dispose();
 				 AktivniClanoviProzor dp = new AktivniClanoviProzor(biblioteka, prijavljeniZaposleni);

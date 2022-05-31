@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import models.Biblioteka;
@@ -66,7 +67,11 @@ public class DialogDodajZanr extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				if(txtOpis.getText().equals("")||txtOznaka.getText().equals("")) {
+					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
+					return;
+				}
+				
 				prijavljeniZaposleni.DodajZanr(txtOpis.getText().trim(), txtOznaka.getText().trim());
 				dispose();
 				ZanroviProzor zp = new ZanroviProzor(biblioteka,prijavljeniZaposleni);

@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import enumerations.Pol;
@@ -96,6 +97,14 @@ public class DialogDodajAdmina extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(txtIme.getText().equals("")||txtPrezime.getText().equals("")||txtJmbg.getText().equals("")||txtAdresa.getText().equals("")||txtKorisnickoIme.getText().equals("")||txtLozinka.getText().equals("")||txtPlata.getText().equals("")) {
+					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
+					return;
+				}
+				if(biblioteka.validnostDouble(txtPlata.getText())==false) {
+					JOptionPane.showMessageDialog(rootPane,"Platu morate uneti u formatu 0.00");
+					return;
+				}
 				 Administratori admin = (Administratori) prijavljeniZaposleni;
 				 admin.DodatiNoveAdmine(txtIme.getText().trim(), txtPrezime.getText().trim(), txtJmbg.getText().trim(), txtAdresa.getText().trim(), Pol.valueOf(cmbxPol.getSelectedItem().toString().trim()), txtKorisnickoIme.getText().trim(), txtLozinka.getText().trim(), Double.parseDouble(txtPlata.getText().trim()));
 				 dispose();

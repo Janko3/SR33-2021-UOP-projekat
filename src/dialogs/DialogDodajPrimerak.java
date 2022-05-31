@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import enumerations.Jezik;
@@ -99,6 +100,10 @@ btnSave.addActionListener(new ActionListener() {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(txtBrStrana.getText().equals("")||txtGodina.getText().equals("")) {
+			JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
+			return;
+		}
 		prijavljeniZaposleni.DodajPrimerak(biblioteka.neobrisaneKnjige().get(cmbxKnjiga.getSelectedIndex()),Integer.parseInt(txtBrStrana.getText().trim()), Integer.parseInt(txtGodina.getText().trim()), Jezik.valueOf(cmbxJezik.getSelectedItem().toString()), TipPoveza.valueOf(cmbxPovez.getSelectedItem().toString()));
 		dispose();
 		PrimerciProzor pp = new PrimerciProzor(biblioteka,prijavljeniZaposleni);
