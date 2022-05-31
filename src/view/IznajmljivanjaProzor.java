@@ -22,7 +22,7 @@ public class IznajmljivanjaProzor extends JFrame{
 	
 	private JToolBar mainToolBar = new JToolBar();
 	private JButton addBtn = new JButton("add");
-	private JButton editBtn = new JButton("update");
+	
 	private JButton deleteBtn = new JButton("delete");
 	
 	private DefaultTableModel tableModel;
@@ -47,7 +47,7 @@ private void initView() {
 		
 		
 		mainToolBar.add(addBtn);
-		mainToolBar.add(editBtn);
+		
 		mainToolBar.add(deleteBtn);
 		add(mainToolBar,BorderLayout.SOUTH);
 		
