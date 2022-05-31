@@ -182,6 +182,7 @@ public abstract class Zaposleni extends Osoba {
 		biblioteka.upisiZanr(biblioteka.getSviZanrovi());
 	}
 	public void dodajIznajmljivanje(LocalDate datumIznajmljivanje, LocalDate datumVracanja,Primerak primerakKnjige,Clan clan,Zaposleni zaposleni) {
+		
 		Iznajmljivanje iznajmljivanje = new Iznajmljivanje();
 		iznajmljivanje.setDatumIznajmljivanje(datumIznajmljivanje);
 		iznajmljivanje.setDatumVracanja(datumVracanja);
@@ -189,9 +190,21 @@ public abstract class Zaposleni extends Osoba {
 		iznajmljivanje.setClan(clan);
 		iznajmljivanje.setZaposleni(zaposleni);
 		iznajmljivanje.setId(iznajmljivanje.generisiIDIznajmljivanje());
+		updateIznajmljenPrimerak(primerakKnjige.getId());
 		biblioteka.getSvaIznamljivanja().add(iznajmljivanje);
 		biblioteka.upisiIznajmljivanje(biblioteka.getSvaIznamljivanja());
-		iznajmljivanje.getPrimerakKnjige().setIznamljena(true);
+		
+		
+	}
+	public void updateIznajmljenPrimerak(String idPrimerka) {
+		ArrayList<Primerak> primerci = biblioteka.neobrisaniPrimerci();
+		for(Primerak p: primerci) {
+			if(p.getId().equals(idPrimerka)) {
+				p.setIznamljena(true);
+			}
+			
+		}
+		biblioteka.upisiPrimerak(primerci);
 		
 	}
 	

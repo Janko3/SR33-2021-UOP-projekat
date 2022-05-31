@@ -107,6 +107,7 @@ public class DialogDodajIznajmljivanje extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				
 				// TODO Auto-generated method stub
 				if(txtDatumIznajmljivanja.getText().equals("")||txtVracanje.getText().equals("")) {
 					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
@@ -114,6 +115,11 @@ public class DialogDodajIznajmljivanje extends JFrame {
 				}
 				if(biblioteka.validnostDatum(txtDatumIznajmljivanja.getText())== false || biblioteka.validnostDatum(txtVracanje.getText())== false) {
 					JOptionPane.showMessageDialog(rootPane,"Datum morate uneti u formatu YY-MM-DD");
+					return;
+				}
+				Primerak primerak = biblioteka.neobrisaniPrimerci().get(cmbxPrimerak.getSelectedIndex());
+				if(primerak.isIznamljena() == true) {
+					JOptionPane.showMessageDialog(rootPane,"Primerak knjige je vec iznajmljen");
 					return;
 				}
 				prijavljeniZaposleni.dodajIznajmljivanje(LocalDate.parse(txtDatumIznajmljivanja.getText().trim()),LocalDate.parse(txtVracanje.getText().trim()) , biblioteka.neobrisaniPrimerci().get(cmbxPrimerak.getSelectedIndex()),biblioteka.neobrisaniClanovi().get(cmbxClan.getSelectedIndex()) , biblioteka.neobrisaniZaposleni().get(cmbxZaposleni.getSelectedIndex()));
