@@ -285,6 +285,21 @@ public abstract class Zaposleni extends Osoba {
 			
 		}
 	}
+	public void updateIznajmljivanje(LocalDate datumIznajmljivanja,LocalDate datumVracanja,Primerak primerak,Clan clan,Zaposleni zaposleni,String id) {
+		for(Iznajmljivanje i:biblioteka.neobrisanaIznajmljivanja()) {
+			if(i.getId().equals(id)) {
+				i.setDatumIznajmljivanje(datumIznajmljivanja);
+				i.setDatumVracanja(datumVracanja);
+				i.setPrimerakKnjige(primerak);
+				i.setClan(clan);
+				i.setZaposleni(zaposleni);
+				i.setId(i.getId());
+				biblioteka.izbrisiContentFajla("src/data/iznajmljivanja.txt");
+				biblioteka.upisiIznajmljivanje(biblioteka.neobrisanaIznajmljivanja());
+			}
+		}
+		
+	}
 	public void updateKnjiga(String naslov, String originalniNaslov, String pisac, int godinaObjavljivanja, String opis, String id,Zanr zanr,Jezik jezik) {
 		for(Knjiga k: biblioteka.getSveKnjige()) {
 			if(k.getId().equals(id)) {
@@ -343,6 +358,8 @@ public abstract class Zaposleni extends Osoba {
 			}
 		}
 	}
+	
+	
 	
 
 }

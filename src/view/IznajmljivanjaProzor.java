@@ -14,6 +14,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import dialogs.DialogDodajIznajmljivanje;
+import dialogs.DialogIzmeniIznajmljivanje;
+import dialogs.DialogIzmeniPrimerak;
 import models.Biblioteka;
 import models.Iznajmljivanje;
 import models.Zaposleni;
@@ -22,7 +24,7 @@ public class IznajmljivanjaProzor extends JFrame{
 	
 	private JToolBar mainToolBar = new JToolBar();
 	private JButton addBtn = new JButton("add");
-	
+	private JButton editBtn = new JButton("update");
 	private JButton deleteBtn = new JButton("delete");
 	
 	private DefaultTableModel tableModel;
@@ -47,7 +49,7 @@ private void initView() {
 		
 		
 		mainToolBar.add(addBtn);
-		
+		mainToolBar.add(editBtn);
 		mainToolBar.add(deleteBtn);
 		add(mainToolBar,BorderLayout.SOUTH);
 		
@@ -103,6 +105,19 @@ private void initActions() {
 				ip.setVisible(true);
 				
 			}
+		}
+	});
+	editBtn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(iznajmljivanjaTabela.getSelectedRow() == -1) {
+				JOptionPane.showMessageDialog(rootPane, "Morate izabrati iznajmljivanje za izmenu");
+				return;
+			}
+			DialogIzmeniIznajmljivanje ii = new DialogIzmeniIznajmljivanje(biblioteka, prijavljeniZaposleni, iznajmljivanjaTabela.getSelectedRow());
+			ii.setVisible(true);
+			dispose();
 		}
 	});
 }

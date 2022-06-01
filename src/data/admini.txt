@@ -4,3 +4,4 @@ Matejkovic|Matejkovic|32140839048|Telep|MUSKI|false|linuxas1|lozinka|1200.0|A-87
 Jovica|Rakonjac|432432432|bb|MUSKI|true|jole1|sjenica|5000.0|A-754481
 Jovica|test|7432846238|test|ZENSKI|true|test|test|1000.0|A-016153
 jdsoiajdioas|test4|432432|bb|ZENSKI|true|tets|test|4343.0|A-123001
+test|test|437|bb|ZENSKI|false|test|test|100.0|A-265208
