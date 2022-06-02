@@ -106,7 +106,6 @@ public class DialogIzmeniClana extends JDialog {
 		txtId.setText(c.getBrClanskeKarte());
 		txtId.setEditable(false);
 		
-		
 	}
 	public void initActions() {
 		btnCncl.addActionListener(new ActionListener() {
@@ -122,6 +121,8 @@ public class DialogIzmeniClana extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				if(txtIme.getText().equals("")||txtPrezime.getText().equals("")||txtJmbg.getText().equals("")||txtAdresa.getText().equals("")||txtBrMeseci.getText().equals("")||txtDatum.getText().equals("")) {
 					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
 					return;
@@ -134,6 +135,18 @@ public class DialogIzmeniClana extends JDialog {
 					JOptionPane.showMessageDialog(rootPane,"Datum morate uneti u formatu YY-MM-DD");
 					return;
 				}
+				double cena = biblioteka.getSviClanovi().get(index).getTipClanarine().getCena();
+				if(Integer.parseInt(txtBrMeseci.getText().trim())>=6 && Integer.parseInt(txtBrMeseci.getText().trim())<12) {
+					cena = (Integer.parseInt(txtBrMeseci.getText().trim()) * cena) - (Integer.parseInt(txtBrMeseci.getText().trim()) * cena * 0.1);
+					
+				}else if(Integer.parseInt(txtBrMeseci.getText().trim())>=12) {
+					cena = (Integer.parseInt(txtBrMeseci.getText().trim()) * cena) - (Integer.parseInt(txtBrMeseci.getText().trim()) * cena * 0.2);
+				}else {
+					cena = Integer.parseInt(txtBrMeseci.getText().trim()) * cena;
+				}
+				JOptionPane.showMessageDialog(rootPane, "Cena je: " + cena);
+					
+				
 				prijavljeniZaposleni.updateClan(txtId.getText(),LocalDate.parse(txtDatum.getText().trim()), Integer.parseInt(txtBrMeseci.getText().trim()), txtIme.getText().trim(), txtPrezime.getText().trim(),txtJmbg.getText().trim(),txtAdresa.getText().trim(),Pol.valueOf(cmbxPol.getSelectedItem().toString()),biblioteka.neobrisaniTipovi().get(cmbxTip.getSelectedIndex()));
 				dispose();
 				AktivniClanoviProzor ap = new AktivniClanoviProzor(biblioteka, prijavljeniZaposleni);

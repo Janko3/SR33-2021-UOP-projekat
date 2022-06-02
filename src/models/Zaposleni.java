@@ -255,7 +255,8 @@ public abstract class Zaposleni extends Osoba {
 		for(Clan c: biblioteka.neobrisaniClanovi()) {
 			if(c.getBrClanskeKarte().equals(id)) {
 				c.setJeObrisan(true);
-				c.setAktivnost(false);
+				
+				biblioteka.neobrisaniClanovi().remove(c);
 			}
 			
 		}
@@ -359,7 +360,16 @@ public abstract class Zaposleni extends Osoba {
 		}
 	}
 	
+	public void vratiClana(String id) {
+		for(Clan c: biblioteka.getSviClanovi()) {
+			if(c.getBrClanskeKarte().equals(id)) {
+				c.setAktivnost(true);
+				biblioteka.upisiClan(biblioteka.aktivniClanovi());
+			}
+		}
+	}
 	
+		
 	
 
 }

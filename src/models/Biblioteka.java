@@ -779,6 +779,7 @@ public class Biblioteka {
 			return primerci;
 		}
 		public ArrayList<Clan> aktivniClanovi(){
+			this.updateAktivnost();
 			ArrayList<Clan> clanovi = new ArrayList<Clan>();
 			for(Clan c: sviClanovi) {
 				if(c.isAktivnost()== true) {
@@ -788,6 +789,7 @@ public class Biblioteka {
 			return clanovi;
 		}
 		public ArrayList<Clan> neaktivniClanovi(){
+			this.updateAktivnost();
 			ArrayList<Clan> clanovi = new ArrayList<Clan>();
 			for(Clan c: sviClanovi) {
 				if(c.isAktivnost()== false) {
@@ -877,7 +879,15 @@ public class Biblioteka {
 			}
 			return true;
 		} 
-		
+		public void updateAktivnost() {
+			for(Clan c: this.sviClanovi) {
+				if(c.getDatumPoslednjeUplate().plusMonths(c.getBrojMeseci()).isBefore(LocalDate.now())) {
+					c.setAktivnost(false);
+				}else {
+					c.setAktivnost(true);
+				}
+			}
+		}
 		
 	
 

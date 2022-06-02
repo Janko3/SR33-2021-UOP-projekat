@@ -1,9 +1,12 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -12,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import models.Biblioteka;
 import models.Clan;
+import models.Zaposleni;
 
 public class NeaktivniClanoviProzor extends JFrame{
 	
@@ -19,24 +23,28 @@ public class NeaktivniClanoviProzor extends JFrame{
 	private JButton addBtn = new JButton("add");
 	private JButton editBtn = new JButton("update");
 	private JButton deleteBtn = new JButton("delete");
-	
+	private JButton extendBtn = new JButton("extend");
 	private DefaultTableModel tableModel;
 	private JTable neaktivniClanoviTabela;
 	
 	private Biblioteka biblioteka;
+	private Zaposleni prijavljeniZaposleni;
 
-	public NeaktivniClanoviProzor(Biblioteka biblioteka) {
+	public NeaktivniClanoviProzor(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni) {
 		this.biblioteka = biblioteka;
+		this.prijavljeniZaposleni = prijavljeniZaposleni;
 		setTitle("Neaktivni Clanovi");
 		setSize(500,300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initView();
+		initActions();
 		// TODO Auto-generated constructor stub
 	}
 	
 	private void initView() {
-		
+		mainToolBar.add(extendBtn);
+		add(mainToolBar,BorderLayout.SOUTH);
 		
 		String[]zaglavlja = new String[] {"Ime","Prezime","JMBG","Pol","Adresa","Broj Meseci","Datum Uplate","ID","Tip Clanarine"};
 		Object[][] sadrzaj = new Object[biblioteka.neaktivniClanovi().size()][zaglavlja.length];
@@ -55,6 +63,7 @@ public class NeaktivniClanoviProzor extends JFrame{
 			sadrzaj[i][8] = clan.getTipClanarine();		
 			
 		}
+		
 		tableModel = new DefaultTableModel(sadrzaj,zaglavlja);
 		 neaktivniClanoviTabela = new JTable(tableModel);
 		
@@ -67,6 +76,27 @@ public class NeaktivniClanoviProzor extends JFrame{
 		JScrollPane scrollPane = new JScrollPane( neaktivniClanoviTabela);
 		add(scrollPane,BorderLayout.CENTER);
 		
+	}
+	private void initActions() {
+		extendBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(neaktivniClanoviTabela.getSelectedRow() == -1) {
+					JOptionPane.showMessageDialog(rootPane, "Morate izabrati clana kojeg zelite da vratite");
+					return;
+				}
+				int a = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni?");
+				if(a == JOptionPane.YES_OPTION) {
+					prijavljeniZaposleni.vratiClana(neaktivniClanoviTabela.getModel().getValueAt(neaktivniClanoviTabela.getSelectedRow(), 7).toString());
+					dispose();
+					NeaktivniClanoviProzor np = new NeaktivniClanoviProzor(biblioteka, prijavljeniZaposleni);
+					np.setVisible(true);
+				}
+				
+			}
+		});
 	}
 
 }

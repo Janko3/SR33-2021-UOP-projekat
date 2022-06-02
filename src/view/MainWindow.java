@@ -142,7 +142,7 @@ public class MainWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				NeaktivniClanoviProzor np = new NeaktivniClanoviProzor(biblioteka);
+				NeaktivniClanoviProzor np = new NeaktivniClanoviProzor(biblioteka,prijavljeniZaposleni);
 				np.setVisible(true);
 			}
 		});
