@@ -71,6 +71,10 @@ public class DialogDodajZanr extends JDialog {
 					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
 					return;
 				}
+				if(biblioteka.validnostZanr(txtOpis.getText().trim()) == false) {
+					JOptionPane.showMessageDialog(rootPane, "Zanr " + txtOpis.getText() + " vec postoji.");
+					return;
+				}
 				
 				prijavljeniZaposleni.DodajZanr(txtOpis.getText().trim(), txtOznaka.getText().trim());
 				dispose();

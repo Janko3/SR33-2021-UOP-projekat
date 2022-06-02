@@ -888,6 +888,24 @@ public class Biblioteka {
 				}
 			}
 		}
+		public boolean validnostKorisnickoIme(String korisnickoIme) {
+			for(Zaposleni z: neobrisaniZaposleni()) {
+				if(z.getKorisnickoIme().equals(korisnickoIme)) {
+					return false;
+				}
+			}
+			return true;
+		}
+		
+		public boolean validnostZanr(String opis) {
+			for(Zanr z: neobrisaniZanrovi()) {
+				if(z.getOpis().equals(opis)) {
+					return false;
+					
+				}
+			}
+			return true;
+		}
 		
 	
 

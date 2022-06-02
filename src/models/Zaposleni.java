@@ -364,6 +364,7 @@ public abstract class Zaposleni extends Osoba {
 		for(Clan c: biblioteka.getSviClanovi()) {
 			if(c.getBrClanskeKarte().equals(id)) {
 				c.setAktivnost(true);
+				c.setDatumPoslednjeUplate(LocalDate.now());
 				biblioteka.upisiClan(biblioteka.aktivniClanovi());
 			}
 		}

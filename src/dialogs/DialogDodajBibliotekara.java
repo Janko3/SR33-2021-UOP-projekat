@@ -114,6 +114,10 @@ public class DialogDodajBibliotekara extends JDialog {
 					JOptionPane.showMessageDialog(rootPane,"Platu morate uneti u formatu 0.00");
 					return;
 				}
+				if(biblioteka.validnostKorisnickoIme(txtKorisnickoIme.getText().trim())==false) {
+					JOptionPane.showMessageDialog(rootPane, "Vec postoji korisnik sa korisnickim imenom: "+txtKorisnickoIme.getText());
+					return;
+				}
 				 Administratori admin = (Administratori) prijavljeniZaposleni;
 				 admin.DodatiNoveBibliotekare(txtIme.getText().trim(), txtPrezime.getText().trim(), txtJmbg.getText().trim(), txtAdresa.getText().trim(), Pol.valueOf(cmbxPol.getSelectedItem().toString().trim()), txtKorisnickoIme.getText().trim(), txtLozinka.getText().trim(), Double.parseDouble(txtPlata.getText().trim()));
 				 dispose();
