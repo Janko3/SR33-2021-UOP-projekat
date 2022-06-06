@@ -135,7 +135,9 @@ public class DialogIzmeniClana extends JDialog {
 					JOptionPane.showMessageDialog(rootPane,"Datum morate uneti u formatu YY-MM-DD");
 					return;
 				}
+				
 				double cena = biblioteka.getSviClanovi().get(index).getTipClanarine().getCena();
+				
 				if(Integer.parseInt(txtBrMeseci.getText().trim())>=6 && Integer.parseInt(txtBrMeseci.getText().trim())<12) {
 					cena = (Integer.parseInt(txtBrMeseci.getText().trim()) * cena) - (Integer.parseInt(txtBrMeseci.getText().trim()) * cena * 0.1);
 					
@@ -144,6 +146,18 @@ public class DialogIzmeniClana extends JDialog {
 				}else {
 					cena = Integer.parseInt(txtBrMeseci.getText().trim()) * cena;
 				}
+				if(!biblioteka.validnostJMBG(txtJmbg.getText().trim())) {
+					JOptionPane.showMessageDialog(rootPane, "Uneti JMBG nije validan");
+					return;
+					
+				}
+				if(!biblioteka.aktivniClanovi().get(index).getJMBG().equals(txtJmbg.getText().trim())) {
+					if(!biblioteka.validnostJmbgClan(txtJmbg.getText())) {
+						JOptionPane.showMessageDialog(rootPane, "Uneti jmbg mora biti jedinstven");
+						return;
+					}
+				}
+				
 				JOptionPane.showMessageDialog(rootPane, "Cena je: " + cena);
 					
 				

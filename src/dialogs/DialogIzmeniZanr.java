@@ -34,6 +34,7 @@ public class DialogIzmeniZanr extends JDialog {
 	public DialogIzmeniZanr(Biblioteka biblioteka,Zaposleni prijavljeniZaposleni,int index) {
 		this.biblioteka = biblioteka;
 		this.prijavljeniZaposleni = prijavljeniZaposleni;
+		this.index = index;
 		setTitle("Izmeni Zanr");
 		setSize(500,500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -82,7 +83,14 @@ public class DialogIzmeniZanr extends JDialog {
 					JOptionPane.showMessageDialog(rootPane,"Morate popuniti sva polja");
 					return;
 				}
+				if(!biblioteka.neobrisaniZanrovi().get(index).getOpis().equals(txtOpis.getText().trim().toLowerCase())) {
+					if(!biblioteka.validnostZanr(txtOpis.getText())) {
+						JOptionPane.showMessageDialog(rootPane, "Uneti zanr vec postoji");
+						return;
+					}
+				}
 				prijavljeniZaposleni.updateZanr(txtOpis.getText().trim(), txtId.getText(),txtOznaka.getText().trim());
+				dispose();
 				ZanroviProzor zp = new ZanroviProzor(biblioteka, prijavljeniZaposleni);
 				zp.setVisible(true);
 			}

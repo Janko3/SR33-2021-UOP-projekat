@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import enumerations.Pol;
 import models.Administratori;
 import models.Biblioteka;
+import models.Clan;
 import models.TipClanarine;
 import models.Zaposleni;
 import net.miginfocom.swing.MigLayout;
@@ -121,6 +122,18 @@ public class DialogDodajClana extends JDialog{
 					JOptionPane.showMessageDialog(rootPane,"Datum morate uneti u formatu YY-MM-DD");
 					return;
 				}
+				if(!biblioteka.validnostJMBG(txtJmbg.getText().trim())) {
+					JOptionPane.showMessageDialog(rootPane, "Uneti JMBG nije validan");
+					return;
+					
+				}
+				for(Clan c: biblioteka.aktivniClanovi()) {
+					if(c.getJMBG().equals(txtJmbg.getText().trim())) {
+						JOptionPane.showMessageDialog(rootPane, "Uneti jmbg mora biti jedinstven");
+						return;
+					}
+				}
+ 
 				 prijavljeniZaposleni.DodatiNoveClanove(LocalDate.parse(txtDatum.getText().trim()), Integer.parseInt(txtBrMeseci.getText().trim()), txtIme.getText().trim(), txtPrezime.getText().trim(),txtJmbg.getText().trim(),txtAdresa.getText().trim(),Pol.valueOf(cmbxPol.getSelectedItem().toString()),biblioteka.neobrisaniTipovi().get(cmbxTip.getSelectedIndex()));
 				 dispose();
 				 AktivniClanoviProzor dp = new AktivniClanoviProzor(biblioteka, prijavljeniZaposleni);

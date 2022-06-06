@@ -109,6 +109,23 @@ public class DialogDodajAdmina extends JDialog {
 					JOptionPane.showMessageDialog(rootPane, "Vec postoji korisnik sa korisnickim imenom: "+ txtKorisnickoIme.getText());
 					return;
 				}
+				if(!biblioteka.validnostJMBG(txtJmbg.getText().trim())) {
+					JOptionPane.showMessageDialog(rootPane, "Uneti JMBG nije validan");
+					return;
+					
+				}
+				for(Zaposleni z: biblioteka.neobrisaniZaposleni()) {
+					if(z.getKorisnickoIme().equals(txtKorisnickoIme.getText().trim())) {
+						JOptionPane.showMessageDialog(rootPane, "Korisnik sa unetim korisnickim imenom vec postoji");
+						return;
+					}
+				}
+				for(Zaposleni z: biblioteka.neobrisaniZaposleni()) {
+					if(z.getJMBG().equals(txtJmbg.getText().trim())) {
+						JOptionPane.showMessageDialog(rootPane, "Uneti jmbg mora biti jedinstven");
+						return;
+					}
+				}
 				 Administratori admin = (Administratori) prijavljeniZaposleni;
 				 admin.DodatiNoveAdmine(txtIme.getText().trim(), txtPrezime.getText().trim(), txtJmbg.getText().trim(), txtAdresa.getText().trim(), Pol.valueOf(cmbxPol.getSelectedItem().toString().trim()), txtKorisnickoIme.getText().trim(), txtLozinka.getText().trim(), Double.parseDouble(txtPlata.getText().trim()));
 				 dispose();

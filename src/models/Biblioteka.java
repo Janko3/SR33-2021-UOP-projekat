@@ -11,6 +11,8 @@ import java.lang.reflect.Array;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import enumerations.Jezik;
 import enumerations.Pol;
@@ -799,6 +801,7 @@ public class Biblioteka {
 			return clanovi;
 		}
 		
+		
 		public Zaposleni loginZaposleni(String korisnickoIme,String lozinka) {
 			for(Zaposleni z:neobrisaniZaposleni()) {
 				if(z.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)&&
@@ -899,13 +902,45 @@ public class Biblioteka {
 		
 		public boolean validnostZanr(String opis) {
 			for(Zanr z: neobrisaniZanrovi()) {
-				if(z.getOpis().equals(opis)) {
+				if(z.getOpis().equals(opis.toLowerCase())) {
 					return false;
 					
 				}
 			}
 			return true;
 		}
+		public boolean validnostTipClanarine(String opis) {
+			for(TipClanarine tip: neobrisaniTipovi()) {
+				if(tip.getOpis().equals(opis)) {
+					return false;
+				}
+			}
+			return true;
+		}
+		public boolean validnostJMBG(String jmbg) {
+			Pattern ptrn = Pattern.compile("[0-9]{13}"); 
+			Matcher match = ptrn.matcher(jmbg);
+			return (match.find() && match.group().equals(jmbg));
+		}
+		public boolean validnostJmbgClan(String jmbg) {
+			for(Clan c: aktivniClanovi()) {
+				if(c.getJMBG().equals(jmbg)) {
+					return false;
+				}
+				
+			}
+			return true;
+		}
+		public boolean validnostJmbgZaposleni(String jmbg) {
+			for(Zaposleni z:neobrisaniZaposleni()) {
+				if(z.getJMBG().equals(jmbg)) {
+					return false;
+				}
+				
+			}
+			return true;
+		}
+		
 		
 	
 

@@ -122,6 +122,24 @@ public class DialogIzmeniAdmina extends JDialog {
 					JOptionPane.showMessageDialog(rootPane,"Platu morate uneti u formatu 0.00");
 					return;
 				}
+				if(!biblioteka.validnostJMBG(txtJmbg.getText().trim())) {
+					JOptionPane.showMessageDialog(rootPane, "Uneti JMBG nije validan");
+					return;
+					
+				}
+				if(!txtKorisnickoIme.getText().trim().equals(biblioteka.neobrisaniAdmini().get(index).getKorisnickoIme())) {
+					if(!biblioteka.validnostKorisnickoIme(txtKorisnickoIme.getText())) {
+						JOptionPane.showMessageDialog(rootPane, "Korisnik sa unetim korisnickim imenom vec postoji");
+						return;
+					}
+				}
+				if(!biblioteka.neobrisaniAdmini().get(index).getJMBG().equals(txtJmbg.getText().trim())) {
+					if(!biblioteka.validnostJmbgZaposleni(txtJmbg.getText())) {
+						JOptionPane.showMessageDialog(rootPane, "Uneti jmbg mora biti jedinstven");
+						return;
+					}
+					
+				}
 				
 				// TODO Auto-generated method stub
 				Administratori admin = (Administratori) prijavljeniZaposleni;

@@ -72,6 +72,10 @@ public class DodajTip extends JDialog {
 					JOptionPane.showMessageDialog(rootPane,"Platu morate uneti u formatu 0.00");
 					return;
 				}
+				if(biblioteka.validnostTipClanarine(txtOpis.getText()) == false) {
+					JOptionPane.showMessageDialog(rootPane, "Uneti tip vec postoji");
+					return;
+				}
 				prijavljeniZaposleni.DodajTip(txtOpis.getText().trim(),Double.parseDouble(txtCena.getText().trim()));
 				dispose();
 				TipoviProzor tp = new TipoviProzor(biblioteka,prijavljeniZaposleni);

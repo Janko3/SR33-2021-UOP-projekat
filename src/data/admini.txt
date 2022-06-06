@@ -1,9 +1,9 @@
-Janko|Rakonjac|32140839048|Telepska Dolina|MUSKI|false|jr3|lozinka|1200.0|A-720360
-Atzo|Hercegovac|08071996793811|bb|MUSKI|false|atzo2|11111|1000.0|1
-Matejkovic|Matejkovic|32140839048|Telep|MUSKI|false|linuxas1|lozinka|1200.0|A-874445
+Janko|Rakonjac|0101010101014|Telepska Dolina|MUSKI|false|jr3|lozinka|1200.0|A-720360
+Atzo|Hercegovac|0101010101013|bb|MUSKI|false|atzo2|11111|1000.0|1
+Matejkovic|Matejkovic|0101010101012|Telep|MUSKI|false|linuxas1|lozinka|1200.0|A-874445
 Jovica|Rakonjac|432432432|bb|MUSKI|true|jole1|sjenica|5000.0|A-754481
 Jovica|test|7432846238|test|ZENSKI|true|test|test|1000.0|A-016153
 jdsoiajdioas|test4|432432|bb|ZENSKI|true|tets|test|4343.0|A-123001
-test|test|437|bb|ZENSKI|false|test|test|100.0|A-265208
+test|test|0101010101010|bb|ZENSKI|false|test|test|100.0|A-265208
 jr3|fdfds|432432432|gfds|MUSKI|true|jr3|lozinka|100.0|A-817567
 test|test|432423|dasd|ZENSKI|true|test|dsadas|131.0|A-654304
