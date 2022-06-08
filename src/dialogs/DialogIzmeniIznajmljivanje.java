@@ -1,8 +1,10 @@
 package dialogs;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -11,7 +13,12 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.table.DefaultTableModel;
 
 import models.Biblioteka;
 import models.Clan;
@@ -36,6 +43,8 @@ public class DialogIzmeniIznajmljivanje extends JDialog {
 	private JTextField txtId = new JTextField(10);
 	private JButton btnSave = new JButton("Sacuvaj");
 	private JButton btnCncl = new JButton("Otkazi");
+	private DefaultTableModel tableModel;
+	private JTable primerciTabela;
 	
 	private Biblioteka biblioteka;
 	private Zaposleni prijavljeniZaposleni;
@@ -91,6 +100,31 @@ public class DialogIzmeniIznajmljivanje extends JDialog {
 		add(cmbxZaposleni);
 		add(lblId);
 		add(txtId);
+		String[] zaglavlja = new String[] {"Knjiga","Broj Strana","Godina stampanja","ID","Jezik","Tip poveza","Iznajmljena"};
+		Object[][]sadrzaj = new Object[biblioteka.neiznajmljeniPrimerci().size()][zaglavlja.length];
+		
+		for(int i=0;i<biblioteka.neiznajmljeniPrimerci().size();i++) {
+			Primerak primerak = biblioteka.neiznajmljeniPrimerci().get(i);
+			sadrzaj[i][0] = primerak.getKnjiga().getNaslov();
+			sadrzaj[i][1] = primerak.getBrojStrana();
+			sadrzaj[i][2] = primerak.getGodinaStampanja();
+			sadrzaj[i][3] = primerak.getId();
+			sadrzaj[i][4] = primerak.getJezik();
+			sadrzaj[i][5] = primerak.getPovez();
+			sadrzaj[i][6] = primerak.isIznamljena();
+		}
+		tableModel = new DefaultTableModel(sadrzaj,zaglavlja);
+		primerciTabela = new JTable(tableModel);
+		
+		primerciTabela.setRowSelectionAllowed(true);
+		primerciTabela.setColumnSelectionAllowed(false);
+		primerciTabela.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		primerciTabela.setDefaultEditor(Object.class, null);
+		primerciTabela.getTableHeader().setReorderingAllowed(false);
+		primerciTabela.setSize(getMinimumSize());
+		JScrollPane scrollPane = new JScrollPane(primerciTabela);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		add(scrollPane,BorderLayout.SOUTH);
 		add(btnSave);
 		add(btnCncl);
 		Iznajmljivanje i = biblioteka.neobrisanaIznajmljivanja().get(index);
@@ -125,7 +159,18 @@ public class DialogIzmeniIznajmljivanje extends JDialog {
 					JOptionPane.showMessageDialog(rootPane,"Datum morate uneti u formatu YY-MM-DD");
 					return;
 				}
-				prijavljeniZaposleni.updateIznajmljivanje(LocalDate.parse(txtDatumIznajmljivanja.getText().trim()), LocalDate.parse(txtVracanje.getText().trim()), biblioteka.neobrisaniPrimerci().get(cmbxPrimerak.getSelectedIndex()), biblioteka.neobrisaniClanovi().get(cmbxClan.getSelectedIndex()), biblioteka.neobrisaniZaposleni().get(cmbxZaposleni.getSelectedIndex()), txtId.getText());
+				if(primerciTabela.getSelectedRows().length == 0) {
+					JOptionPane.showMessageDialog(rootPane, "Morate izabrati bar jedan primerak");
+					return;
+					
+				}
+				ArrayList<Primerak> primerci = new ArrayList<Primerak>();
+				int[] izabraniRedovi = primerciTabela.getSelectedRows();
+				for(int i:izabraniRedovi) {
+					primerci.add(biblioteka.neobrisaniPrimerci().get(i));
+					
+				}
+				prijavljeniZaposleni.updateIznajmljivanje(LocalDate.parse(txtDatumIznajmljivanja.getText().trim()), LocalDate.parse(txtVracanje.getText().trim()), primerci, biblioteka.neobrisaniClanovi().get(cmbxClan.getSelectedIndex()), biblioteka.neobrisaniZaposleni().get(cmbxZaposleni.getSelectedIndex()), txtId.getText());
 				dispose();
 				IznajmljivanjaProzor ip = new IznajmljivanjaProzor(biblioteka, prijavljeniZaposleni);
 				ip.setVisible(true);

@@ -1,6 +1,7 @@
 package models;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 
 public class Iznajmljivanje {
@@ -11,7 +12,7 @@ public class Iznajmljivanje {
 
     private LocalDate datumVracanja;
     
-    private Primerak primerakKnjige;
+    private ArrayList<Primerak> primerakKnjige;
     
     private Clan clan;
     
@@ -25,14 +26,13 @@ public class Iznajmljivanje {
     	
     	this.datumIznajmljivanje = null;
 		this.datumVracanja = null;
-		this.primerakKnjige = null;
 		this.clan = null;
 		this.zaposleni = null;
 		this.obrisan = false;
 		this.id = "";
     }
 
-	public Iznajmljivanje(LocalDate datumIznajmljivanje, LocalDate datumVracanja,Primerak primerakKnjige,Clan clan,Zaposleni zaposleni,boolean obrisan,String id) {
+	public Iznajmljivanje(LocalDate datumIznajmljivanje, LocalDate datumVracanja,ArrayList<Primerak> primerakKnjige,Clan clan,Zaposleni zaposleni,boolean obrisan,String id) {
 		this.datumIznajmljivanje = datumIznajmljivanje;
 		this.datumVracanja = datumVracanja;
 		this.primerakKnjige = primerakKnjige;
@@ -74,11 +74,13 @@ public class Iznajmljivanje {
 		this.datumVracanja = datumVracanja;
 	}
 
-	public Primerak getPrimerakKnjige() {
+	
+
+	public ArrayList<Primerak> getPrimerakKnjige() {
 		return primerakKnjige;
 	}
 
-	public void setPrimerakKnjige(Primerak primerakKnjige) {
+	public void setPrimerakKnjige(ArrayList<Primerak> primerakKnjige) {
 		this.primerakKnjige = primerakKnjige;
 	}
 

@@ -18,6 +18,7 @@ import dialogs.DialogIzmeniIznajmljivanje;
 import dialogs.DialogIzmeniPrimerak;
 import models.Biblioteka;
 import models.Iznajmljivanje;
+import models.Primerak;
 import models.Zaposleni;
 
 public class IznajmljivanjaProzor extends JFrame{
@@ -56,11 +57,13 @@ private void initView() {
 		String[] zaglavlja = new String[] {"Datum iznajmljivanja","Datum vracanja","Primerak","Clan","Zaposleni","ID"};
 		Object[][]sadrzaj = new Object[biblioteka.neobrisanaIznajmljivanja().size()][zaglavlja.length];
 		
+		
 		for(int i=0;i<biblioteka.neobrisanaIznajmljivanja().size();i++) {
 			Iznajmljivanje iznajmljivanje = biblioteka.neobrisanaIznajmljivanja().get(i);
+	//		Primerak p = biblioteka.neobrisaniPrimerci().get(i);
 			sadrzaj[i][0] = iznajmljivanje.getDatumIznajmljivanje();
 			sadrzaj[i][1] = iznajmljivanje.getDatumVracanja();
-			sadrzaj[i][2] = iznajmljivanje.getPrimerakKnjige().getId();
+			sadrzaj[i][2] = iznajmljivanje.getPrimerakKnjige().size();
 			sadrzaj[i][3] = iznajmljivanje.getClan().getBrClanskeKarte();
 			sadrzaj[i][4] = iznajmljivanje.getZaposleni().getId();
 			sadrzaj[i][5] = iznajmljivanje.getId();
@@ -82,6 +85,7 @@ private void initActions() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
 			DialogDodajIznajmljivanje di = new DialogDodajIznajmljivanje(biblioteka, prijavljeniZaposleni);
 			di.setVisible(true);
 			dispose();

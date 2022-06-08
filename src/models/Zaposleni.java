@@ -181,16 +181,17 @@ public abstract class Zaposleni extends Osoba {
 		biblioteka.getSviZanrovi().add(zanr);
 		biblioteka.upisiZanr(biblioteka.getSviZanrovi());
 	}
-	public void dodajIznajmljivanje(LocalDate datumIznajmljivanje, LocalDate datumVracanja,Primerak primerakKnjige,Clan clan,Zaposleni zaposleni) {
+	public void dodajIznajmljivanje(LocalDate datumIznajmljivanje, LocalDate datumVracanja,ArrayList<Primerak>sviPrimerci,Clan clan,Zaposleni zaposleni) {
 		
 		Iznajmljivanje iznajmljivanje = new Iznajmljivanje();
 		iznajmljivanje.setDatumIznajmljivanje(datumIznajmljivanje);
 		iznajmljivanje.setDatumVracanja(datumVracanja);
-		iznajmljivanje.setPrimerakKnjige(primerakKnjige);
+		iznajmljivanje.setPrimerakKnjige(sviPrimerci);
 		iznajmljivanje.setClan(clan);
 		iznajmljivanje.setZaposleni(zaposleni);
 		iznajmljivanje.setId(iznajmljivanje.generisiIDIznajmljivanje());
-		updateIznajmljenPrimerak(primerakKnjige.getId());
+		iznajmljivanje.setPrimerakKnjige(sviPrimerci);
+		
 		biblioteka.getSvaIznamljivanja().add(iznajmljivanje);
 		biblioteka.upisiIznajmljivanje(biblioteka.getSvaIznamljivanja());
 		
@@ -242,10 +243,12 @@ public abstract class Zaposleni extends Osoba {
 		biblioteka.upisiPrimerak(biblioteka.getSviPrimerci());
 	}
 	public void obrisiIznajmljivanje(String id) {
+		
 		for(Iznajmljivanje i: biblioteka.getSvaIznamljivanja()) {
 			if(i.getId().equals(id)) {
 				i.setObrisan(true);
-				i.getPrimerakKnjige().setIznamljena(false);
+				Primerak p = biblioteka.nadjiPrimerak(id);
+				p.setIznamljena(false);
 			}
 		}
 		biblioteka.izbrisiContentFajla("src/data/iznajmljivanja.txt");
@@ -286,12 +289,12 @@ public abstract class Zaposleni extends Osoba {
 			
 		}
 	}
-	public void updateIznajmljivanje(LocalDate datumIznajmljivanja,LocalDate datumVracanja,Primerak primerak,Clan clan,Zaposleni zaposleni,String id) {
+	public void updateIznajmljivanje(LocalDate datumIznajmljivanja,LocalDate datumVracanja,ArrayList<Primerak>sviPrimerci,Clan clan,Zaposleni zaposleni,String id) {
 		for(Iznajmljivanje i:biblioteka.neobrisanaIznajmljivanja()) {
 			if(i.getId().equals(id)) {
 				i.setDatumIznajmljivanje(datumIznajmljivanja);
 				i.setDatumVracanja(datumVracanja);
-				i.setPrimerakKnjige(primerak);
+				i.setPrimerakKnjige(sviPrimerci);
 				i.setClan(clan);
 				i.setZaposleni(zaposleni);
 				i.setId(i.getId());

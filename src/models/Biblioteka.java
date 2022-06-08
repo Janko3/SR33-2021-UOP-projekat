@@ -574,9 +574,16 @@ public class Biblioteka {
 		}
 	
 	 private String pripremaZaUpisIznajmljivanje(Iznajmljivanje iznajmljivanje) {
-	    	return String.format("%s|%s|%s|%s|%s|%s|%s\n", iznajmljivanje.getDatumIznajmljivanje().toString(), iznajmljivanje.getDatumVracanja().toString(), iznajmljivanje.getPrimerakKnjige().getId(),iznajmljivanje.getClan().getBrClanskeKarte(),
+	    	return String.format("%s|%s|%s|%s|%s|%s|%s\n", iznajmljivanje.getDatumIznajmljivanje().toString(), iznajmljivanje.getDatumVracanja().toString(), pripremaZaUpisPrimerakaUIznajmljivanje(iznajmljivanje.getPrimerakKnjige()),iznajmljivanje.getClan().getBrClanskeKarte(),
 	    			iznajmljivanje.getZaposleni().getId(),iznajmljivanje.isObrisan(),iznajmljivanje.getId());
 	    }
+	 private static String pripremaZaUpisPrimerakaUIznajmljivanje(ArrayList<Primerak> sviPrimerci) {
+		 String prikaz = "";
+		 for(Primerak p: sviPrimerci) {
+			 prikaz += p.getId() + ",";
+		 }
+		 return prikaz;
+	 }
 	    public void upisiIznajmljivanje(ArrayList<Iznajmljivanje> svaIznajmljivanja) {
 			try {
 				
@@ -820,13 +827,23 @@ public class Biblioteka {
 		    			String[] splitLinije = linija.split("\\|");
 		    			LocalDate datumIznajmljivanja = LocalDate.parse(splitLinije[0]);
 		    			LocalDate datumVracanja = LocalDate.parse(splitLinije[1]);
-		    			Primerak primerak = null;
-		    			for(Primerak p: sviPrimerci) {
-		    				if(p.getId().equals(splitLinije[2])) {
-		    					primerak = p;
+		    			String[] splitLinije2 = splitLinije[2].split(",");
+		    			ArrayList<Primerak> primerci = new ArrayList<Primerak>();
+//		    			for(Primerak p: sviPrimerci) {
+//		    				if(p.getId().equals(splitLinije[2])) {
+//		    					primerci = p;
+//		    				}		
+//		    			}
+//		    			for(Primerak p : primerci) {
+//		    				if(p.getId().equals(splitLinije2))
+//		    			}
+//		    		
+		    			for(int i=0;i<splitLinije2.length;i++) {
+		    				for(Primerak p : sviPrimerci) {
+		    					if(p.getId().equals(splitLinije2[i])) {
+		    						primerci.add(p);
+		    					}
 		    				}
-		    					
-		    				
 		    			}
 		    			Clan clan = null;
 		    			for(Clan c:sviClanovi) {
@@ -843,7 +860,8 @@ public class Biblioteka {
 		    			boolean obrisan = Boolean.parseBoolean(splitLinije[5]);
 		    			String id = splitLinije[6];
 		    			
-		    			Iznajmljivanje iznajmljivanje = new Iznajmljivanje(datumIznajmljivanja,datumVracanja,primerak,clan,zaposleni,obrisan,id);
+		    			Iznajmljivanje iznajmljivanje = new Iznajmljivanje(datumIznajmljivanja,datumVracanja,primerci,clan,zaposleni,obrisan,id);
+		    			
 		    			svaIznajmljivanja.add(iznajmljivanje);
 		    		}
 		    		reader.close();
@@ -940,7 +958,16 @@ public class Biblioteka {
 			}
 			return true;
 		}
-		
+		public Primerak nadjiPrimerak(String id) {
+			Primerak primerak = new Primerak();
+			for(Primerak p: sviPrimerci) {
+				if(p.getId().equals(id)) {
+					
+					p = primerak;
+				}
+			}
+			return primerak;
+		}
 		
 	
 
