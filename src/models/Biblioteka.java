@@ -297,7 +297,7 @@ public class Biblioteka {
 				boolean obrisan = Boolean.parseBoolean(splitLinije[8]);
 				
 				Knjiga knjiga = new Knjiga(naslovKnjiga,orgNaslovKnjiga,pisacKnjiga,godinaObjavljivanjaKnjiga,
-						opisKnjiga,idKnjiga,zanrovi,jezik);
+						opisKnjiga,idKnjiga,zanrovi,jezik,obrisan);
 				sveKnjige.add(knjiga);
 				
 				

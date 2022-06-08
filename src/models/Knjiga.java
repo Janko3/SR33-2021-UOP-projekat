@@ -46,7 +46,7 @@ public class Knjiga {
 		this.jezik = null;
     }
 
-	public Knjiga(String naslov, String originalniNaslov, String pisac, int godinaObjavljivanja, String opis, String id,Zanr zanr,Jezik jezik	) 
+	public Knjiga(String naslov, String originalniNaslov, String pisac, int godinaObjavljivanja, String opis, String id,Zanr zanr,Jezik jezik,boolean obrisan	) 
 	{
 		this.naslov = naslov;
 		this.originalniNaslov = originalniNaslov;
@@ -54,7 +54,7 @@ public class Knjiga {
 		this.godinaObjavljivanja = godinaObjavljivanja;
 		this.opis = opis;
 		this.id = id;
-		this.obrisan = false;
+		this.obrisan = obrisan;
 		this.zanr = zanr;
 		this.jezik = jezik;
 	}

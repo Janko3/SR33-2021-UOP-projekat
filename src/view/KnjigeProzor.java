@@ -18,6 +18,7 @@ import dialogs.DialogIzmeniKnjigu;
 import models.Administratori;
 import models.Biblioteka;
 import models.Knjiga;
+import models.Primerak;
 import models.Zaposleni;
 
 public class KnjigeProzor extends JFrame {
@@ -101,6 +102,13 @@ private void initActions() {
 			if(knjigeTabela .getSelectedRow() == -1) {
 				JOptionPane.showMessageDialog(rootPane, "Morate izabrati knjigu za brisanje");
 				return;
+			}
+			Knjiga knjiga = biblioteka.neobrisaneKnjige().get(knjigeTabela.getSelectedRow());
+			for(Primerak p: biblioteka.neobrisaniPrimerci()) {
+				if(p.getKnjiga().getId().equals(knjiga.getId())) {
+					JOptionPane.showMessageDialog(rootPane, "Knjiga ne moze biti izbrisana");
+					return;
+				}
 			}
 			int a = JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni?");
 			if(a == JOptionPane.YES_OPTION) {
