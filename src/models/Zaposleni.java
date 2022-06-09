@@ -290,6 +290,7 @@ public abstract class Zaposleni extends Osoba {
 		}
 	}
 	public void updateIznajmljivanje(LocalDate datumIznajmljivanja,LocalDate datumVracanja,ArrayList<Primerak>sviPrimerci,Clan clan,Zaposleni zaposleni,String id) {
+		
 		for(Iznajmljivanje i:biblioteka.neobrisanaIznajmljivanja()) {
 			if(i.getId().equals(id)) {
 				i.setDatumIznajmljivanje(datumIznajmljivanja);
@@ -325,8 +326,7 @@ public abstract class Zaposleni extends Osoba {
 				p.setKnjiga(knjiga);
 				p.setBrojStrana(brojStrana);
 				p.setGodinaStampanja(godinaStampanja);
-				p.setIznamljena(p.isIznamljena());
-				
+				p.setIznamljena(p.isIznamljena());				
 				p.setId(p.getId());
 				p.setJezik(jezik);
 				p.setPovez(povez);

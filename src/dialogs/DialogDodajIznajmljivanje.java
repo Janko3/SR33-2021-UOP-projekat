@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 import models.Biblioteka;
 import models.Clan;
+import models.Iznajmljivanje;
 import models.Primerak;
 import models.Zaposleni;
 import net.miginfocom.swing.MigLayout;
@@ -157,6 +158,7 @@ public class DialogDodajIznajmljivanje extends JFrame {
 				for(int i:izabraniRedovi) {
 					primerci.add(biblioteka.neobrisaniPrimerci().get(i));
 				}
+				
 				prijavljeniZaposleni.dodajIznajmljivanje(LocalDate.parse(txtDatumIznajmljivanja.getText().trim()),LocalDate.parse(txtVracanje.getText().trim()) ,primerci,biblioteka.neobrisaniClanovi().get(cmbxClan.getSelectedIndex()) , biblioteka.neobrisaniZaposleni().get(cmbxZaposleni.getSelectedIndex()));
 				dispose();
 				IznajmljivanjaProzor ip = new IznajmljivanjaProzor(biblioteka, prijavljeniZaposleni);

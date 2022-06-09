@@ -91,20 +91,19 @@ public class DialogIzmeniIznajmljivanje extends JDialog {
 		add(lblDatumIznajmljivanja);
 		add(txtDatumIznajmljivanja);
 		add(lblVracanje);
-		add(txtVracanje);
-		add(lblPrimerak);
-		add(cmbxPrimerak);
+		add(txtVracanje);		
 		add(lblClan);
 		add(cmbxClan);
 		add(lblZaposleni);
 		add(cmbxZaposleni);
 		add(lblId);
 		add(txtId);
+		Iznajmljivanje iznajmljivanje = biblioteka.neobrisanaIznajmljivanja().get(index);
 		String[] zaglavlja = new String[] {"Knjiga","Broj Strana","Godina stampanja","ID","Jezik","Tip poveza","Iznajmljena"};
-		Object[][]sadrzaj = new Object[biblioteka.neiznajmljeniPrimerci().size()][zaglavlja.length];
+		Object[][]sadrzaj = new Object[biblioteka.neiznajmljeniPrimerci().size()+iznajmljivanje.getPrimerakKnjige().size()][zaglavlja.length];
 		
-		for(int i=0;i<biblioteka.neiznajmljeniPrimerci().size();i++) {
-			Primerak primerak = biblioteka.neiznajmljeniPrimerci().get(i);
+		for(int i=0;i<iznajmljivanje.getPrimerakKnjige().size();i++) {
+			Primerak primerak = iznajmljivanje.getPrimerakKnjige().get(i);
 			sadrzaj[i][0] = primerak.getKnjiga().getNaslov();
 			sadrzaj[i][1] = primerak.getBrojStrana();
 			sadrzaj[i][2] = primerak.getGodinaStampanja();
@@ -113,17 +112,33 @@ public class DialogIzmeniIznajmljivanje extends JDialog {
 			sadrzaj[i][5] = primerak.getPovez();
 			sadrzaj[i][6] = primerak.isIznamljena();
 		}
+		int n = iznajmljivanje.getPrimerakKnjige().size() ;
+		for(int i=0;i<biblioteka.neiznajmljeniPrimerci().size();i++) {
+			Primerak primerak = biblioteka.neiznajmljeniPrimerci().get(i);
+			sadrzaj[n][0] = primerak.getKnjiga().getNaslov();
+			sadrzaj[n][1] = primerak.getBrojStrana();
+			sadrzaj[n][2] = primerak.getGodinaStampanja();
+			sadrzaj[n][3] = primerak.getId();
+			sadrzaj[n][4] = primerak.getJezik();
+			sadrzaj[n][5] = primerak.getPovez();
+			sadrzaj[n][6] = primerak.isIznamljena();
+			n++;
+		}
+	
 		tableModel = new DefaultTableModel(sadrzaj,zaglavlja);
 		primerciTabela = new JTable(tableModel);
 		
+//		primerciTabela.setRowSelectionInterval(1, iznajmljivanje.getPrimerakKnjige().size()-1);
+		primerciTabela.setRowSelectionAllowed(true);
 		primerciTabela.setRowSelectionAllowed(true);
 		primerciTabela.setColumnSelectionAllowed(false);
 		primerciTabela.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		primerciTabela.setDefaultEditor(Object.class, null);
 		primerciTabela.getTableHeader().setReorderingAllowed(false);
 		primerciTabela.setSize(getMinimumSize());
+		primerciTabela.setRowSelectionInterval(0, iznajmljivanje.getPrimerakKnjige().size()-1);
 		JScrollPane scrollPane = new JScrollPane(primerciTabela);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		
 		add(scrollPane,BorderLayout.SOUTH);
 		add(btnSave);
 		add(btnCncl);
@@ -164,11 +179,20 @@ public class DialogIzmeniIznajmljivanje extends JDialog {
 					return;
 					
 				}
+				
 				ArrayList<Primerak> primerci = new ArrayList<Primerak>();
 				int[] izabraniRedovi = primerciTabela.getSelectedRows();
 				for(int i:izabraniRedovi) {
-					primerci.add(biblioteka.neobrisaniPrimerci().get(i));
+					primerci.add(biblioteka.nadjiPrimerak(primerciTabela.getValueAt(i, 3).toString()));
+					System.out.println(primerci);
+				}
+				Iznajmljivanje iznajmljivanje = biblioteka.neobrisanaIznajmljivanja().get(index);
+				for(Primerak p: iznajmljivanje.getPrimerakKnjige()) {
+					p.setIznamljena(false);
 					
+				}
+				for(Primerak p: primerci) {
+					p.setIznamljena(true);
 				}
 				prijavljeniZaposleni.updateIznajmljivanje(LocalDate.parse(txtDatumIznajmljivanja.getText().trim()), LocalDate.parse(txtVracanje.getText().trim()), primerci, biblioteka.neobrisaniClanovi().get(cmbxClan.getSelectedIndex()), biblioteka.neobrisaniZaposleni().get(cmbxZaposleni.getSelectedIndex()), txtId.getText());
 				dispose();

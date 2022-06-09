@@ -960,10 +960,10 @@ public class Biblioteka {
 		}
 		public Primerak nadjiPrimerak(String id) {
 			Primerak primerak = new Primerak();
-			for(Primerak p: sviPrimerci) {
+			for(Primerak p: neobrisaniPrimerci()) {
 				if(p.getId().equals(id)) {
 					
-					p = primerak;
+					primerak = p;
 				}
 			}
 			return primerak;
